@@ -81,3 +81,4 @@ MonoBehaviour:
   totalAffiliationPerClique: 100
   defaultAffiliation: 0
   incrementAffiliationAmount: 1
+  decrementAffiliationAmount: 2

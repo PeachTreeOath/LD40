@@ -10,6 +10,7 @@ public class LevelManager : Singleton<LevelManager> {
     public float totalAffiliationPerClique;
     public float defaultAffiliation;
     public float incrementAffiliationAmount;
+    public float decrementAffiliationAmount;
 
     private Dictionary<CliqueEnum, float> cliqueAffiliations = new Dictionary<CliqueEnum, float>();
     private Canvas canvas;
@@ -55,6 +56,11 @@ public class LevelManager : Singleton<LevelManager> {
 
     public void incrementCurrentAffiliation(CliqueEnum clique)
     {
-        cliqueAffiliations[clique] = incrementAffiliationAmount;
+        cliqueAffiliations[clique] = Math.Max(totalAffiliationPerClique, incrementAffiliationAmount);
+    }
+
+    public void decrementCurrentAffiliation(CliqueEnum clique)
+    {
+        cliqueAffiliations[clique] = Math.Max(0, decrementAffiliationAmount);
     }
 }
