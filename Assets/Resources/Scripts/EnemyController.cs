@@ -38,18 +38,18 @@ public class EnemyController : MonoBehaviour {
         state.DoUpdate(this);
 	}
 
-    void OnTriggerEnter2D(Collider2D col)
+    void OnTriggerStay2D(Collider2D col)
     {
         PlayerStateController player = col.GetComponent<PlayerStateController>();
         if(player != null)
         {
             if(clique == player.GetPlayerState())
             {
-                LevelManager.instance.incrementCurrentAffiliation(state.GetIncrementAffiliationSpeed() * Time.deltaTime);
+                LevelManager.instance.incrementCurrentAffiliation(clique, state.GetIncrementAffiliationSpeed() * Time.deltaTime);
             }
             else
             {
-                LevelManager.instance.decrementCurrentAffiliation(state.GetDecrementAffiliationSpeed() * Time.deltaTime);
+                LevelManager.instance.incrementCurrentAffiliation(clique, state.GetDecrementAffiliationSpeed() * Time.deltaTime);
             }
         }
     }

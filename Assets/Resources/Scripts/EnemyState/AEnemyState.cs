@@ -34,7 +34,7 @@ public abstract class AEnemyState {
     /// </summary>
     public virtual float GetIncrementAffiliationSpeed()
     {
-        return .01f;
+        return 10f;
     }
 
     /// <summary>
@@ -42,6 +42,6 @@ public abstract class AEnemyState {
     /// </summary>
     public virtual float GetDecrementAffiliationSpeed()
     {
-        return .02f;
+        return -20f;
     }
 }
