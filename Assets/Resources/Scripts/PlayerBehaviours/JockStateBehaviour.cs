@@ -12,7 +12,7 @@ public class JockStateBehaviour : APlayerBehaviour
     /// <summary>
     /// Speed at which the ball flies.
     /// </summary>
-    private float speed = 5f;
+    private float speed = 15f;
 
     /// <summary>
     /// Throw the Foosball
