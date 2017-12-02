@@ -10,11 +10,13 @@ public class PlayerStateController : Singleton<PlayerStateController> {
     /// </summary>
     public CliqueEnum CurrentState;
 
+    private PlayerController player;
     private SpriteRenderer playerSprite;
     private Dictionary<CliqueEnum, APlayerState> stateMap = new Dictionary<CliqueEnum, APlayerState>();
 
     void Start()
     {
+        player = GetComponent<PlayerController>();
         playerSprite = GetComponentInChildren<SpriteRenderer>();
 
         stateMap.Add(CliqueEnum.BEARDSTER, new HipsterState());
@@ -31,6 +33,7 @@ public class PlayerStateController : Singleton<PlayerStateController> {
     {
         CurrentState = state;
         playerSprite.sprite = stateMap[state].GetStateSprite();
+                player.moveSpeed = stateMap[state].GetStateSpeed();
 
         switch (state)
         {

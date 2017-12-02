@@ -32,6 +32,6 @@ public class SkaterState : APlayerState {
     public override float GetStateSpeed()
     {
         //Change this to whatever it really should be 5 is a placeholder.
-        return 5;
+        return .25f;
     }
 }

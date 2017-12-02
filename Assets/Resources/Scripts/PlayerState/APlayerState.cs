@@ -29,7 +29,7 @@ public abstract class APlayerState {
     /// </summary>
     public virtual float GetStateSpeed()
     {
-        return 1;
+        return .1f;
     }
     
 
