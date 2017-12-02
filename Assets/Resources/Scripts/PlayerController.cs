@@ -125,4 +125,9 @@ public class PlayerController : Singleton<PlayerController>
         }
 
     }
+
+    public PlayerStateController GetState()
+    {
+        return GetComponent<PlayerStateController>();
+    }
 }
