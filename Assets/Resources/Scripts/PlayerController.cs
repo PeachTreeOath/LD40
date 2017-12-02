@@ -47,7 +47,8 @@ public class PlayerController : Singleton<PlayerController>
 
         if(Input.GetKeyDown(KeyCode.Space) && !PlayerStateController.instance.GetPlayerState().Equals(CliqueEnum.NORMAL))
         {
-            behaviour.ExecuteBehaviourAction();
+            if(behaviour != null)
+                behaviour.ExecuteBehaviourAction();
         }
 
         Vector3 deltaPos = new Vector3(currentSpeed * Input.GetAxisRaw("Horizontal"), currentSpeed * Input.GetAxisRaw("Vertical"), 0);

@@ -23,7 +23,7 @@ public class JockStateBehaviour : APlayerBehaviour
         if (player.hasBall)
         {
             if (FootballGO == null)
-                GameObject.FindGameObjectWithTag("Football");
+                FootballGO = GameObject.FindGameObjectWithTag("Football");
 
             Vector2 direction = player.GetPlayerDirection();
             FootballGO.transform.localPosition = player.transform.localPosition;

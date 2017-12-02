@@ -37,6 +37,6 @@ public class SkaterPlayerState : APlayerState {
 
     public override APlayerBehaviour GetPlayerBehaviour()
     {
-        throw new System.NotImplementedException();
+        return new SkaterStateBehaviour();
     }
 }

@@ -27,6 +27,6 @@ public class FurryPlayerState : APlayerState
     }
     public override APlayerBehaviour GetPlayerBehaviour()
     {
-        throw new System.NotImplementedException();
+        return new FurryStateBehaviour();
     }
 }

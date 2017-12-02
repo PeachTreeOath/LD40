@@ -29,6 +29,6 @@ public class HipsterPlayerState : APlayerState {
 
     public override APlayerBehaviour GetPlayerBehaviour()
     {
-        throw new System.NotImplementedException();
+        return new HipsterStateBehaviour();
     }
 }
