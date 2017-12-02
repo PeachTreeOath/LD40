@@ -115,8 +115,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2794d53ea0a5974ea7713a67a26d674, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  clique: 2
+  clique: 3
+  personalAffinity: 0
+  personalAffinityMax: 20
+  incrementAffinitySpeed: 2
+  decrementAffinitySpeed: -5
   rbody: {fileID: 0}
+  navigation: {fileID: 0}
 --- !u!212 &212180617463532298
 SpriteRenderer:
   m_ObjectHideFlags: 1

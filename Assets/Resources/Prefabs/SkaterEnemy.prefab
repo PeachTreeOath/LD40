@@ -117,6 +117,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   clique: 1
+  personalAffinity: 0
+  personalAffinityMax: 20
+  incrementAffinitySpeed: 2
+  decrementAffinitySpeed: -5
   rbody: {fileID: 0}
   navigation: {fileID: 0}
 --- !u!114 &114256659248616198
