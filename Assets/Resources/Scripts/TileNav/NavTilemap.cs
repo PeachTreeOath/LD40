@@ -10,6 +10,7 @@ public class NavTilemap {
 
         public Vector3Int location { get; private set; }
         public bool solid = false;
+        public bool exists = false;
         public Waypoint waypoint;
     }
 
