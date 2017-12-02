@@ -33,7 +33,7 @@ public class SkaterEnemyState : AEnemyState {
         }
         else
         {
-            enemy.navigation.MoveTo(PlayerController.instance.gameObject, GetStateSpeed());
+            enemy.navigation.MoveTo(PlayerController.instance.gameObject, 0.25f);
         }
         
 

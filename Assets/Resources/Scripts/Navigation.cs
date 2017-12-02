@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Navigation : MonoBehaviour {
 
-    private Rigidbody2D rigidBody;
+    private Rigidbody2D rBody;
 
     private GameObject currentTarget;
     private GameObject currentWaypoint;
@@ -23,7 +23,7 @@ public class Navigation : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 
-        rigidBody = GetComponent<Rigidbody2D>();
+        rBody = GetComponent<Rigidbody2D>();
         gridWaypoints = GameObject.Find("Waypoints");
 	}
 	
@@ -31,7 +31,7 @@ public class Navigation : MonoBehaviour {
 	void Update () {
         if (allowedMovement)
         {
-            Debug.Log("enemy is moving");
+            
             PerformMovement();
             if(HasReachedTarget())
             {
@@ -91,8 +91,10 @@ public class Navigation : MonoBehaviour {
 
     void PerformMovement()
     {
+       // Debug.Log("enemy is moving");
         Vector2 direction = (Vector2)transform.position - (Vector2)currentTarget.transform.position;
-        rigidBody.MovePosition(rigidBody.position + (direction.normalized * (movementSpeed * Time.deltaTime)));
+        Debug.Log(rBody == null);
+        rBody.MovePosition(rBody.position + (direction.normalized * (movementSpeed * Time.deltaTime)));
         
     }
 
