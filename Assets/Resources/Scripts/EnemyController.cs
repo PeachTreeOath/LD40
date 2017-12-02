@@ -8,12 +8,19 @@ public class EnemyController : MonoBehaviour {
 
     [HideInInspector]
     public Rigidbody2D rbody; // public so the states can easily access
+    [HideInInspector]
+    public Navigation navigation;
 
     private AEnemyState state;
 
 	// Use this for initialization
 	void Start () {
         rbody = GetComponent<Rigidbody2D>();
+        navigation = GetComponent<Navigation>();
+        if(navigation == null)
+        {
+            Debug.LogWarning(this.name + " navigation is null.");
+        }
         Init(); //TODO remove depending on how we spawn enemies
     }
 	
@@ -35,8 +42,10 @@ public class EnemyController : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-        if(state != null)
+        if (state != null)
+        {
             state.DoUpdate(this);
+        }
 	}
 
     void OnTriggerStay2D(Collider2D col)
