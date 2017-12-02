@@ -13,6 +13,8 @@ public class PlayerController : Singleton<PlayerController>
 
     private Vector2 direction = new Vector2();
 
+    [SerializeField]
+    public GameObject FootballGO;
     public bool hasBall = true;
 
     [HideInInspector]

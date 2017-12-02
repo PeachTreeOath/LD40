@@ -14,6 +14,8 @@ public class PlayerStateController : Singleton<PlayerStateController>
     private PlayerController player;
     private Dictionary<CliqueEnum, APlayerState> stateMap = new Dictionary<CliqueEnum, APlayerState>();
 
+
+
     void Start()
     {
         player = GetComponent<PlayerController>();

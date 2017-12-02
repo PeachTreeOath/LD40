@@ -10,7 +10,7 @@ public class FootballPickup : MonoBehaviour {
         {
             PlayerController player = PlayerController.instance;
             player.hasBall = true;
-            this.gameObject.SetActive(false);
+            gameObject.SetActive(false);
         }
 
     }

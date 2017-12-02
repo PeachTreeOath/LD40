@@ -42,7 +42,7 @@ GameObject:
   - component: {fileID: 61731437614124686}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -148,6 +148,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 0.25
+  FootballGO: {fileID: 0}
+  hasBall: 1
 --- !u!114 &114426231548164904
 MonoBehaviour:
   m_ObjectHideFlags: 1

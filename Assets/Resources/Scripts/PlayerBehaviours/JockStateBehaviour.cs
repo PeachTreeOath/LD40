@@ -22,8 +22,7 @@ public class JockStateBehaviour : APlayerBehaviour
         PlayerController player = PlayerController.instance;
         if (player.hasBall)
         {
-            if (FootballGO == null)
-                FootballGO = GameObject.FindGameObjectWithTag("Football");
+            FootballGO = player.FootballGO;
 
             Vector2 direction = player.GetPlayerDirection();
             FootballGO.SetActive(true);
