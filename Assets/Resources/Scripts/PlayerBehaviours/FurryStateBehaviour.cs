@@ -24,6 +24,7 @@ public class FurryStateBehaviour : APlayerBehaviour
                     if (collider.gameObject.tag.Equals("Furry"))
                     {
                         enemyGo = collider.gameObject;
+                        break;
                     }
 
                 }
