@@ -625,6 +625,11 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: fa2be6609dcf20a4dae4bf5c35830454, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &1714331150 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1207431433312858, guid: fa2be6609dcf20a4dae4bf5c35830454,
+    type: 2}
+  m_PrefabInternal: {fileID: 1714331149}
 --- !u!1001 &1740845796
 Prefab:
   m_ObjectHideFlags: 0
@@ -664,6 +669,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114882449646215190, guid: 6b36b18f5db2cb54e95b6a188c845dd7,
+        type: 2}
+      propertyPath: followObj
+      value: 
+      objectReference: {fileID: 1714331150}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6b36b18f5db2cb54e95b6a188c845dd7, type: 2}
   m_IsPrefabParent: 0
@@ -677,12 +687,12 @@ Prefab:
     - target: {fileID: 224126738622116898, guid: c5fe64b4fc881e046ac377a97bdef68b,
         type: 2}
       propertyPath: m_LocalPosition.x
-      value: 640
+      value: 529
       objectReference: {fileID: 0}
     - target: {fileID: 224126738622116898, guid: c5fe64b4fc881e046ac377a97bdef68b,
         type: 2}
       propertyPath: m_LocalPosition.y
-      value: 360
+      value: 297.5
       objectReference: {fileID: 0}
     - target: {fileID: 224126738622116898, guid: c5fe64b4fc881e046ac377a97bdef68b,
         type: 2}
