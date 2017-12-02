@@ -32,6 +32,7 @@ public class PlayerStateController : Singleton<PlayerStateController>
     /// <param name="state"></param>
     public void ChangePlayerState(CliqueEnum state)
     {
+            
         CurrentState = state;
         player.ChangeSprite(stateMap[state].GetStateSprite());
         player.ChangeSpeed(stateMap[state].GetStateSpeed());
