@@ -9,6 +9,7 @@ public class LevelManager : Singleton<LevelManager> {
     public float requiredAffiliationPerClique;
     public float totalAffiliationPerClique;
     public float defaultAffiliation;
+    public float incrementAffiliationAmount;
 
     private Dictionary<CliqueEnum, float> cliqueAffiliations = new Dictionary<CliqueEnum, float>();
     private Canvas canvas;
@@ -45,5 +46,15 @@ public class LevelManager : Singleton<LevelManager> {
     public float getCurrentAffiliation(CliqueEnum clique)
     {
         return cliqueAffiliations[clique];
+    }
+
+    public void setCurrentAffiliation(CliqueEnum clique, float newAffiliation)
+    {
+        cliqueAffiliations[clique] = newAffiliation;
+    }
+
+    public void incrementCurrentAffiliation(CliqueEnum clique)
+    {
+        cliqueAffiliations[clique] = incrementAffiliationAmount;
     }
 }
