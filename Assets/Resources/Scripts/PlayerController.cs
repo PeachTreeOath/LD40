@@ -21,8 +21,10 @@ public class PlayerController : Singleton<PlayerController>
     [HideInInspector]
     public bool inChangingRoom { get; set; }
 
-    public bool canChangeFaction {
-        get {
+    public bool canChangeFaction
+    {
+        get
+        {
             return LevelManager.instance.overrideChangingRoomCheat || inChangingRoom;
         }
     }
@@ -40,6 +42,15 @@ public class PlayerController : Singleton<PlayerController>
     void Update()
     {
         float currentSpeed = moveSpeed;
+        if (Input.GetAxisRaw("Horizontal") > 0)
+        {
+            playerSprite.flipX = true;
+        }
+        else if (Input.GetAxisRaw("Horizontal") < 0)
+        {
+            playerSprite.flipX = false;
+        }
+
         if (Input.GetAxisRaw("Horizontal") != 0 && Input.GetAxisRaw("Vertical") != 0)
         {
             currentSpeed *= 0.707f;
@@ -49,9 +60,9 @@ public class PlayerController : Singleton<PlayerController>
 
         UpdateFactionChange();
 
-        if(Input.GetKeyDown(KeyCode.Space) && !PlayerStateController.instance.GetPlayerState().Equals(CliqueEnum.NORMAL))
+        if (Input.GetKeyDown(KeyCode.Space) && !PlayerStateController.instance.GetPlayerState().Equals(CliqueEnum.NORMAL))
         {
-            if(behaviour != null)
+            if (behaviour != null)
                 behaviour.ExecuteBehaviourAction();
         }
 
@@ -83,10 +94,11 @@ public class PlayerController : Singleton<PlayerController>
         return direction;
     }
 
-    protected void UpdateFactionChange() {
+    protected void UpdateFactionChange()
+    {
         if (!canChangeFaction) return;
 
-        if(Input.GetKeyDown(KeyCode.Alpha1))
+        if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             PlayerStateController.instance.ChangePlayerState(CliqueEnum.SK8R);
             playerAnimator.enabled = false;
