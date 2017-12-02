@@ -11,6 +11,10 @@ public class PlayerController : Singleton<PlayerController>
     private SpriteRenderer playerSprite;
     private APlayerBehaviour behaviour;
 
+    private Vector2 direction = new Vector2();
+
+    public bool hasBall = true;
+
     [HideInInspector]
     public bool inChangingRoom { get; set; }
 
@@ -37,6 +41,8 @@ public class PlayerController : Singleton<PlayerController>
             currentSpeed *= 0.707f;
         }
 
+        direction = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+
         UpdateFactionChange();
 
         if(Input.GetKeyDown(KeyCode.Space) && !PlayerStateController.instance.GetPlayerState().Equals(CliqueEnum.NORMAL))
@@ -61,6 +67,15 @@ public class PlayerController : Singleton<PlayerController>
     public void ChangeBehaviour(APlayerBehaviour newBehaviour)
     {
         behaviour = newBehaviour;
+    }
+
+    /// <summary>
+    /// Return the input X,Y for the player.
+    /// </summary>
+    /// <returns></returns>
+    public Vector2 GetPlayerDirection()
+    {
+        return direction;
     }
 
     
