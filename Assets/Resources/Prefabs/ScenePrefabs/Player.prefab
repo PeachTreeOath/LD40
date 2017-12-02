@@ -20,6 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4974554128959998}
   - component: {fileID: 212215553142974146}
+  - component: {fileID: 95130341130747776}
   m_Layer: 0
   m_Name: skaterBoy
   m_TagString: Untagged
@@ -118,6 +119,23 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!95 &95130341130747776
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1020075000218024}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 5aed84ea424b667448317897818d22b4, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!114 &114336961331451006
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -176,7 +194,7 @@ SpriteRenderer:
   m_SortingLayerID: 1218323965
   m_SortingLayer: 1
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 721516b4bc35a2e41953a6022d074239, type: 3}
+  m_Sprite: {fileID: 21300000, guid: aeec69faa5acbeb41a1d4194df16615b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
