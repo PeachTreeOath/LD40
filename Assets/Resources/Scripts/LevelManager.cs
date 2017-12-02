@@ -41,4 +41,9 @@ public class LevelManager : Singleton<LevelManager> {
         skaterCanvasValue.text = cliqueAffiliations[CliqueEnum.SK8R].ToString();
         furryCanvasValue.text = cliqueAffiliations[CliqueEnum.FURBOI].ToString();
     }
+
+    public float getCurrentAffiliation(CliqueEnum clique)
+    {
+        return cliqueAffiliations[clique];
+    }
 }
