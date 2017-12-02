@@ -24,6 +24,15 @@ public class PlayerMovementController : MonoBehaviour
             currentSpeed *= 0.707f;
         }
 
+        if(Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            Debug.Log("Swap to furry");
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            Debug.Log("Swap to skater");
+        }
+
         Vector3 deltaPos = new Vector3(currentSpeed * Input.GetAxisRaw("Horizontal"), currentSpeed * Input.GetAxisRaw("Vertical"), 0);
         rbody.MovePosition(deltaPos + transform.position);
     }
