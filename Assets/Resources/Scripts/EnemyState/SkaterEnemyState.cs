@@ -17,7 +17,7 @@ public class SkaterEnemyState : AEnemyState {
 
     public override float GetStateSpeed()
     {
-        return .25f;
+        return 1.0f;
     }
 
     /// <summary>
@@ -33,7 +33,7 @@ public class SkaterEnemyState : AEnemyState {
         }
         else
         {
-            enemy.navigation.MoveTo(PlayerController.instance.gameObject, 0.25f);
+            enemy.navigation.MoveTo(PlayerController.instance.gameObject, GetStateSpeed());
         }
         
 
