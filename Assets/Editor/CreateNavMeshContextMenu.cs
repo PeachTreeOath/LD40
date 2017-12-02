@@ -50,14 +50,18 @@ public class CreateNavMeshContextMenu {
 
     private static void UpdateTileCollision(NavTilemap navMap, Tilemap[] tilemaps) {
         foreach(Tilemap tilemap in tilemaps) {
-            if (!HasTileCollision(tilemap)) continue;
+            var hasCollision = HasTileCollision(tilemap);
 
             for(int x = tilemap.cellBounds.xMin; x < tilemap.cellBounds.xMax; x++) {
                 for (int y = tilemap.cellBounds.yMin; y < tilemap.cellBounds.yMax; y++) {
                     var tile = tilemap.GetTile(new Vector3Int(x, y, 0));
-                    if (tile) {
-                        navMap.GetTile(x, y).solid = true;
+                    if(tile) {
+                        var navTile = navMap.GetTile(x, y);
                         
+                        navTile.exists = true; 
+                        if(hasCollision) {
+                            navTile.solid = true;
+                        }
                     }
                 }
             }
@@ -108,8 +112,21 @@ public class CreateNavMeshContextMenu {
             for(int dy = -1; dy <= 1; dy++) {
                 if (dx == dy && dx == 0) continue;
 
+                var shouldConnect = false;
                 var tile = navMap.GetTile(x + dx, y + dy);
-                if(tile != null && tile.waypoint != null) {
+                if (tile != null && tile.waypoint != null) {
+                    var isDiagonal = dx != 0 && dy != 0;
+                    if(isDiagonal) {
+                        var leftTile = navMap.GetTile(x + dx, y);
+                        var rightTile = navMap.GetTile(x, y + dy);
+
+                        shouldConnect = (leftTile == null || !leftTile.solid) && (rightTile == null || !rightTile.solid);
+                    } else {
+                        shouldConnect = true;
+                    }
+                }
+
+                if(shouldConnect) {
                     currTile.waypoint.neighbors.Add(tile.waypoint.gameObject);
                 }
             }

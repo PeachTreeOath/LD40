@@ -54,12 +54,18 @@ public class PlayerController : Singleton<PlayerController>
             playerSprite.flipX = false;
         }
 
+        direction = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
         if (Input.GetAxisRaw("Horizontal") != 0 && Input.GetAxisRaw("Vertical") != 0)
         {
+            //multiply diagonals by sin(45) so it moves properly circlewise
             currentSpeed *= 0.707f;
+            /**
+             * currently doing this to make sure football flies correct speed at 45 deg
+             *  angle, this could cause other issues if direction is used elsewhere,
+             *  BEWARE
+             */
+            direction *= 0.707f; 
         }
-
-        direction = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
 
         UpdateFactionChange();
 
