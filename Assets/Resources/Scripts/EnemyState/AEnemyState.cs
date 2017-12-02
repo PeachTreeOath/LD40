@@ -32,8 +32,16 @@ public abstract class AEnemyState {
     /// <summary>
     /// Get the speed for the enemy affiliation.
     /// </summary>
-    public virtual float GetAffiliationSpeed()
+    public virtual float GetIncrementAffiliationSpeed()
     {
         return .01f;
+    }
+
+    /// <summary>
+    /// Get the speed for the enemy deffiliation.
+    /// </summary>
+    public virtual float GetDecrementAffiliationSpeed()
+    {
+        return .02f;
     }
 }
