@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4978335283072362}
   - component: {fileID: 114301704046014720}
   - component: {fileID: 114317809724374344}
+  - component: {fileID: 114754517305223078}
   m_Layer: 0
   m_Name: Managers
   m_TagString: Untagged
@@ -63,4 +64,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72fc8a0ab8419114d85f117678c481be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  defaultBlockFab: {fileID: 0}
+  skaterSprite: {fileID: 0}
+  jockSprite: {fileID: 0}
+--- !u!114 &114754517305223078
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1612908722314996}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 70607f251881bae4cb16d8667be32f2e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  requiredAffiliationPerClique: 80
+  totalAffiliationPerClique: 100
+  defaultAffiliation: 0
