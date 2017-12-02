@@ -25,7 +25,7 @@ GameObject:
   - component: {fileID: 50603934111320798}
   - component: {fileID: 61114670282934382}
   - component: {fileID: 58100333550043828}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: SkaterEnemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}

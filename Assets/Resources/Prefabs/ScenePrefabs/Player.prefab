@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4974554128959998}
   - component: {fileID: 212215553142974146}
   - component: {fileID: 95130341130747776}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: skaterBoy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -39,7 +39,7 @@ GameObject:
   - component: {fileID: 20029478973220838}
   - component: {fileID: 124399724545235874}
   - component: {fileID: 81202949183184336}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: MiniMapCamera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -58,7 +58,7 @@ GameObject:
   - component: {fileID: 114426231548164904}
   - component: {fileID: 50465124131279786}
   - component: {fileID: 61731437614124686}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
