@@ -14,6 +14,8 @@ public class PlayerStateController : Singleton<PlayerStateController>
     private PlayerController player;
     private Dictionary<CliqueEnum, APlayerState> stateMap = new Dictionary<CliqueEnum, APlayerState>();
 
+
+
     void Start()
     {
         player = GetComponent<PlayerController>();
@@ -30,6 +32,7 @@ public class PlayerStateController : Singleton<PlayerStateController>
     /// <param name="state"></param>
     public void ChangePlayerState(CliqueEnum state)
     {
+            
         CurrentState = state;
         player.ChangeSprite(stateMap[state].GetStateSprite());
         player.ChangeSpeed(stateMap[state].GetStateSpeed());

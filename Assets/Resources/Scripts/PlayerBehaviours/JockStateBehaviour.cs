@@ -12,7 +12,7 @@ public class JockStateBehaviour : APlayerBehaviour
     /// <summary>
     /// Speed at which the ball flies.
     /// </summary>
-    private float speed = 5f;
+    private float speed = 15f;
 
     /// <summary>
     /// Throw the Foosball
@@ -22,8 +22,7 @@ public class JockStateBehaviour : APlayerBehaviour
         PlayerController player = PlayerController.instance;
         if (player.hasBall)
         {
-            if (FootballGO == null)
-                FootballGO = GameObject.FindGameObjectWithTag("Football");
+            FootballGO = player.FootballGO;
 
             Vector2 direction = player.GetPlayerDirection();
             FootballGO.SetActive(true);
@@ -31,7 +30,8 @@ public class JockStateBehaviour : APlayerBehaviour
 
             if (FootballGO != null)
             {
-                FootballGO.transform.Translate(direction * speed);
+                FootballPickup football = FootballGO.GetComponent<FootballPickup>();
+                football.ThrowFootball(direction * speed);
                 player.hasBall = false;
             }
         }

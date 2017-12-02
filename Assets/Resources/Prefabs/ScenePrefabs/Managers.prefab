@@ -82,3 +82,4 @@ MonoBehaviour:
   defaultAffiliation: 0
   incrementAffiliationAmount: 1
   decrementAffiliationAmount: 2
+  overrideChangingRoomCheat: 0
