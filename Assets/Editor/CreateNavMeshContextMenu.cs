@@ -22,8 +22,9 @@ public class CreateNavMeshContextMenu {
         NavTilemap navMap = new NavTilemap(bounds);
 
         UpdateTileCollision(navMap, tilemaps);
-       
 
+        BuildWaypoints(navMap);
+        ConnectNeighboringWaypoints(navMap);
     }
 
     private static BoundsInt GetTotalBounds(Tilemap[] tilemaps) {
@@ -64,5 +65,51 @@ public class CreateNavMeshContextMenu {
 
     private static bool HasTileCollision(Component component) {
         return component.gameObject.GetComponent<TilemapCollider2D>() != null;
+    }
+
+    //TODO move this to NavTilemap?
+    private static void BuildWaypoints(NavTilemap navMap) {
+        GameObject waypoints = new GameObject("Waypoints");
+
+        for(int x = navMap.cellBounds.xMin; x < navMap.cellBounds.xMax; x++) {
+            for(int y = navMap.cellBounds.yMin; y < navMap.cellBounds.yMax; y++) {
+                var tile = navMap.GetTile(x, y); 
+                if(!tile.solid) {
+                    String name = String.Format("({0}, {1})", x, y);
+                    GameObject waypointObj = new GameObject(name);
+                    waypointObj.transform.SetParent(waypoints.transform);
+            
+                    Waypoint waypoint = waypointObj.AddComponent<Waypoint>();
+                    waypoint.neighbors = new List<GameObject>();
+
+                    tile.waypoint = waypoint;
+                }
+            }
+        }
+    }
+
+    private static void ConnectNeighboringWaypoints(NavTilemap navMap) {
+        for (int x = navMap.cellBounds.xMin; x < navMap.cellBounds.xMax; x++) {
+            for (int y = navMap.cellBounds.yMin; y < navMap.cellBounds.yMax; y++) {
+                ConnectNeighboringWaypoints(navMap, x, y);
+            }
+        }
+    }
+
+    private static void ConnectNeighboringWaypoints(NavTilemap navMap, int x, int y) {
+        var currTile = navMap.GetTile(x, y);
+
+        if (currTile.waypoint == null) return;
+
+        for(int dx = -1; dx <=  1; dx++) {
+            for(int dy = -1; dy <= 1; dy++) {
+                if (dx == dy && dx == 0) continue;
+
+                var tile = navMap.GetTile(x + dx, y + dy);
+                if(tile != null && tile.waypoint != null) {
+                    currTile.waypoint.neighbors.Add(tile.waypoint.gameObject);
+                }
+            }
+        }
     }
 }
