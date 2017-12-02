@@ -5,8 +5,11 @@ using UnityEngine;
 public class ResourceLoader : Singleton<ResourceLoader>
 {
     [HideInInspector]
-    public GameObject defaultBlockFab;
-    
+    public Sprite skaterSprite;
+
+    [HideInInspector]
+    public Sprite jockSprite;
+
     protected override void Awake() {
         base.Awake();
         LoadResources();
@@ -14,8 +17,9 @@ public class ResourceLoader : Singleton<ResourceLoader>
 
     private void LoadResources() {
 
-        defaultBlockFab = Resources.Load<GameObject>("Prefabs/Blocks/DefaultBlock");
-        
+        skaterSprite = Resources.Load<Sprite>("Textures/skaterBoy");
+        jockSprite = Resources.Load<Sprite>("Textures/Ali");
+
     }
 
 }

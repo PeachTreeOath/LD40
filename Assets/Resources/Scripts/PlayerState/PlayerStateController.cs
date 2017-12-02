@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,7 +9,20 @@ public class PlayerStateController : Singleton<PlayerStateController> {
     /// The Current state for the player.
     /// </summary>
     public CliqueEnum CurrentState;
-    
+
+    private SpriteRenderer playerSprite;
+    private Dictionary<CliqueEnum, APlayerState> stateMap = new Dictionary<CliqueEnum, APlayerState>();
+
+    void Start()
+    {
+        playerSprite = GetComponentInChildren<SpriteRenderer>();
+
+        stateMap.Add(CliqueEnum.BEARDSTER, new HipsterState());
+        stateMap.Add(CliqueEnum.FURBOI, new FurryState());
+        stateMap.Add(CliqueEnum.JOCK, new JockState());
+        stateMap.Add(CliqueEnum.SK8R, new SkaterState());
+    }
+
     /// <summary>
     /// Change the players state to the given state.
     /// </summary>
@@ -16,11 +30,12 @@ public class PlayerStateController : Singleton<PlayerStateController> {
     public void ChangePlayerState(CliqueEnum state)
     {
         CurrentState = state;
+        playerSprite.sprite = stateMap[state].GetStateSprite();
+
         switch (state)
         {
             case CliqueEnum.BEARDSTER:
                 //Call the singleton for the Player controller here and then go
-                //PlayerController.Sprite = HipsterState.GetStateSprite();
                 break;
             case CliqueEnum.FURBOI:
                 break;

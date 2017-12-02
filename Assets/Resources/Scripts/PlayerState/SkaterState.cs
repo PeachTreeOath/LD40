@@ -22,8 +22,7 @@ public class SkaterState : APlayerState {
     /// <returns></returns>
     public override Sprite GetStateSprite()
     {
-        Sprite stateSprite = new Sprite();
-        return stateSprite;
+        return ResourceLoader.instance.skaterSprite;
     }
 
     /// <summary>

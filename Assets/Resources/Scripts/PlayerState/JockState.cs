@@ -22,7 +22,6 @@ public class JockState : APlayerState {
     /// <returns></returns>
     public override Sprite GetStateSprite()
     {
-        Sprite stateSprite = new Sprite();
-        return stateSprite;
+        return ResourceLoader.instance.jockSprite;
     }
 }

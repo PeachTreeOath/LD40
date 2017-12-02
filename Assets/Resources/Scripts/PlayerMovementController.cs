@@ -26,11 +26,11 @@ public class PlayerMovementController : MonoBehaviour
 
         if(Input.GetKeyDown(KeyCode.Alpha1))
         {
-            Debug.Log("Swap to furry");
+            PlayerStateController.instance.ChangePlayerState(CliqueEnum.SK8R);
         }
         else if (Input.GetKeyDown(KeyCode.Alpha2))
         {
-            Debug.Log("Swap to skater");
+            PlayerStateController.instance.ChangePlayerState(CliqueEnum.JOCK);
         }
 
         Vector3 deltaPos = new Vector3(currentSpeed * Input.GetAxisRaw("Horizontal"), currentSpeed * Input.GetAxisRaw("Vertical"), 0);
