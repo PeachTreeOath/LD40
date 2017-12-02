@@ -7,6 +7,11 @@ using UnityEngine;
 /// </summary>
 public class DefaultPlayerState : APlayerState {
 
+    public override APlayerBehaviour GetPlayerBehaviour()
+    {
+        throw new System.NotImplementedException();
+    }
+
     /// <summary>
     /// The audio clip that is played when the player changes to this state.
     /// </summary>

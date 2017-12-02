@@ -4,8 +4,26 @@ using UnityEngine;
 
 public class JockStateBehaviour : APlayerBehaviour
 {
+    /// <summary>
+    /// The Gameobject for the football.
+    /// </summary>
+    private GameObject FootballGO;
+
+
+    
+
+    /// <summary>
+    /// Throw the Foosball
+    /// </summary>
     public override void ExecuteBehaviourAction()
     {
-        throw new System.NotImplementedException();
+        PlayerController player = PlayerController.instance;
+
+        if (FootballGO == null)
+            GameObject.FindGameObjectWithTag("Football");
+        
+
+        
+    
     }
 }

@@ -39,7 +39,7 @@ public class PlayerController : Singleton<PlayerController>
 
         UpdateFactionChange();
 
-        if(Input.GetKeyDown(KeyCode.Space))
+        if(Input.GetKeyDown(KeyCode.Space) && !PlayerStateController.instance.GetPlayerState().Equals(CliqueEnum.NORMAL))
         {
             behaviour.ExecuteBehaviourAction();
         }
@@ -62,6 +62,8 @@ public class PlayerController : Singleton<PlayerController>
     {
         behaviour = newBehaviour;
     }
+
+    
 
     protected void UpdateFactionChange() {
         if (!canChangeFaction) return;
