@@ -10,11 +10,21 @@ public class PlayerController : Singleton<PlayerController>
     private Rigidbody2D rbody;
     private SpriteRenderer playerSprite;
 
+    [HideInInspector]
+    public bool inChangingRoom { get; set; }
+
+    public bool canChangeFaction {
+        get {
+            return LevelManager.instance.overrideChangingRoomCheat || inChangingRoom;
+        }
+    }
+
     // Use this for initialization
     void Start()
     {
         rbody = GetComponent<Rigidbody2D>();
         playerSprite = GetComponentInChildren<SpriteRenderer>();
+        inChangingRoom = false;
     }
 
     // Update is called once per frame
@@ -26,14 +36,7 @@ public class PlayerController : Singleton<PlayerController>
             currentSpeed *= 0.707f;
         }
 
-        if(Input.GetKeyDown(KeyCode.Alpha1))
-        {
-            PlayerStateController.instance.ChangePlayerState(CliqueEnum.SK8R);
-        }
-        else if (Input.GetKeyDown(KeyCode.Alpha2))
-        {
-            PlayerStateController.instance.ChangePlayerState(CliqueEnum.JOCK);
-        }
+        UpdateFactionChange();
 
         Vector3 deltaPos = new Vector3(currentSpeed * Input.GetAxisRaw("Horizontal"), currentSpeed * Input.GetAxisRaw("Vertical"), 0);
         rbody.MovePosition(deltaPos + transform.position);
@@ -47,5 +50,19 @@ public class PlayerController : Singleton<PlayerController>
     public void ChangeSpeed(float newSpeed)
     {
         moveSpeed = newSpeed;
+    }
+
+    protected void UpdateFactionChange() {
+        if (!canChangeFaction) return;
+
+        if(Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            PlayerStateController.instance.ChangePlayerState(CliqueEnum.SK8R);
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            PlayerStateController.instance.ChangePlayerState(CliqueEnum.JOCK);
+        }
+
     }
 }

@@ -4,13 +4,17 @@ using UnityEngine;
 
 public class ChangingRoom : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    void OnTriggerEnter2D(Collider2D collision) {
+        PlayerController.instance.inChangingRoom = true;    
+        if(Debug.isDebugBuild) {
+            Debug.Log("Entering the changing room");
+        }
+    }
+
+    void OnTriggerExit2D(Collider2D collision) {
+        PlayerController.instance.inChangingRoom = false;
+        if(Debug.isDebugBuild) {
+            Debug.Log("Exiting the changing room");
+        }
+    }
 }

@@ -12,6 +12,8 @@ public class LevelManager : Singleton<LevelManager> {
     public float incrementAffiliationAmount;
     public float decrementAffiliationAmount;
 
+    public bool overrideChangingRoomCheat;
+
     private Dictionary<CliqueEnum, float> cliqueAffiliations = new Dictionary<CliqueEnum, float>();
     private Canvas canvas;
     private Text skaterCanvasValue;
