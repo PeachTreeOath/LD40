@@ -13,6 +13,11 @@ public class SkaterEnemyState : AEnemyState {
         return ResourceLoader.instance.skaterSprite;
     }
 
+    public override float GetStateSpeed()
+    {
+        return .25f;
+    }
+
     /// <summary>
     /// Updates against the enemy's transform
     /// </summary>
