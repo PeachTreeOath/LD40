@@ -28,4 +28,12 @@ public abstract class AEnemyState {
     {
         return .1f;
     }
+
+    /// <summary>
+    /// Get the speed for the enemy affiliation.
+    /// </summary>
+    public virtual float GetAffiliationSpeed()
+    {
+        return .01f;
+    }
 }
