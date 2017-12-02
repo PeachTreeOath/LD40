@@ -22,6 +22,15 @@ public abstract class APlayerState {
     /// </summary>
     /// <returns></returns>
     public abstract AudioClip GetStateAudioClip();
+
+    /// <summary>
+    /// Get the new speed for the player state. Not all states 
+    /// change the speed thus this is a virutal instead of an abstract method.
+    /// </summary>
+    public virtual float GetStateSpeed()
+    {
+        return 1;
+    }
     
 
 }
