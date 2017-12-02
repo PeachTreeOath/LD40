@@ -18,6 +18,9 @@ public class PlayerController : Singleton<PlayerController>
     public GameObject FootballGO;
     public bool hasBall = true;
 
+
+    public bool canGrabTail = true;
+
     [HideInInspector]
     public bool inChangingRoom { get; set; }
 
@@ -97,6 +100,12 @@ public class PlayerController : Singleton<PlayerController>
     protected void UpdateFactionChange()
     {
         if (!canChangeFaction) return;
+
+        if(PlayerStateController.instance.GetPlayerState().Equals(CliqueEnum.FURBOI))
+        {
+            if (!canGrabTail)
+                behaviour.ExecuteBehaviourAction();
+        }
 
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
