@@ -36,9 +36,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4348252886118590}
   - component: {fileID: 114336961331451006}
+  - component: {fileID: 114426231548164904}
   - component: {fileID: 50465124131279786}
   - component: {fileID: 61731437614124686}
-  - component: {fileID: 114426231548164904}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -173,8 +173,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1218323965
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 41a69af040b18d04fa6a03e1653dd320, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
