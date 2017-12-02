@@ -42,7 +42,7 @@ public class EnemyController : MonoBehaviour {
     void OnTriggerStay2D(Collider2D col)
     {
         PlayerStateController player = col.GetComponent<PlayerStateController>();
-        if(player != null)
+        if(player != null && state != null) //TODO: Change state check later when state init changes
         {
             if(clique == player.GetPlayerState())
             {
