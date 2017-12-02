@@ -7,6 +7,7 @@ using UnityEngine;
 /// </summary>
 public enum CliqueEnum
 {
+    NORMAL,
     FURBOI,
     SK8R,
     JOCK,
