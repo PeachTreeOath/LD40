@@ -35,7 +35,8 @@ public class EnemyController : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-        state.DoUpdate(this);
+        if(state != null)
+            state.DoUpdate(this);
 	}
 
     void OnTriggerStay2D(Collider2D col)
