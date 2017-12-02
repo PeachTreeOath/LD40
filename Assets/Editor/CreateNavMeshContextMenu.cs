@@ -74,22 +74,19 @@ public class CreateNavMeshContextMenu {
 
     //TODO move this to NavTilemap?
     private static void BuildWaypoints(Grid grid, NavTilemap navMap) {
+        var waypointPrefab = Resources.Load<GameObject>("Prefabs/ScenePrefabs/Waypoint");
         GameObject waypoints = new GameObject("Waypoints");
 
         for(int x = navMap.cellBounds.xMin; x < navMap.cellBounds.xMax; x++) {
             for(int y = navMap.cellBounds.yMin; y < navMap.cellBounds.yMax; y++) {
                 var tile = navMap.GetTile(x, y); 
                 if(!tile.solid) {
-                    String name = String.Format("({0}, {1})", x, y);
-                    GameObject waypointObj = new GameObject(name);
-
-                    waypointObj.transform.position = grid.GetCellCenterWorld(new Vector3Int(x, y, 0));
-                    waypointObj.transform.SetParent(waypoints.transform);
+                    var waypointGO = GameObject.Instantiate(waypointPrefab);
+                    waypointGO.name =  String.Format("({0}, {1})", x, y);
+                    waypointGO.transform.position = grid.GetCellCenterWorld(new Vector3Int(x, y, 0));
+                    waypointGO.transform.SetParent(waypoints.transform);
             
-                    Waypoint waypoint = waypointObj.AddComponent<Waypoint>();
-                    waypoint.neighbors = new List<GameObject>();
-
-                    tile.waypoint = waypoint;
+                    tile.waypoint = waypointGO.GetComponent<Waypoint>();
                 }
             }
         }
