@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4858068237944144}
   - component: {fileID: 114543607112615334}
   - component: {fileID: 61460711682339246}
-  m_Layer: 8
+  m_Layer: 11
   m_Name: Waypoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
