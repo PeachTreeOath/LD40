@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,6 +7,10 @@ using UnityEngine;
 /// The Def State, contains the specific APlayerState implementations for being a Jock.
 /// </summary>
 public class DefaultPlayerState : APlayerState {
+    public override APlayerBehaviour GetPlayerBehaviour()
+    {
+        throw new NotImplementedException();
+    }
 
     public override APlayerBehaviour GetPlayerBehaviour()
     {
