@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// The Jock State, contains the specific APlayerState implementations for being a Jock.
+/// The Furry State, contains the specific APlayerState implementations for being a Furry.
 /// </summary>
-public class JockState : APlayerState {
-
+public class FurryPlayerState : APlayerState
+{
     /// <summary>
     /// The audio clip that is played when the player changes to this state.
     /// </summary>
@@ -22,6 +22,7 @@ public class JockState : APlayerState {
     /// <returns></returns>
     public override Sprite GetStateSprite()
     {
-        return ResourceLoader.instance.jockSprite;
+        Sprite stateSprite = new Sprite();
+        return stateSprite;
     }
 }

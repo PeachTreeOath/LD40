@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// The Hipster State, contains the specific APlayerState implementations for being a Hipster
+/// The Jock State, contains the specific APlayerState implementations for being a Jock.
 /// </summary>
-public class HipsterState : APlayerState {
+public class JockPlayerState : APlayerState {
 
     /// <summary>
     /// The audio clip that is played when the player changes to this state.
@@ -22,7 +22,6 @@ public class HipsterState : APlayerState {
     /// <returns></returns>
     public override Sprite GetStateSprite()
     {
-        Sprite stateSprite = new Sprite();
-        return stateSprite;
+        return ResourceLoader.instance.jockSprite;
     }
 }

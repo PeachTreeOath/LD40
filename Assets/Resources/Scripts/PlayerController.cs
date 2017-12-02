@@ -8,11 +8,13 @@ public class PlayerController : MonoBehaviour
     public float moveSpeed;
 
     private Rigidbody2D rbody;
+    private SpriteRenderer playerSprite;
 
     // Use this for initialization
     void Start()
     {
         rbody = GetComponent<Rigidbody2D>();
+        playerSprite = GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
@@ -35,5 +37,15 @@ public class PlayerController : MonoBehaviour
 
         Vector3 deltaPos = new Vector3(currentSpeed * Input.GetAxisRaw("Horizontal"), currentSpeed * Input.GetAxisRaw("Vertical"), 0);
         rbody.MovePosition(deltaPos + transform.position);
+    }
+
+    public void ChangeSprite(Sprite newSprite)
+    {
+        playerSprite.sprite = newSprite;
+    }
+
+    public void ChangeSpeed(float newSpeed)
+    {
+        moveSpeed = newSpeed;
     }
 }

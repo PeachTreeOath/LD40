@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// The Furry State, contains the specific APlayerState implementations for being a Furry.
+/// The Hipster State, contains the specific APlayerState implementations for being a Hipster
 /// </summary>
-public class FurryState : APlayerState
-{
+public class HipsterPlayerState : APlayerState {
+
     /// <summary>
     /// The audio clip that is played when the player changes to this state.
     /// </summary>

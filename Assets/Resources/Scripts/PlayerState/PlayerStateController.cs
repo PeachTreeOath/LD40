@@ -3,7 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerStateController : Singleton<PlayerStateController> {
+public class PlayerStateController : Singleton<PlayerStateController>
+{
 
     /// <summary>
     /// The Current state for the player.
@@ -11,18 +12,16 @@ public class PlayerStateController : Singleton<PlayerStateController> {
     public CliqueEnum CurrentState;
 
     private PlayerController player;
-    private SpriteRenderer playerSprite;
     private Dictionary<CliqueEnum, APlayerState> stateMap = new Dictionary<CliqueEnum, APlayerState>();
 
     void Start()
     {
         player = GetComponent<PlayerController>();
-        playerSprite = GetComponentInChildren<SpriteRenderer>();
 
-        stateMap.Add(CliqueEnum.BEARDSTER, new HipsterState());
-        stateMap.Add(CliqueEnum.FURBOI, new FurryState());
-        stateMap.Add(CliqueEnum.JOCK, new JockState());
-        stateMap.Add(CliqueEnum.SK8R, new SkaterState());
+        stateMap.Add(CliqueEnum.BEARDSTER, new HipsterPlayerState());
+        stateMap.Add(CliqueEnum.FURBOI, new FurryPlayerState());
+        stateMap.Add(CliqueEnum.JOCK, new JockPlayerState());
+        stateMap.Add(CliqueEnum.SK8R, new SkaterPlayerState());
     }
 
     /// <summary>
@@ -32,8 +31,8 @@ public class PlayerStateController : Singleton<PlayerStateController> {
     public void ChangePlayerState(CliqueEnum state)
     {
         CurrentState = state;
-        playerSprite.sprite = stateMap[state].GetStateSprite();
-                player.moveSpeed = stateMap[state].GetStateSpeed();
+        player.ChangeSprite(stateMap[state].GetStateSprite());
+        player.ChangeSpeed(stateMap[state].GetStateSpeed());
 
         switch (state)
         {
@@ -60,5 +59,5 @@ public class PlayerStateController : Singleton<PlayerStateController> {
 
 
 
-    
+
 }

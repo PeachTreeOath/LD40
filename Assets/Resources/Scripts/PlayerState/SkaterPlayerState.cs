@@ -5,7 +5,7 @@ using UnityEngine;
 /// <summary>
 /// The Skater State, contains the specific APlayerState implementations for being a Skater.
 /// </summary>
-public class SkaterState : APlayerState {
+public class SkaterPlayerState : APlayerState {
     
     /// <summary>
     /// The audio clip that is played when the player changes to this state.
