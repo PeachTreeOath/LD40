@@ -33,6 +33,7 @@ public class PlayerStateController : Singleton<PlayerStateController>
         CurrentState = state;
         player.ChangeSprite(stateMap[state].GetStateSprite());
         player.ChangeSpeed(stateMap[state].GetStateSpeed());
+        player.ChangeBehaviour(stateMap[state].GetPlayerBehaviour());
 
         switch (state)
         {

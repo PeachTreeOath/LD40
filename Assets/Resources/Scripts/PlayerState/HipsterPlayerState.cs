@@ -7,6 +7,7 @@ using UnityEngine;
 /// </summary>
 public class HipsterPlayerState : APlayerState {
 
+
     /// <summary>
     /// The audio clip that is played when the player changes to this state.
     /// </summary>
@@ -24,5 +25,10 @@ public class HipsterPlayerState : APlayerState {
     {
         Sprite stateSprite = new Sprite();
         return stateSprite;
+    }
+
+    public override APlayerBehaviour GetPlayerBehaviour()
+    {
+        throw new System.NotImplementedException();
     }
 }

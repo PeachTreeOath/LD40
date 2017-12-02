@@ -31,6 +31,12 @@ public abstract class APlayerState {
     {
         return .1f;
     }
+
+    /// <summary>
+    /// Get the Player behaviour for this player state.
+    /// </summary>
+    /// <returns></returns>
+    public abstract APlayerBehaviour GetPlayerBehaviour();
     
 
 }

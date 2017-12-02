@@ -25,4 +25,8 @@ public class FurryPlayerState : APlayerState
         Sprite stateSprite = new Sprite();
         return stateSprite;
     }
+    public override APlayerBehaviour GetPlayerBehaviour()
+    {
+        throw new System.NotImplementedException();
+    }
 }

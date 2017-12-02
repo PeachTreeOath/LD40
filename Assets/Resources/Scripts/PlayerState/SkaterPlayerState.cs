@@ -34,4 +34,9 @@ public class SkaterPlayerState : APlayerState {
         //Change this to whatever it really should be 5 is a placeholder.
         return .25f;
     }
+
+    public override APlayerBehaviour GetPlayerBehaviour()
+    {
+        throw new System.NotImplementedException();
+    }
 }

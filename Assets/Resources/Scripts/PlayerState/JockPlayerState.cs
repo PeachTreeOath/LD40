@@ -24,4 +24,13 @@ public class JockPlayerState : APlayerState {
     {
         return ResourceLoader.instance.jockSprite;
     }
+
+    /// <summary>
+    /// Return the specfic implementation for this playerstate.
+    /// </summary>
+    /// <returns></returns>
+    public override APlayerBehaviour GetPlayerBehaviour()
+    {
+        return new JockStateBehaviour();
+    }
 }

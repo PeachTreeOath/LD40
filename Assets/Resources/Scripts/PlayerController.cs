@@ -9,6 +9,7 @@ public class PlayerController : Singleton<PlayerController>
 
     private Rigidbody2D rbody;
     private SpriteRenderer playerSprite;
+    private APlayerBehaviour behaviour;
 
     [HideInInspector]
     public bool inChangingRoom { get; set; }
@@ -38,6 +39,11 @@ public class PlayerController : Singleton<PlayerController>
 
         UpdateFactionChange();
 
+        if(Input.GetKeyDown(KeyCode.Space))
+        {
+            behaviour.ExecuteBehaviourAction();
+        }
+
         Vector3 deltaPos = new Vector3(currentSpeed * Input.GetAxisRaw("Horizontal"), currentSpeed * Input.GetAxisRaw("Vertical"), 0);
         rbody.MovePosition(deltaPos + transform.position);
     }
@@ -50,6 +56,11 @@ public class PlayerController : Singleton<PlayerController>
     public void ChangeSpeed(float newSpeed)
     {
         moveSpeed = newSpeed;
+    }
+
+    public void ChangeBehaviour(APlayerBehaviour newBehaviour)
+    {
+        behaviour = newBehaviour;
     }
 
     protected void UpdateFactionChange() {
