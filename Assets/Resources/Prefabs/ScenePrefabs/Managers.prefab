@@ -80,3 +80,4 @@ MonoBehaviour:
   requiredAffiliationPerClique: 80
   totalAffiliationPerClique: 100
   defaultAffiliation: 0
+  incrementAffiliationAmount: 1
