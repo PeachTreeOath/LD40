@@ -23,7 +23,7 @@ public class CreateNavMeshContextMenu {
 
         UpdateTileCollision(navMap, tilemaps);
 
-        BuildWaypoints(navMap);
+        BuildWaypoints(grid, navMap);
         ConnectNeighboringWaypoints(navMap);
     }
 
@@ -57,6 +57,7 @@ public class CreateNavMeshContextMenu {
                     var tile = tilemap.GetTile(new Vector3Int(x, y, 0));
                     if (tile) {
                         navMap.GetTile(x, y).solid = true;
+                        
                     }
                 }
             }
@@ -68,7 +69,7 @@ public class CreateNavMeshContextMenu {
     }
 
     //TODO move this to NavTilemap?
-    private static void BuildWaypoints(NavTilemap navMap) {
+    private static void BuildWaypoints(Grid grid, NavTilemap navMap) {
         GameObject waypoints = new GameObject("Waypoints");
 
         for(int x = navMap.cellBounds.xMin; x < navMap.cellBounds.xMax; x++) {
@@ -77,6 +78,8 @@ public class CreateNavMeshContextMenu {
                 if(!tile.solid) {
                     String name = String.Format("({0}, {1})", x, y);
                     GameObject waypointObj = new GameObject(name);
+
+                    waypointObj.transform.position = grid.GetCellCenterWorld(new Vector3Int(x, y, 0));
                     waypointObj.transform.SetParent(waypoints.transform);
             
                     Waypoint waypoint = waypointObj.AddComponent<Waypoint>();
