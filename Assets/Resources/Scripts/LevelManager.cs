@@ -54,13 +54,12 @@ public class LevelManager : Singleton<LevelManager> {
         cliqueAffiliations[clique] = newAffiliation;
     }
 
-    public void incrementCurrentAffiliation(CliqueEnum clique)
+    public void incrementCurrentAffiliation(CliqueEnum clique, float incrementAmount)
     {
-        cliqueAffiliations[clique] = Math.Max(totalAffiliationPerClique, incrementAffiliationAmount);
+        if (incrementAmount >= 0 )
+            cliqueAffiliations[clique] = Math.Min(totalAffiliationPerClique, cliqueAffiliations[clique] + incrementAmount);
+        else
+            cliqueAffiliations[clique] = Math.Max(totalAffiliationPerClique, cliqueAffiliations[clique] + incrementAmount);
     }
 
-    public void decrementCurrentAffiliation(CliqueEnum clique)
-    {
-        cliqueAffiliations[clique] = Math.Max(0, decrementAffiliationAmount);
-    }
 }
