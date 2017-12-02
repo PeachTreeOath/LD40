@@ -45,11 +45,11 @@ public class EnemyController : MonoBehaviour {
         {
             if(clique == player.GetPlayerState())
             {
-                LevelManager.instance.incrementCurrentAffiliation(state.GetIncrementAffiliationSpeed());
+                LevelManager.instance.incrementCurrentAffiliation(state.GetIncrementAffiliationSpeed() * Time.deltaTime);
             }
             else
             {
-                LevelManager.instance.decrementCurrentAffiliation(state.GetDecrementAffiliationSpeed());
+                LevelManager.instance.decrementCurrentAffiliation(state.GetDecrementAffiliationSpeed() * Time.deltaTime);
             }
         }
     }
