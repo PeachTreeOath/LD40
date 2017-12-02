@@ -10,6 +10,13 @@ using UnityEngine.UI;
 /// </summary>
 public abstract class AEnemyState {
     
+    //Stores affinity per enemy so we cannot max affinity on one player.
+    public float personalAffinity;
+    public float personalAffinityMax;
+
+    public float incrementPersonalAffinitySpeed;
+    public float decrementPersonalAffinitySpeed;
+
     /// <summary>
     /// The sprite the player takes on when changing to this state.
     /// </summary>
@@ -34,7 +41,7 @@ public abstract class AEnemyState {
     /// </summary>
     public virtual float GetIncrementAffiliationSpeed()
     {
-        return 10f;
+        return incrementPersonalAffinitySpeed;
     }
 
     /// <summary>
@@ -42,6 +49,16 @@ public abstract class AEnemyState {
     /// </summary>
     public virtual float GetDecrementAffiliationSpeed()
     {
-        return -20f;
+        return decrementPersonalAffinitySpeed;
+    }
+
+    public virtual float GetPersonalAffinity()
+    {
+        return personalAffinity;
+    }
+
+    public virtual void IncrementPersonalAffinity(float incrementAmount)
+    {
+        personalAffinity = Mathf.Min(personalAffinityMax, personalAffinity + incrementAmount);
     }
 }

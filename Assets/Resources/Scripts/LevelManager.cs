@@ -56,7 +56,7 @@ public class LevelManager : Singleton<LevelManager> {
         cliqueAffiliations[clique] = newAffiliation;
     }
 
-    public void incrementCurrentAffiliation(CliqueEnum clique, float incrementAmount)
+    public void incrementCurrentAffinity(CliqueEnum clique, float incrementAmount)
     {
         if (incrementAmount >= 0 )
             cliqueAffiliations[clique] = Math.Min(totalAffiliationPerClique, cliqueAffiliations[clique] + incrementAmount);

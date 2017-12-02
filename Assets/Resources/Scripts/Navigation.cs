@@ -4,17 +4,18 @@ using UnityEngine;
 
 public class Navigation : MonoBehaviour {
 
-    private Rigidbody2D rigidBody;
+    private Rigidbody2D rBody;
 
     private GameObject currentTarget;
     private GameObject currentWaypoint;
-    private float waypointReachedthreshold = 0.01f;
+    private float waypointReachedthreshold = 0.1f;
+    private float targetReachedthreashold = 0.75f;
     private float gridSpacing = 1.0f;
     private bool pathBuilt = false;
     private bool allowedMovement = false;
     private float recalculatePathDelay = 1.0f;
     private float lastTimePathRecalculated = 0.0f;
-    private float movementSpeed;
+    private float currentMovementSpeed;
     //private bool hasTargetReached = false;
 
     GameObject gridWaypoints;
@@ -23,7 +24,7 @@ public class Navigation : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 
-        rigidBody = GetComponent<Rigidbody2D>();
+        rBody = GetComponent<Rigidbody2D>();
         gridWaypoints = GameObject.Find("Waypoints");
 	}
 	
@@ -31,11 +32,12 @@ public class Navigation : MonoBehaviour {
 	void Update () {
         if (allowedMovement)
         {
-            Debug.Log("enemy is moving");
+            
             PerformMovement();
-            if(HasReachedTarget())
+            UpdatePath();
+            if (HasReachedTarget())
             {
-                UpdatePath();
+                Stop();
             }
             
         }
@@ -57,6 +59,7 @@ public class Navigation : MonoBehaviour {
     {
         allowedMovement = true;
         currentTarget = target;
+        currentMovementSpeed = movementSpeed;
         //Find nearest waypoint. Update statement will begin to move to the
 
         foreach (Transform waypoint in gridWaypoints.transform)
@@ -81,7 +84,7 @@ public class Navigation : MonoBehaviour {
     public bool HasReachedTarget()
     {
         return Vector2.Distance(transform.position, currentTarget.transform.position) 
-            < waypointReachedthreshold;
+            < targetReachedthreashold;
     }
 
     public float DistanceToTarget()
@@ -91,8 +94,10 @@ public class Navigation : MonoBehaviour {
 
     void PerformMovement()
     {
-        Vector2 direction = (Vector2)transform.position - (Vector2)currentTarget.transform.position;
-        rigidBody.MovePosition(rigidBody.position + (direction.normalized * (movementSpeed * Time.deltaTime)));
+       // Debug.Log("enemy is moving");
+        Vector2 direction = (Vector2)currentWaypoint.transform.position - (Vector2)transform.position;
+        
+        rBody.MovePosition(rBody.position + (direction.normalized * (currentMovementSpeed * Time.deltaTime)));
         
     }
 

@@ -17,7 +17,7 @@ public class SkaterEnemyState : AEnemyState {
 
     public override float GetStateSpeed()
     {
-        return .25f;
+        return 1.0f;
     }
 
     /// <summary>

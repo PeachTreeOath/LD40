@@ -20,9 +20,12 @@ public class FootballPickup : MonoBehaviour
         {
             if (Time.time > throwTimeDeltaNeededForPickup + throwTime)
             {
-                PlayerController player = PlayerController.instance;
-                player.hasBall = true;
-                gameObject.SetActive(false);
+                if (PlayerStateController.instance.CurrentState == CliqueEnum.JOCK)
+                {
+                    PlayerController player = PlayerController.instance;
+                    player.hasBall = true;
+                    gameObject.SetActive(false);
+                }
             }
         }
     }
