@@ -9,6 +9,7 @@ public class PlayerController : Singleton<PlayerController>
 
     private Rigidbody2D rbody;
     private SpriteRenderer playerSprite;
+    private Animator playerAnimator;
     private APlayerBehaviour behaviour;
 
     private Vector2 direction = new Vector2();
@@ -31,6 +32,7 @@ public class PlayerController : Singleton<PlayerController>
     {
         rbody = GetComponent<Rigidbody2D>();
         playerSprite = GetComponentInChildren<SpriteRenderer>();
+        playerAnimator = GetComponentInChildren<Animator>();
         inChangingRoom = false;
     }
 
@@ -81,18 +83,18 @@ public class PlayerController : Singleton<PlayerController>
         return direction;
     }
 
-    
-
     protected void UpdateFactionChange() {
         if (!canChangeFaction) return;
 
         if(Input.GetKeyDown(KeyCode.Alpha1))
         {
             PlayerStateController.instance.ChangePlayerState(CliqueEnum.SK8R);
+            playerAnimator.enabled = false;
         }
         else if (Input.GetKeyDown(KeyCode.Alpha2))
         {
             PlayerStateController.instance.ChangePlayerState(CliqueEnum.JOCK);
+            playerAnimator.enabled = false;
         }
 
     }
