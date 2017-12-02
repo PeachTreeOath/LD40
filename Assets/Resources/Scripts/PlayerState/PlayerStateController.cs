@@ -2,19 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerStateController : MonoBehaviour {
+public class PlayerStateController : Singleton<PlayerStateController> {
 
-    public static PlayerStateController instance = null;
-
+    /// <summary>
+    /// The Current state for the player.
+    /// </summary>
     public CliqueEnum CurrentState;
-
-    void Awake()
-    {
-        if (instance == null)
-            instance = this;
-        DontDestroyOnLoad(gameObject);
-    }
-
+    
     /// <summary>
     /// Change the players state to the given state.
     /// </summary>
