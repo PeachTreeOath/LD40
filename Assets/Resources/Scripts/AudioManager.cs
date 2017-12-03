@@ -15,6 +15,12 @@ public class AudioManager : Singleton<AudioManager>
     private AudioSource musicChannel;
     private AudioSource soundChannel;
     private Dictionary<string, AudioClip> soundMap;
+    //Tracks whether intro in coroutine has finished playing or not.
+    private bool introCompleted = true;
+
+    //Holds a reference to a coroutine when one starts
+    private Coroutine introCoroutine = null;
+
 
     void Start()
     {
@@ -68,14 +74,34 @@ public class AudioManager : Singleton<AudioManager>
 
     public void PlayMusicWithIntro(string introName, string loopName, float volume)
     {
+        if (!introCompleted && introCoroutine != null)
+        {
+            
+            //cancel the existing coroutine before starting another.
+            StopCoroutine(introCoroutine);
+        }
 		PlayMusic(introName, VolumeListener.volumeLevel);
-        StartCoroutine(PlayMusicDelayed(loopName, volume, musicChannel.clip.length));
+        introCompleted = false;
+        introCoroutine = StartCoroutine(PlayMusicDelayed(loopName, volume, musicChannel.clip.length));
     }
 
     private IEnumerator PlayMusicDelayed(string name, float volume, float delayTime)
     {
         yield return new WaitForSeconds(delayTime);
+        introCompleted = true;
 		PlayMusic(name, VolumeListener.volumeLevel);
+    }
+
+    public void PlayMusicWithIntroFromTime(string introName, string loopName, float volume, float time)
+    {
+        if (!introCompleted && introCoroutine != null)
+        {
+
+            //cancel the existing coroutine before starting another.
+            StopCoroutine(introCoroutine);
+        }
+        PlayMusic(introName, VolumeListener.volumeLevel);
+        introCoroutine = StartCoroutine(PlayMusicDelayed(loopName, volume, musicChannel.clip.length));
     }
 
     public void PlaySound(string name)
