@@ -4,10 +4,14 @@ using UnityEngine;
 
 public class FootballPickup : MonoBehaviour
 {
+    private Football football;
 
     public float throwTime;
     public float throwTimeDeltaNeededForPickup = 1f;
 
+    public void Start() {
+        football = transform.parent.GetComponent<Football>(); 
+    }
 
     public void OnTriggerEnter2D(Collider2D collision)
     {
@@ -19,7 +23,7 @@ public class FootballPickup : MonoBehaviour
                 {
                     PlayerController player = PlayerController.instance;
                     player.hasBall = true;
-                    gameObject.transform.parent.gameObject.SetActive(false);
+                    football.OnPickUp();
                 }
             }
         }
