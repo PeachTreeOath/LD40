@@ -16816,20 +16816,12 @@ Prefab:
     - target: {fileID: 224126738622116898, guid: c5fe64b4fc881e046ac377a97bdef68b,
         type: 2}
       propertyPath: m_LocalPosition.x
-<<<<<<< HEAD
       value: 404
-=======
-      value: 357.5
->>>>>>> c2ca741f094361a3e1624c0aaefa8f8a71a62a8c
       objectReference: {fileID: 0}
     - target: {fileID: 224126738622116898, guid: c5fe64b4fc881e046ac377a97bdef68b,
         type: 2}
       propertyPath: m_LocalPosition.y
-<<<<<<< HEAD
       value: 227.5
-=======
-      value: 201
->>>>>>> c2ca741f094361a3e1624c0aaefa8f8a71a62a8c
       objectReference: {fileID: 0}
     - target: {fileID: 224126738622116898, guid: c5fe64b4fc881e046ac377a97bdef68b,
         type: 2}
