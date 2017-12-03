@@ -3,15 +3,39 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class JockEnemyState : WandererEnemyState {
+    const string FETCHING_STATE = "fetching";
 
-    public override void DoUpdate(EnemyController enemy) {
+    private Football football;
+
+    public JockEnemyState() {
+        var footballGO = GameObject.FindGameObjectWithTag("Football");
+        football = footballGO.GetComponent<Football>();
+    }
+
+    public override void UpdateStates(EnemyController enemy) {
         switch(state) {
+            //TODO just for testing
+            //case START_STATE:
+            //    StartFetching(enemy);
+            //    break;
 
+            case FETCHING_STATE:
+                UpdateFetching(enemy);
+                break;
 
             default:
-                base.DoUpdate(enemy);
+                base.UpdateStates(enemy);
                 break;
         }
+    }
+
+    protected virtual void StartFetching(EnemyController enemy) {
+        
+        state = FETCHING_STATE;
+    }
+
+    protected virtual void UpdateFetching(EnemyController enemy) {
+
     }
 
     /// <summary>
