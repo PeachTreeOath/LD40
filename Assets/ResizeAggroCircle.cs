@@ -6,8 +6,9 @@ public class ResizeAggroCircle : MonoBehaviour {
 
     public CliqueEnum clique;
 
+    public const float cResizeRate = 0.25f;
+
     private const float cMinRadius = 0.25f;
-    private const float cLogBase = 3;
 
     // Use this for initialization
     void Start () {
@@ -26,7 +27,7 @@ public class ResizeAggroCircle : MonoBehaviour {
             if (transform.name.Contains("MiniMapIcon")) {
 
                 affinity = LevelManager.instance.getCurrentAffiliation(clique);
-                radius = cMinRadius + Mathf.Log(1 + affinity, cLogBase);
+                radius = cMinRadius + affinity * cResizeRate;
                 transform.localScale = new Vector3(radius, radius, 0);
             }
         }
