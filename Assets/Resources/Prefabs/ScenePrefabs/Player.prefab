@@ -159,7 +159,7 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967039
+    m_Bits: 4096
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 8400000, guid: 13ba43153e2fb7442aff8d4222e146ae, type: 2}
   m_TargetDisplay: 0
@@ -202,7 +202,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.03112176, y: 0.028292656}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -213,7 +213,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.50771, y: 0.9434147}
   m_EdgeRadius: 0
 --- !u!95 &95130341130747776
 Animator:
