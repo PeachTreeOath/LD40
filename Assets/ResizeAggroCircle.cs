@@ -6,7 +6,7 @@ public class ResizeAggroCircle : MonoBehaviour {
 
     public CliqueEnum clique;
 
-    public const float cResizeRate = 0.25f;
+    public const float cResizeRate = 0.05f;
 
     private const float cMinRadius = 0.25f;
 
