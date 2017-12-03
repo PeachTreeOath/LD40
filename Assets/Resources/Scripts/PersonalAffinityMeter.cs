@@ -39,8 +39,8 @@ public class PersonalAffinityMeter : MonoBehaviour {
 
         Vector3 spritePos = spriteRectTransform.transform.localPosition;
 
-        Debug.Log("=====MaskTest=====");
-        Debug.Log("origHeight: " + originalY);
+        //Debug.Log("=====MaskTest=====");
+        //Debug.Log("origHeight: " + originalY);
         spritePos.Set(spritePos.x, originalY - 1f + affinityPercent, spritePos.z);
 
         spriteRectTransform.localPosition = spritePos;
