@@ -23,6 +23,15 @@ public class JockPlayerState : APlayerState {
     {
         return ResourceLoader.instance.jockSprite;
     }
+    /// <summary>
+    /// Change the speed of the player because you are now on a skateboard.
+    /// </summary>
+    /// <returns></returns>
+    public override float GetStateSpeed()
+    {
+        //Change this to whatever it really should be 5 is a placeholder.
+        return 7f;
+    }
 
     /// <summary>
     /// Return the specfic implementation for this playerstate.
