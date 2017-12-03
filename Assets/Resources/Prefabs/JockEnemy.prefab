@@ -40,6 +40,7 @@ GameObject:
   - component: {fileID: 50250151919203208}
   - component: {fileID: 61835668086546618}
   - component: {fileID: 58531308494507264}
+  - component: {fileID: 114672718420838398}
   m_Layer: 9
   m_Name: JockEnemy
   m_TagString: Untagged
@@ -54,7 +55,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1059812254171762}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.01, y: -0.83861893, z: 0}
+  m_LocalPosition: {x: 9.34, y: 3.18, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4581894834999558}
@@ -69,7 +70,7 @@ Transform:
   m_GameObject: {fileID: 1031429236527960}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1}
   m_Children: []
   m_Father: {fileID: 4250959245763004}
   m_RootOrder: 0
@@ -152,6 +153,19 @@ MonoBehaviour:
   decrementAffinitySpeed: -5
   rbody: {fileID: 0}
   navigation: {fileID: 0}
+--- !u!114 &114672718420838398
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1059812254171762}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6056ce8411ce59946816c498fb75637b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  waypointReachedthreshold: 0.1
+  targetReachedthreashold: 0.1
 --- !u!212 &212180617463532298
 SpriteRenderer:
   m_ObjectHideFlags: 1

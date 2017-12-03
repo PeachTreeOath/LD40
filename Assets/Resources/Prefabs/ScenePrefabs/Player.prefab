@@ -21,7 +21,9 @@ GameObject:
   - component: {fileID: 4974554128959998}
   - component: {fileID: 212215553142974146}
   - component: {fileID: 95130341130747776}
-  m_Layer: 8
+  - component: {fileID: 58412661184004474}
+  - component: {fileID: 114399933142706630}
+  m_Layer: 0
   m_Name: skaterBoy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -190,6 +192,21 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!58 &58412661184004474
+CircleCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1020075000218024}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 1.5
 --- !u!61 &61731437614124686
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -247,6 +264,17 @@ MonoBehaviour:
   FootballGO: {fileID: 0}
   hasBall: 1
   canGrabTail: 1
+--- !u!114 &114399933142706630
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1020075000218024}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0dd2b693dcc08b64c83db474a5a86d18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114426231548164904
 MonoBehaviour:
   m_ObjectHideFlags: 1

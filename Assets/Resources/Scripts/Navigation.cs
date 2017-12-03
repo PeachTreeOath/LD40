@@ -9,18 +9,13 @@ public class Navigation : MonoBehaviour {
     private GameObject currentTarget;
     private GameObject currentWaypoint;
     private GameObject lastWaypoint;
-    private float waypointReachedthreshold = 0.1f;
-    private float targetReachedthreashold = 0.75f;
-    private float gridSpacing = 1.0f;
+    public float waypointReachedthreshold = 0.1f;
+    public float targetReachedthreashold = 0.75f;
     private bool pathBuilt = false;
     private bool allowedMovement = false;
-    private float recalculatePathDelay = 1.0f;
-    private float lastTimePathRecalculated = 0.0f;
     private float currentMovementSpeed;
-    //private bool hasTargetReached = false;
 
     GameObject gridWaypoints;
-    List<GameObject> path = new List<GameObject>();
 
 	// Use this for initialization
 	void Start () {
@@ -53,7 +48,6 @@ public class Navigation : MonoBehaviour {
         allowedMovement = false;
         currentWaypoint = null;
         currentTarget = null;
-        path.Clear();
     }
 
     public void MoveTo(GameObject target, float movementSpeed)
@@ -64,8 +58,8 @@ public class Navigation : MonoBehaviour {
         //Find nearest waypoint. Update statement will begin to move to the
 
         FindClosestWaypoint();
-
-        StartCoroutine(MoveToCoroutine());
+        
+        pathBuilt = true;
     }
 
     public bool HasTarget()
@@ -86,7 +80,6 @@ public class Navigation : MonoBehaviour {
 
     void PerformMovement()
     {
-       // Debug.Log("enemy is moving");
         Vector2 direction = (Vector2)currentWaypoint.transform.position - (Vector2)transform.position;
         
         rBody.MovePosition(rBody.position + (direction.normalized * (currentMovementSpeed * Time.deltaTime)));
@@ -105,15 +98,6 @@ public class Navigation : MonoBehaviour {
                 GetNextWaypoint();
             }
         }
-
-        if (Time.time > lastTimePathRecalculated + recalculatePathDelay)
-        {
-            if(currentWaypoint == null)
-            {
-                FindClosestWaypoint();
-            }
-            StartCoroutine(MoveToCoroutine());
-        }
     }
 
     void FindClosestWaypoint()
@@ -124,7 +108,6 @@ public class Navigation : MonoBehaviour {
                 Vector2.Distance(waypoint.position, transform.position)
                 < Vector2.Distance(currentWaypoint.transform.position, transform.position))
             {
-                path.Add(waypoint.gameObject);
                 currentWaypoint = waypoint.gameObject;
             }
         }
@@ -134,68 +117,23 @@ public class Navigation : MonoBehaviour {
     {
         Waypoint waypoint = currentWaypoint.GetComponent<Waypoint>();
         GameObject newWaypoint = null;
+        
         foreach (GameObject neighbor in waypoint.neighbors)
         {
             //Determine which neighbor is closest to the target.
-            if(newWaypoint == null || 
-                Vector2.Distance(neighbor.transform.position,currentTarget.transform.position)
-                < Vector2.Distance(newWaypoint.transform.position,currentTarget.transform.position))
+            if (newWaypoint == null ||
+                Vector2.Distance(neighbor.transform.position, currentTarget.transform.position)
+                < Vector2.Distance(newWaypoint.transform.position, currentTarget.transform.position))
             {
-                if(lastWaypoint == null || lastWaypoint.transform.position != neighbor.transform.position)
+
+                if (lastWaypoint == null || lastWaypoint.transform.position != neighbor.transform.position)
                 {
                     newWaypoint = neighbor;
                 }
-                
+
             }
         }
         lastWaypoint = currentWaypoint;
         currentWaypoint = newWaypoint;
-    }
-
-   
-
-    IEnumerator MoveToCoroutine()
-    {
-        //Build the path.
-        float tempDistanceToTarget = 0.0f;
-        GameObject closest = currentWaypoint;
-        do
-        {
-            foreach (GameObject neighbor in closest.GetComponent<Waypoint>().neighbors)
-            {
-                //Determine which if the current neighbor is closer to the target and the start position.
-                //If statment breakdown:
-                // ClosestWPDistanceToStart + ClosestWPDistanceToTarget 
-                // < NeighborWPDistanceToStart + NeighborWPDistanceToTarget 
-                // && the neighboor doesn't exist in the path.
-                if (Vector2.Distance(closest.transform.position, transform.position)
-                    + Vector2.Distance(closest.transform.position, currentTarget.transform.position) <
-                    Vector2.Distance(neighbor.transform.position, transform.position)
-                    + Vector2.Distance(neighbor.transform.position, currentTarget.transform.position)
-                    && !ExistsInPath(neighbor.gameObject))
-                {
-                    path.Add(neighbor.gameObject);
-                    closest = neighbor.gameObject;
-                    tempDistanceToTarget =
-                        Vector2.Distance(neighbor.transform.position, currentTarget.transform.position);
-                }
-            }
-            yield return null;
-        } while (tempDistanceToTarget > gridSpacing);
-        pathBuilt = true;
-        lastTimePathRecalculated = Time.time;
-    }
-
-    private bool ExistsInPath(GameObject wayPoint)
-    {
-        bool isInPath = false;
-        foreach(GameObject pathPoint in path)
-        {
-            if(pathPoint.transform.position == wayPoint.transform.position)
-            {
-                isInPath = true;
-            }
-        }
-        return isInPath;
     }
 }

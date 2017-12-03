@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyController : MonoBehaviour {
+public class EnemyController : MonoBehaviour
+{
 
     public CliqueEnum clique;
 
@@ -18,26 +19,28 @@ public class EnemyController : MonoBehaviour {
     [HideInInspector]
     public Navigation navigation;
 
-    private AEnemyState state;
+    [HideInInspector]
+    public AEnemyState state;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start()
+    {
         rbody = GetComponent<Rigidbody2D>();
         navigation = GetComponent<Navigation>();
-        if(navigation == null)
+        if (navigation == null)
         {
             Debug.LogWarning(this.name + " navigation is null.");
         }
         Init(); //TODO remove depending on how we spawn enemies
     }
-	
+
     /// <summary>
     /// Manually called init since I'm not sure how we're gonna spawn enemies yet
     /// </summary>
     public void Init()
     {
         //TODO change to map somewhere
-        if(clique == CliqueEnum.JOCK)
+        if (clique == CliqueEnum.JOCK)
         {
             state = new JockEnemyState();
         }
@@ -47,20 +50,21 @@ public class EnemyController : MonoBehaviour {
         }
     }
 
-	// Update is called once per frame
-	void Update () {
+    // Update is called once per frame
+    void Update()
+    {
         if (state != null)
         {
             state.DoUpdate(this);
         }
-	}
+    }
 
-    void OnTriggerStay2D(Collider2D col)
+    public void ChangeFavor()
     {
-        PlayerStateController player = col.GetComponent<PlayerStateController>();
-        if(player != null && state != null) //TODO: Change state check later when state init changes
+        PlayerStateController player = PlayerStateController.instance;
+        if (state != null) //TODO: Change state check later when state init changes
         {
-            if(clique == player.GetPlayerState())
+            if (clique == player.GetPlayerState())
             {
                 if (personalAffinity < personalAffinityMax)
                 {
