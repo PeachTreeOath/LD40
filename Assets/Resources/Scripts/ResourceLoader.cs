@@ -11,6 +11,9 @@ public class ResourceLoader : Singleton<ResourceLoader>
     public Sprite jockSprite;
 
     [HideInInspector]
+    public Sprite furrySprite;
+
+    [HideInInspector]
     public GameObject skaterPrefab;
 
     [HideInInspector]
@@ -29,8 +32,9 @@ public class ResourceLoader : Singleton<ResourceLoader>
 
     private void LoadResources() {
 
-        skaterSprite = Resources.Load<Sprite>("Textures/skaterBoy");
-        jockSprite = Resources.Load<Sprite>("Textures/Ali");
+        skaterSprite = Resources.Load<Sprite>("Textures/mainGuySkater");
+        jockSprite = Resources.Load<Sprite>("Textures/mainGuyJock");
+        furrySprite = Resources.Load<Sprite>("Textures/mainGuyFurry");
 
         skaterPrefab = Resources.Load<GameObject>("Prefabs/SkaterEnemy");
         jockPrefab = Resources.Load<GameObject>("Prefabs/JockEnemy");

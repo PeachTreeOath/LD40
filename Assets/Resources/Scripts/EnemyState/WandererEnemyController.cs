@@ -48,20 +48,12 @@ public abstract class WandererEnemyController : MoveToEnemyController {
     }
 
     protected virtual void StartWander() {
-        if(Debug.isDebugBuild) {
-            Debug.Log(string.Format("{0}: Starting wander", gameObject.name));
-        }
-
         var waypoint = ChooseNearbyWaypointAtRandom();
         MoveToTarget(waypoint);
         state = WALKING_STATE;
     }
 
     protected void StartWaiting() {
-        if(Debug.isDebugBuild) {
-            Debug.Log(string.Format("{0}: Starting waiting", gameObject.name));
-        }
-
         waitTimer = Random.Range(minWanderWait, maxWanderWait);
         state = WAITING_STATE;
     }

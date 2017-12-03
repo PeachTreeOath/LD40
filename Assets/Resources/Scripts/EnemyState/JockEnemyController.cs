@@ -2,10 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//TODO fetch wait
+//TODO fetch cooldown (fetch time + wait)
+//TODO scatter might never allow fetch
 public class JockEnemyController : WandererEnemyController {
     const string FETCHING_STATE = "fetching";
 
     private Football football;
+
+    public float footballChaseRadius = 15f;
+    public float footballScatterRadius = 1f;
 
     protected override void Start() {
         base.Start();
@@ -13,16 +19,11 @@ public class JockEnemyController : WandererEnemyController {
         var footballGO = GameObject.FindGameObjectWithTag("Football");
         football = footballGO.GetComponent<Football>();
 
-        //football.lureEvent.AddListener()
+        football.lureEvent.AddListener(OnLureActive);
     }
 
     public override void UpdateStates() {
         switch(state) {
-            //TODO just for testing
-            //case START_STATE:
-                //StartFetching();
-                //break;
-
             case FETCHING_STATE:
                 UpdateFetching();
                 break;
@@ -35,7 +36,8 @@ public class JockEnemyController : WandererEnemyController {
 
     protected virtual void StartFetching() {
         StopMoveTo();
-        MoveToTarget(football.gameObject);
+        Vector3 position = (Vector2)football.transform.position + (Random.insideUnitCircle * footballScatterRadius);
+        MoveToTarget(position);
         state = FETCHING_STATE;
     }
 
@@ -51,8 +53,40 @@ public class JockEnemyController : WandererEnemyController {
         }
     }
 
+    protected virtual void OnLureActive(string message) {
+        switch(message) {
+            case LureEvent.ATTRACT:
+                if (CanSeeFootball()) {
+                    StartFetching();
+                }
+                break;
+
+            case LureEvent.CANCEL:
+                if(state == FETCHING_STATE) {
+                    StopMoveTo();
+                    StartWander(); //TODO is this right?
+                }
+                break;
+        }
+    }
+
+    protected bool CanSeeFootball() {
+        int layerMask = LayerMask.GetMask("Wall");
+        Vector2 dir = football.transform.position - transform.position;
+        float dist = Mathf.Min(Vector3.Magnitude(dir), footballChaseRadius);
+
+        var hit = Physics2D.Raycast(transform.position, Vector3.Normalize(dir), dist, layerMask);
+        return hit.collider == null;
+    }
+
+    private void OnDestroy() {
+       if(football) {
+            football.lureEvent.RemoveListener(OnLureActive);
+       } 
+    }
+
     public override float GetStateSpeed() {
-        return 3f;
+        return state == FETCHING_STATE ? 6f : 3f;
     }
 
 }
