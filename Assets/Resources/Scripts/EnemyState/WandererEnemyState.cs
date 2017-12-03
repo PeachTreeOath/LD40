@@ -3,8 +3,8 @@ using System.Collections;
 
 public abstract class WandererEnemyState : AEnemyState {
     public float wanderTargetRadius = 5f;
-    public float minWanderWait = 0.5f;
-    public float maxWanderWait = 1.5f;
+    public float minWanderWait = 0f;
+    public float maxWanderWait = 3.0f;
 
     public enum WanderState { Start, Walking, Navigating, Waiting };
 
