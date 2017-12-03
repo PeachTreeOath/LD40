@@ -9,19 +9,13 @@ public class Navigation : MonoBehaviour {
     private GameObject currentTarget;
     private GameObject currentWaypoint;
     private GameObject lastWaypoint;
-    private float waypointReachedthreshold = 0.1f;
-    private float targetReachedthreashold = 0.75f;
-    private float gridSpacing = 1.0f;
+    public float waypointReachedthreshold = 0.1f;
+    public float targetReachedthreashold = 0.75f;
     private bool pathBuilt = false;
     private bool allowedMovement = false;
-    private float recalculatePathDelay = 1.0f;
-    private float lastTimePathRecalculated = 0.0f;
     private float currentMovementSpeed;
-    //private int pathIndex;
-    //private bool hasTargetReached = false;
 
     GameObject gridWaypoints;
-    //List<GameObject> path = new List<GameObject>();
 
 	// Use this for initialization
 	void Start () {
@@ -54,7 +48,6 @@ public class Navigation : MonoBehaviour {
         allowedMovement = false;
         currentWaypoint = null;
         currentTarget = null;
-        //path.Clear();
     }
 
     public void MoveTo(GameObject target, float movementSpeed)
@@ -65,8 +58,7 @@ public class Navigation : MonoBehaviour {
         //Find nearest waypoint. Update statement will begin to move to the
 
         FindClosestWaypoint();
-
-       // StartCoroutine(MoveToCoroutine());
+        
         pathBuilt = true;
     }
 
@@ -88,7 +80,6 @@ public class Navigation : MonoBehaviour {
 
     void PerformMovement()
     {
-       // Debug.Log("enemy is moving");
         Vector2 direction = (Vector2)currentWaypoint.transform.position - (Vector2)transform.position;
         
         rBody.MovePosition(rBody.position + (direction.normalized * (currentMovementSpeed * Time.deltaTime)));
@@ -117,7 +108,6 @@ public class Navigation : MonoBehaviour {
                 Vector2.Distance(waypoint.position, transform.position)
                 < Vector2.Distance(currentWaypoint.transform.position, transform.position))
             {
-                //path.Add(waypoint.gameObject);
                 currentWaypoint = waypoint.gameObject;
             }
         }
