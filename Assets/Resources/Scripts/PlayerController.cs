@@ -7,6 +7,9 @@ public class PlayerController : Singleton<PlayerController>
 
     public float moveSpeed;
 
+    public float skateMoveSpeed;
+    public float skateTurnSpeed;
+
     private Rigidbody2D rbody;
     private SpriteRenderer playerSprite;
     private Animator playerAnimator;
@@ -45,41 +48,52 @@ public class PlayerController : Singleton<PlayerController>
     // Update is called once per frame
     void Update()
     {
-        float currentSpeed = moveSpeed;
-        if (Input.GetAxisRaw("Horizontal") > 0)
+        if (PlayerStateController.instance.GetPlayerState().Equals(CliqueEnum.SK8R))
         {
-            playerSprite.flipX = true;
-            goingForward = true;
+            UpdateFactionChange();
+            float currentSpeed = skateMoveSpeed * Time.deltaTime;
+            
+            rbody.MovePosition(transform.position + transform.right * currentSpeed);
+            rbody.MoveRotation(rbody.rotation - Input.GetAxisRaw("Horizontal") * skateTurnSpeed*Time.deltaTime);
         }
-        else if (Input.GetAxisRaw("Horizontal") < 0)
+        else
         {
-            playerSprite.flipX = false;
-            goingForward = false;
+            float currentSpeed = moveSpeed * Time.deltaTime;
+            if (Input.GetAxisRaw("Horizontal") > 0)
+            {
+                playerSprite.flipX = true;
+                goingForward = true;
+            }
+            else if (Input.GetAxisRaw("Horizontal") < 0)
+            {
+                playerSprite.flipX = false;
+                goingForward = false;
+            }
+
+            direction = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+            if (Input.GetAxisRaw("Horizontal") != 0 && Input.GetAxisRaw("Vertical") != 0)
+            {
+                //multiply diagonals by sin(45) so it moves properly circlewise
+                currentSpeed *= 0.707f;
+                /**
+                 * currently doing this to make sure football flies correct speed at 45 deg
+                 *  angle, this could cause other issues if direction is used elsewhere,
+                 *  BEWARE
+                 */
+                direction *= 0.707f;
+            }
+
+            UpdateFactionChange();
+
+            if (Input.GetKeyDown(KeyCode.Space) && !PlayerStateController.instance.GetPlayerState().Equals(CliqueEnum.NORMAL))
+            {
+                if (behaviour != null)
+                    behaviour.ExecuteBehaviourAction();
+            }
+
+            Vector3 deltaPos = new Vector3(currentSpeed * Input.GetAxisRaw("Horizontal"), currentSpeed * Input.GetAxisRaw("Vertical"), 0);
+            rbody.MovePosition(deltaPos + transform.position);
         }
-
-        direction = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
-        if (Input.GetAxisRaw("Horizontal") != 0 && Input.GetAxisRaw("Vertical") != 0)
-        {
-            //multiply diagonals by sin(45) so it moves properly circlewise
-            currentSpeed *= 0.707f;
-            /**
-             * currently doing this to make sure football flies correct speed at 45 deg
-             *  angle, this could cause other issues if direction is used elsewhere,
-             *  BEWARE
-             */
-            direction *= 0.707f; 
-        }
-
-        UpdateFactionChange();
-
-        if (Input.GetKeyDown(KeyCode.Space) && !PlayerStateController.instance.GetPlayerState().Equals(CliqueEnum.NORMAL))
-        {
-            if (behaviour != null)
-                behaviour.ExecuteBehaviourAction();
-        }
-
-        Vector3 deltaPos = new Vector3(currentSpeed * Input.GetAxisRaw("Horizontal"), currentSpeed * Input.GetAxisRaw("Vertical"), 0);
-        rbody.MovePosition(deltaPos + transform.position);
     }
 
     public void ChangeSprite(Sprite newSprite)
@@ -110,7 +124,7 @@ public class PlayerController : Singleton<PlayerController>
     {
         if (!canChangeFaction) return;
 
-        if(PlayerStateController.instance.GetPlayerState().Equals(CliqueEnum.FURBOI))
+        if (PlayerStateController.instance.GetPlayerState().Equals(CliqueEnum.FURBOI))
         {
             if (!canGrabTail)
                 behaviour.ExecuteBehaviourAction();
