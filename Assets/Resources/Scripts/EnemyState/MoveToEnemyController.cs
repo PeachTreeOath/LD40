@@ -6,8 +6,8 @@ public abstract class MoveToEnemyController : EnemyController {
     public const string MOVE_TO_WALKING_STATE = "walking";
     public const string MOVE_TO_NAVIGATING_STATE = "navigating";
 
-    protected string moveToState;
-    protected Vector3 moveToTarget;
+    private string moveToState;
+    private Vector3 moveToTarget;
 
     protected void DoMoveToUpdate() {
         switch(moveToState) {
@@ -18,6 +18,20 @@ public abstract class MoveToEnemyController : EnemyController {
             case MOVE_TO_NAVIGATING_STATE:
                 UpdateNavigating();
                 break;
+        }
+    }
+
+    //copied out of a misguided desire to prematurely optimize
+    protected void MoveToTarget(Vector3 target) {
+        var collider = GetComponent<Collider2D>();
+        var dir = target - transform.position;
+
+        int wallLayerMask = LayerMask.GetMask("Wall");
+        var hit = Physics2D.BoxCast(transform.position, collider.bounds.size, 0f, Vector3.Normalize(dir), Vector3.Magnitude(dir), wallLayerMask);
+        if (hit.collider == null) {
+            StartWalkStraightTo(target);
+        } else {
+            StartNavigateTo(target);
         }
     }
 
@@ -35,20 +49,23 @@ public abstract class MoveToEnemyController : EnemyController {
     }
 
     protected virtual void StartWalkStraightTo(GameObject target) {
-        if(Debug.isDebugBuild) {
-            Debug.Log(string.Format("{0}: Starting walk straight to {1}", name, target.name));
-        }
-
         moveToTarget = target.transform.position;
         moveToState = MOVE_TO_WALKING_STATE;
     }
 
     protected virtual void StartNavigateTo(GameObject target) {
-        if(Debug.isDebugBuild) {
-            Debug.Log(string.Format("{0}: Starting navigate to {1}", name, target.name));
-        }
-
         moveToTarget = target.transform.position;
+        navigation.MoveTo(target, GetStateSpeed());
+        moveToState = MOVE_TO_NAVIGATING_STATE;
+    }
+
+    protected virtual void StartWalkStraightTo(Vector3 target) {
+        moveToTarget = target;
+        moveToState = MOVE_TO_WALKING_STATE;
+    }
+
+    protected virtual void StartNavigateTo(Vector3 target) {
+        moveToTarget = target;
         navigation.MoveTo(target, GetStateSpeed());
         moveToState = MOVE_TO_NAVIGATING_STATE;
     }
