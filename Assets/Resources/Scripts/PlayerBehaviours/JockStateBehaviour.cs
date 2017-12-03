@@ -30,7 +30,7 @@ public class JockStateBehaviour : APlayerBehaviour
 
             if (FootballGO != null)
             {
-                FootballPickup football = FootballGO.GetComponent<FootballPickup>();
+                Football football = FootballGO.GetComponent<Football>();
                 football.ThrowFootball(direction * speed);
                 player.hasBall = false;
             }

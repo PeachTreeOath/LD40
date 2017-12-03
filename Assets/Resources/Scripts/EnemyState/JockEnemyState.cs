@@ -3,7 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class JockEnemyState : WandererEnemyState {
-    
+
+    public override void DoUpdate(EnemyController enemy) {
+        switch(state) {
+
+
+            default:
+                base.DoUpdate(enemy);
+                break;
+        }
+    }
+
     /// <summary>
     /// The sprite the player takes on when changing to this state.
     /// </summary>
