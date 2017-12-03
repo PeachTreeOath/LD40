@@ -39,11 +39,6 @@ public class PlayerController : Singleton<PlayerController>
         }
     }
 
-    private Vector2 Vector2FromAngle(float a) {
-        a *= Mathf.Deg2Rad;
-        return new Vector2(Mathf.Cos(a), Mathf.Sin(a));
-    }
-
     // Use this for initialization
     void Start()
     {
