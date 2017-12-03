@@ -13,7 +13,7 @@ public class FurryPlayerState : APlayerState
     /// <returns></returns>
     public override void PlayStateMusic()
     {
-        AudioManager.instance.PlayMusicWithIntroResumingTime("furry_intro", "furry_loop");
+        //AudioManager.instance.PlayMusicWithIntroResumingTime("furry_intro", "furry_loop");
     }
     /// <summary>
     /// The sprite the player takes on when changing to this state.
@@ -24,6 +24,17 @@ public class FurryPlayerState : APlayerState
         Sprite stateSprite = new Sprite();
         return stateSprite;
     }
+
+    /// <summary>
+    /// Change the speed of the player because you are now on a skateboard.
+    /// </summary>
+    /// <returns></returns>
+    public override float GetStateSpeed()
+    {
+        //Change this to whatever it really should be 5 is a placeholder.
+        return 3f;
+    }
+
     public override APlayerBehaviour GetPlayerBehaviour()
     {
         return new FurryStateBehaviour();

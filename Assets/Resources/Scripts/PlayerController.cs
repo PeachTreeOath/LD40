@@ -142,13 +142,20 @@ public class PlayerController : Singleton<PlayerController>
 
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            PlayerStateController.instance.ChangePlayerState(CliqueEnum.SK8R);
-            playerAnimator.enabled = false;
+            PlayerStateController.instance.ChangePlayerState(CliqueEnum.FURBOI);
+            playerAnimator.enabled = true;
+            playerAnimator.runtimeAnimatorController = ResourceLoader.instance.furAnim;
         }
         else if (Input.GetKeyDown(KeyCode.Alpha2))
         {
-            PlayerStateController.instance.ChangePlayerState(CliqueEnum.JOCK);
+            PlayerStateController.instance.ChangePlayerState(CliqueEnum.SK8R);
             playerAnimator.enabled = false;
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            PlayerStateController.instance.ChangePlayerState(CliqueEnum.JOCK);
+            playerAnimator.enabled = true;
+            playerAnimator.runtimeAnimatorController = ResourceLoader.instance.jockAnim;
         }
 
     }
