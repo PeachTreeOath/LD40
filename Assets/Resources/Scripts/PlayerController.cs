@@ -19,6 +19,7 @@ public class PlayerController : Singleton<PlayerController>
     public bool hasBall = true;
 
 
+    public bool goingForward;
     public bool canGrabTail = true;
 
     [HideInInspector]
@@ -48,10 +49,12 @@ public class PlayerController : Singleton<PlayerController>
         if (Input.GetAxisRaw("Horizontal") > 0)
         {
             playerSprite.flipX = true;
+            goingForward = true;
         }
         else if (Input.GetAxisRaw("Horizontal") < 0)
         {
             playerSprite.flipX = false;
+            goingForward = false;
         }
 
         direction = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));

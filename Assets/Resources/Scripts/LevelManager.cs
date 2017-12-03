@@ -76,25 +76,29 @@ public class LevelManager : Singleton<LevelManager> {
         for(int i = 0; i < lvl.furryCount; i++)
         {
             Waypoint wp = wps[UnityEngine.Random.Range(0, wps.Length)];
-            Instantiate(ResourceLoader.instance.furryPrefab, wp.transform.position, Quaternion.identity);
+            GameObject go = Instantiate(ResourceLoader.instance.furryPrefab, wp.transform.position, Quaternion.identity);
+            go.GetComponent<EnemyController>().personalAffinityMax = 100.0f / lvl.furryCount;
         }
 
         for (int i = 0; i < lvl.skaterCount; i++)
         {
             Waypoint wp = wps[UnityEngine.Random.Range(0, wps.Length)];
-            Instantiate(ResourceLoader.instance.skaterPrefab, wp.transform.position, Quaternion.identity);
+            GameObject go = Instantiate(ResourceLoader.instance.skaterPrefab, wp.transform.position, Quaternion.identity);
+            go.GetComponent<EnemyController>().personalAffinityMax = 100.0f / lvl.furryCount;
         }
 
         for (int i = 0; i < lvl.footballerCount; i++)
         {
             Waypoint wp = wps[UnityEngine.Random.Range(0, wps.Length)];
-            Instantiate(ResourceLoader.instance.jockPrefab, wp.transform.position, Quaternion.identity);
+            GameObject go = Instantiate(ResourceLoader.instance.jockPrefab, wp.transform.position, Quaternion.identity);
+            go.GetComponent<EnemyController>().personalAffinityMax = 100.0f / lvl.furryCount;
         }
 
         for (int i = 0; i < lvl.hipsterCount; i++)
         {
             Waypoint wp = wps[UnityEngine.Random.Range(0, wps.Length)];
-            Instantiate(ResourceLoader.instance.skaterPrefab, wp.transform.position, Quaternion.identity);
+            GameObject go = Instantiate(ResourceLoader.instance.skaterPrefab, wp.transform.position, Quaternion.identity);
+            go.GetComponent<EnemyController>().personalAffinityMax = 100.0f / lvl.furryCount;
         }
     }
 

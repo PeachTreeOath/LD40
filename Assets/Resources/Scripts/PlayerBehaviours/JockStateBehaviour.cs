@@ -25,6 +25,13 @@ public class JockStateBehaviour : APlayerBehaviour
             FootballGO = player.FootballGO;
 
             Vector2 direction = player.GetPlayerDirection();
+            if (direction.x == 0)
+            {
+                if (player.goingForward)
+                    direction.x = 1;
+                else
+                    direction.x = -1;
+            }
             FootballGO.SetActive(true);
             FootballGO.transform.localPosition = player.transform.localPosition;
 
