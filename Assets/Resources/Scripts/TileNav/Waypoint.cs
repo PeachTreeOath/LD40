@@ -7,13 +7,7 @@ public class Waypoint : MonoBehaviour {
     public List<GameObject> neighbors;
 
 	// Use this for initialization
-	void Start () {
-	}
 	
-	// Update is called once per frame
-	void Update () {
-        		
-	}
 
     private void OnDestroy() {
         foreach(var neighbor in neighbors) {
