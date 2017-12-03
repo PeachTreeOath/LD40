@@ -9,9 +9,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 1
   m_Script: {fileID: 13312, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: chalkboard
+  m_Name: mid-s
   m_EditorClassIdentifier: 
-  m_Sprite: {fileID: 21300000, guid: 63f71c8b387526f489afc62aa2916324, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 5c9f3881d602f5f4cb0d3566e75985e8, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Transform:
     e00: 1
