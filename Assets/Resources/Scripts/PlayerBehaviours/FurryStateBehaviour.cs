@@ -23,12 +23,23 @@ public class FurryStateBehaviour : APlayerBehaviour
         if (enemyGo != null) {
             var furry = enemyGo.GetComponent<FurryEnemyController>();
             furry.StartHoldingHands();
+
+            //I'd rather you weren't here to see this
+            furry.transform.SetParent(PlayerController.instance.transform);
+            var joint = PlayerController.instance.gameObject.AddComponent<FixedJoint2D>();
+            var furryFurryBody = furry.GetComponent<Rigidbody2D>();
+            joint.connectedBody = furryFurryBody;
         }
     }
 
     protected void ReleaseHostage() {
+        var joint = PlayerController.instance.GetComponent<FixedJoint2D>();
+        GameObject.Destroy(joint);
+
         var furry = PlayerController.instance.GetComponentInChildren<FurryEnemyController>();
+        furry.transform.SetParent(null);
         furry.StopHoldingHands();
+
     }
 
     protected GameObject AttemptToGrabHands() {
