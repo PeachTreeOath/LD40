@@ -39,11 +39,6 @@ public class PlayerController : Singleton<PlayerController>
         }
     }
 
-    private Vector2 Vector2FromAngle(float a) {
-        a *= Mathf.Deg2Rad;
-        return new Vector2(Mathf.Cos(a), Mathf.Sin(a));
-    }
-
     // Use this for initialization
     void Start()
     {
@@ -58,20 +53,13 @@ public class PlayerController : Singleton<PlayerController>
     {
         if (PlayerStateController.instance.GetPlayerState().Equals(CliqueEnum.SK8R))
         {
-            //
-            // Rotate the sprite and move the player object instead of 
-            // rotating and moving the player object
-            // so the minimap doesn't rotate since it's anchored to the player object
-            //
             UpdateFactionChange();
             float currentSpeed = skateMoveSpeed * Time.deltaTime;
-            float z = playerSprite.transform.rotation.z - Input.GetAxisRaw("Horizontal") * skateTurnSpeed * Time.deltaTime;
-            playerSprite.transform.Rotate(0, 0, z);
-            Vector2 v = (playerSprite.flipX ? 1 : -1) * Vector2FromAngle(playerSprite.transform.rotation.eulerAngles.z) * currentSpeed + rbody.position;
-            rbody.MovePosition(v);
+            rbody.MovePosition(transform.position + transform.right * currentSpeed * (playerSprite.flipX ? 1 : -1));
+            rbody.MoveRotation(rbody.rotation - Input.GetAxisRaw("Horizontal") * skateTurnSpeed * Time.deltaTime);
         } else
         {
-            playerSprite.transform.rotation = Quaternion.Euler(0, 0, 0);
+            rbody.MoveRotation(0);
             float currentSpeed = moveSpeed * Time.deltaTime;
             if (Input.GetAxisRaw("Horizontal") > 0)
             {
@@ -107,6 +95,16 @@ public class PlayerController : Singleton<PlayerController>
 
             Vector3 deltaPos = new Vector3(currentSpeed * Input.GetAxisRaw("Horizontal"), currentSpeed * Input.GetAxisRaw("Vertical"), 0);
             rbody.MovePosition(deltaPos + transform.position);
+        }
+
+        //
+        // Reset mini map rotation
+        //
+        Transform[] transforms = GetComponentsInChildren<Transform>();
+        foreach (Transform transform in transforms) {
+            if (transform.name.Contains("MiniMap")) {
+                transform.rotation = Quaternion.Euler(0, 0, 0);
+            }
         }
     }
 

@@ -4,8 +4,12 @@ using UnityEngine;
 
 public class ReputationUIManager : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
+    public RectTransform furryFill;
+    public RectTransform skaterFill;
+    public RectTransform jockFill;
+
+    // Use this for initialization
+    void Start () {
 		
 	}
 	
