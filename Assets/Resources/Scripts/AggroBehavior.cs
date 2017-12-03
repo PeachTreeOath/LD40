@@ -10,72 +10,51 @@ public class AggroBehavior : MonoBehaviour {
 
 	// Use this for initialization
 	public void Start () {
-        AggorCollider = gameObject.AddComponent<CircleCollider2D>();
+        if (gameObject.GetComponent<CircleCollider2D>() != null)
+            AggorCollider = gameObject.GetComponent<CircleCollider2D>();
+        else
+            AggorCollider = gameObject.AddComponent<CircleCollider2D>();
         AggorCollider.radius = radius;
-        //AggorCollider.isTrigger = true;
+        AggorCollider.isTrigger = true;
     }
 
     //Update is called once per frame
     public void Update()
     {
-        AggorCollider.offset = transform.position;
+        //AggorCollider.offset = transform.position;
 
         if (AggorCollider.IsTouching(PlayerController.instance.GetComponent<Collider2D>()))
         {
-            Debug.Log("We touching");
+            Debug.Log("Were touching");
         }
         if (AggorCollider.IsTouching(PlayerController.instance.GetComponent<Collider2D>()))
         {
-            Debug.Log("We really touching");
+            Debug.Log("Were really touching");
         }
     }
 
-    public void OnTriggerEnter(Collider other)
+    public void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.tag.Contains("Player"))
+        if (other.tag == ("Player"))
         {
-            Debug.Log("We really touching");
+            Debug.Log("Player trig enter");
         }
         if (other.name.Contains("Enemy"))
         {
-            Debug.Log("Enemy really touching");
+            Debug.Log("Enemy trig enter");
         }
+        else
+            Debug.Log("Something trig enter " + other.ToString());
     }
 
-    public void OnTriggerStay(Collider other)
+    public void OnTriggerStay2D(Collider2D other)
     {
-        if (other.tag == "Player")
+        if (other.tag.Contains("Player"))
         {
-            Debug.Log("hope it is");
+            Debug.Log("stay trigger");
         }
     }
-    public void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.name.Contains("Player"))
-        {
-            Debug.Log("We did it");
-        }
-        if (collision.gameObject.name.Contains("Enemy"))
-        {
-            Debug.Log("THis is an enemy");
-        }
-        Debug.Log("Someone entered1" +collision.gameObject.ToString() + collision.ToString() + collision.GetType() + collision.rigidbody + collision.Equals(PlayerController.instance.GetComponent<Collider2D>()));
-    }
-    public void OnCollisionStay2D(Collision2D collision)
-    {
-        if (collision.gameObject.name == "Player")
-        {
-            Debug.Log("HERRERE");
-        }
-    }
-    public void OnCollisionExit2D(Collision2D collision)
-    {
-        if (collision.gameObject.name.Contains("Enemy"))
-        {
-            Debug.Log("enemy left");
-        }
-        Debug.Log("Someone Left2");
-    }
+    
     //public void OnTriggerEnter2D(Collider2D collision)
     //{
     //    Debug.Log("Someone entered");
