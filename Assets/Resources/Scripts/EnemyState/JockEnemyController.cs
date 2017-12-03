@@ -19,9 +19,9 @@ public class JockEnemyController : WandererEnemyController {
     public override void UpdateStates() {
         switch(state) {
             //TODO just for testing
-            case START_STATE:
-                StartFetching();
-                break;
+            //case START_STATE:
+                //StartFetching();
+                //break;
 
             case FETCHING_STATE:
                 UpdateFetching();
