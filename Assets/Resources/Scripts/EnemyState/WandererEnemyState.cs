@@ -12,12 +12,12 @@ public abstract class WandererEnemyState : AEnemyState {
     public float minWanderWait = 0f;
     public float maxWanderWait = 3.0f;
 
-    protected string wanderState = START_STATE;
+    protected string state = START_STATE;
     protected GameObject wanderTarget;
     protected float waitTimer;
 
     public override void DoUpdate(EnemyController enemy) {
-        switch(wanderState) {
+        switch(state) {
             case START_STATE:
                 StartWander(enemy);
                 break;
@@ -100,7 +100,7 @@ public abstract class WandererEnemyState : AEnemyState {
         }
 
         wanderTarget = target;
-        wanderState = WALKING_STATE;
+        state = WALKING_STATE;
     }
 
     protected virtual void StartNavigateTo(EnemyController enemy, GameObject target) {
@@ -110,7 +110,7 @@ public abstract class WandererEnemyState : AEnemyState {
 
         wanderTarget = target;
         enemy.navigation.MoveTo(target, GetStateSpeed());
-        wanderState = NAVIGATING_STATE;
+        state = NAVIGATING_STATE;
     }
 
     protected void StartWaiting(EnemyController enemy) {
@@ -119,7 +119,7 @@ public abstract class WandererEnemyState : AEnemyState {
         }
 
         waitTimer = Random.Range(minWanderWait, maxWanderWait);
-        wanderState = WAITING_STATE;
+        state = WAITING_STATE;
     }
 
     protected bool TestAtTarget(EnemyController enemy) {
