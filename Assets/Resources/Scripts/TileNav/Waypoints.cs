@@ -40,4 +40,8 @@ public class Waypoints {
         var waypoints = FindNearbyWaypoints(position, NEARBY_DISTANCE, true);
         return waypoints.Count > 0 ? waypoints[0] : null;
     }
+
+    public static Waypoint FindNearestWaypoint(GameObject gameObject) {
+        return FindNearestWaypoint(gameObject.transform.position);
+    }
 }
