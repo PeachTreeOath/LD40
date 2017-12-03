@@ -37,6 +37,7 @@ public class PlayerStateController : Singleton<PlayerStateController>
         player.ChangeSprite(stateMap[state].GetStateSprite());
         player.ChangeSpeed(stateMap[state].GetStateSpeed());
         player.ChangeBehaviour(stateMap[state].GetPlayerBehaviour());
+        stateMap[state].PlayStateMusic();
 
         switch (state)
         {
