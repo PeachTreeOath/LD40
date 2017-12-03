@@ -71,7 +71,7 @@ public class LevelManager : Singleton<LevelManager> {
         int level = GlobalPersistentStats.instance.level;
         GameObject levelObj = GameObject.Find("Level" + level);
         Level lvl = levelObj.GetComponent<Level>();
-        Waypoint[] wps = GameObject.Find("Waypoints").GetComponentsInChildren<Waypoint>();
+        Waypoint[] wps = GameObject.Find("Waypoints"+GlobalPersistentStats.instance.level).GetComponentsInChildren<Waypoint>();
 
         for(int i = 0; i < lvl.furryCount; i++)
         {
