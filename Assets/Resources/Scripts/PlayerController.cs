@@ -36,6 +36,11 @@ public class PlayerController : Singleton<PlayerController>
         }
     }
 
+    private Vector2 Vector2FromAngle(float a) {
+        a *= Mathf.Deg2Rad;
+        return new Vector2(Mathf.Cos(a), Mathf.Sin(a));
+    }
+
     // Use this for initialization
     void Start()
     {
@@ -50,13 +55,18 @@ public class PlayerController : Singleton<PlayerController>
     {
         if (PlayerStateController.instance.GetPlayerState().Equals(CliqueEnum.SK8R))
         {
+            //
+            // Rotate the sprite and move the player object instead of 
+            // rotating and moving the player object
+            // so the minimap doesn't rotate since it's anchored to the player object
+            //
             UpdateFactionChange();
             float currentSpeed = skateMoveSpeed * Time.deltaTime;
-            
-            rbody.MovePosition(transform.position + transform.right * currentSpeed);
-            rbody.MoveRotation(rbody.rotation - Input.GetAxisRaw("Horizontal") * skateTurnSpeed*Time.deltaTime);
-        }
-        else
+            float z = playerSprite.transform.rotation.z - Input.GetAxisRaw("Horizontal") * skateTurnSpeed * Time.deltaTime;
+            playerSprite.transform.Rotate(0, 0, z);
+            Vector2 v = -Vector2FromAngle(playerSprite.transform.rotation.eulerAngles.z) * currentSpeed + rbody.position;
+            rbody.MovePosition(v);
+        } else
         {
             float currentSpeed = moveSpeed * Time.deltaTime;
             if (Input.GetAxisRaw("Horizontal") > 0)
