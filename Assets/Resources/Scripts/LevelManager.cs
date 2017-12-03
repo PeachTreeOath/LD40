@@ -76,7 +76,7 @@ public class LevelManager : Singleton<LevelManager> {
         for(int i = 0; i < lvl.furryCount; i++)
         {
             Waypoint wp = wps[UnityEngine.Random.Range(0, wps.Length)];
-            Instantiate(ResourceLoader.instance.skaterPrefab, wp.transform.position, Quaternion.identity);
+            Instantiate(ResourceLoader.instance.furryPrefab, wp.transform.position, Quaternion.identity);
         }
 
         for (int i = 0; i < lvl.skaterCount; i++)
