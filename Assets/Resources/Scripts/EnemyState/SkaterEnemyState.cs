@@ -35,7 +35,7 @@ public class SkaterEnemyState : AEnemyState {
         }
         else
         {
-            GameObject waypoints = GameObject.Find("Waypoints");
+            GameObject waypoints = GameObject.Find("Waypoints" + GlobalPersistentStats.instance.level);
             
             int index = Random.Range(0, waypoints.transform.childCount);
             GameObject target = waypoints.transform.GetChild(index).gameObject;

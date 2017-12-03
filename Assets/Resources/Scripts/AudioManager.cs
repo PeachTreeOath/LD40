@@ -36,7 +36,7 @@ public class AudioManager : Singleton<AudioManager>
 
         ToggleMute(mute);
         musicChannel.volume = .3f;
-        PlayMusic("MainTheme", musicChannel.volume);
+        PlayMusicWithIntro("Neutral_intro","Neutral_loop", musicChannel.volume);
     }
 
 	public void UpdateMusicVolume()
