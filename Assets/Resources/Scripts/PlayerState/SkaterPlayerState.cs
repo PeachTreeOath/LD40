@@ -6,15 +6,14 @@ using UnityEngine;
 /// The Skater State, contains the specific APlayerState implementations for being a Skater.
 /// </summary>
 public class SkaterPlayerState : APlayerState {
-    
+
     /// <summary>
     /// The audio clip that is played when the player changes to this state.
     /// </summary>
     /// <returns></returns>
-    public override AudioClip GetStateAudioClip()
+    public override void PlayStateMusic()
     {
-        AudioClip clip = new AudioClip();
-        return clip;
+        AudioManager.instance.PlayMusicWithIntro("Skater_intro", "Skater_loop", .3f);
     }
     /// <summary>
     /// The sprite the player takes on when changing to this state.
