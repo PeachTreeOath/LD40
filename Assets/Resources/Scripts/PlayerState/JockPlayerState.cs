@@ -30,7 +30,7 @@ public class JockPlayerState : APlayerState {
     public override float GetStateSpeed()
     {
         //Change this to whatever it really should be 5 is a placeholder.
-        return 3f;
+        return 7f;
     }
 
     /// <summary>

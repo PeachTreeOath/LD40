@@ -42,7 +42,7 @@ public class ResourceLoader : Singleton<ResourceLoader>
 
         //Skater has no anim
         jockAnim = Resources.Load<RuntimeAnimatorController>("Textures/mainGuyJock_0 (1)");
-        furAnim = Resources.Load<RuntimeAnimatorController>("Textures/mainGuyJock_0 (1)");
+        furAnim = Resources.Load<RuntimeAnimatorController>("Textures/mainGuyFurry_0");
     }
 
 }
