@@ -6,7 +6,7 @@ public abstract class WandererEnemyState : AEnemyState {
     public float minWanderWait = 0.5f;
     public float maxWanderWait = 1.5f;
 
-    public enum WanderState { Start, Walking, Navigating, Waiting };
+    public enum WanderState { Start, Walking, Navigating, Waiting, Chasing };
 
 
     protected WanderState wanderState = WanderState.Start;
@@ -30,7 +30,11 @@ public abstract class WandererEnemyState : AEnemyState {
             case WanderState.Waiting:
                 UpdateWaiting(enemy);
                 break;
-        } 
+
+            case WanderState.Chasing:
+                UpdateChasing(enemy);
+                break;
+        }
     }
 
     protected virtual void UpdateNavigating(EnemyController enemy) {
@@ -52,6 +56,15 @@ public abstract class WandererEnemyState : AEnemyState {
     protected virtual void UpdateWaiting(EnemyController enemy) {
         waitTimer -= Time.deltaTime; 
         if(waitTimer <= 0) {
+            StartWander(enemy);
+        }
+    }
+
+    protected virtual void UpdateChasing(EnemyController enemy)
+    {
+        waitTimer -= Time.deltaTime;
+        if (waitTimer <= 0)
+        {
             StartWander(enemy);
         }
     }
