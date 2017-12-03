@@ -15251,6 +15251,11 @@ Prefab:
       propertyPath: followObj
       value: 
       objectReference: {fileID: 1714331150}
+    - target: {fileID: 20072958259198350, guid: 6b36b18f5db2cb54e95b6a188c845dd7,
+        type: 2}
+      propertyPath: m_CullingMask.m_Bits
+      value: 4294963199
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6b36b18f5db2cb54e95b6a188c845dd7, type: 2}
   m_IsPrefabParent: 0
@@ -16769,12 +16774,12 @@ Prefab:
     - target: {fileID: 224126738622116898, guid: c5fe64b4fc881e046ac377a97bdef68b,
         type: 2}
       propertyPath: m_LocalPosition.x
-      value: 406
+      value: 418.5
       objectReference: {fileID: 0}
     - target: {fileID: 224126738622116898, guid: c5fe64b4fc881e046ac377a97bdef68b,
         type: 2}
       propertyPath: m_LocalPosition.y
-      value: 228.5
+      value: 218
       objectReference: {fileID: 0}
     - target: {fileID: 224126738622116898, guid: c5fe64b4fc881e046ac377a97bdef68b,
         type: 2}
