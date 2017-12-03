@@ -8,6 +8,7 @@ public class Navigation : MonoBehaviour {
 
     private GameObject currentTarget;
     private GameObject currentWaypoint;
+    private GameObject lastWaypoint;
     private float waypointReachedthreshold = 0.1f;
     private float targetReachedthreashold = 0.75f;
     private float gridSpacing = 1.0f;
@@ -62,16 +63,7 @@ public class Navigation : MonoBehaviour {
         currentMovementSpeed = movementSpeed;
         //Find nearest waypoint. Update statement will begin to move to the
 
-        foreach (Transform waypoint in gridWaypoints.transform)
-        {
-            if (currentWaypoint == null ||
-                Vector2.Distance(waypoint.position, transform.position)
-                < Vector2.Distance(currentWaypoint.transform.position, transform.position))
-            {
-                path.Add(waypoint.gameObject);
-                currentWaypoint = waypoint.gameObject;
-            }
-        }
+        FindClosestWaypoint();
 
         StartCoroutine(MoveToCoroutine());
     }
@@ -116,7 +108,25 @@ public class Navigation : MonoBehaviour {
 
         if (Time.time > lastTimePathRecalculated + recalculatePathDelay)
         {
+            if(currentWaypoint == null)
+            {
+                FindClosestWaypoint();
+            }
             StartCoroutine(MoveToCoroutine());
+        }
+    }
+
+    void FindClosestWaypoint()
+    {
+        foreach (Transform waypoint in gridWaypoints.transform)
+        {
+            if (currentWaypoint == null ||
+                Vector2.Distance(waypoint.position, transform.position)
+                < Vector2.Distance(currentWaypoint.transform.position, transform.position))
+            {
+                path.Add(waypoint.gameObject);
+                currentWaypoint = waypoint.gameObject;
+            }
         }
     }
 
@@ -131,9 +141,14 @@ public class Navigation : MonoBehaviour {
                 Vector2.Distance(neighbor.transform.position,currentTarget.transform.position)
                 < Vector2.Distance(newWaypoint.transform.position,currentTarget.transform.position))
             {
-                newWaypoint = neighbor;
+                if(lastWaypoint == null || lastWaypoint.transform.position != neighbor.transform.position)
+                {
+                    newWaypoint = neighbor;
+                }
+                
             }
         }
+        lastWaypoint = currentWaypoint;
         currentWaypoint = newWaypoint;
     }
 
