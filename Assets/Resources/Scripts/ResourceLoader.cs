@@ -25,6 +25,9 @@ public class ResourceLoader : Singleton<ResourceLoader>
     public RuntimeAnimatorController furAnim;
     public RuntimeAnimatorController jockAnim;
 
+    public Color darkReputationColor;
+    public Color lightReputationColor;
+
     protected override void Awake() {
         base.Awake();
         LoadResources();
@@ -43,6 +46,10 @@ public class ResourceLoader : Singleton<ResourceLoader>
         //Skater has no anim
         jockAnim = Resources.Load<RuntimeAnimatorController>("Textures/mainGuyJock_0 (1)");
         furAnim = Resources.Load<RuntimeAnimatorController>("Textures/mainGuyFurry_0");
+
+        ColorUtility.TryParseHtmlString("25255CFF", out darkReputationColor);
+        ColorUtility.TryParseHtmlString("A73A96FF", out lightReputationColor);
     }
 
 }
+
