@@ -8,7 +8,6 @@ public abstract class WandererEnemyState : AEnemyState {
 
     public enum WanderState { Start, Walking, Navigating, Waiting };
 
-    protected int wallLayerMask = LayerMask.GetMask("Walls");
 
     protected WanderState wanderState = WanderState.Start;
     protected GameObject wanderTarget;
@@ -61,6 +60,7 @@ public abstract class WandererEnemyState : AEnemyState {
         var collider = enemy.GetComponent<Collider2D>();
         var dir = target.transform.position - enemy.transform.position;
 
+        int wallLayerMask = LayerMask.GetMask("Wall");
         var hit = Physics2D.BoxCast(enemy.transform.position, collider.bounds.size, 0f, Vector3.Normalize(dir), Vector3.Magnitude(dir), wallLayerMask);
         if (hit.collider == null) {
             StartWalkStraightTo(enemy, target);
