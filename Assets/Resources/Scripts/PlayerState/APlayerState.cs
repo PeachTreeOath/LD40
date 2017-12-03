@@ -18,10 +18,10 @@ public abstract class APlayerState {
 
 
     /// <summary>
-    /// The audio clip that is played when the player changes to this state.
+    /// Play a particular music when the player changes to this state.
     /// </summary>
     /// <returns></returns>
-    public abstract AudioClip GetStateAudioClip();
+    public abstract void PlayStateMusic();
 
     /// <summary>
     /// Get the new speed for the player state. Not all states 

@@ -16,4 +16,5 @@ public class JockEnemyState : WandererEnemyState {
     public override float GetStateSpeed() {
         return 3f;
     }
+
 }

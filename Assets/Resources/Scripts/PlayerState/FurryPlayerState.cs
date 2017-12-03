@@ -11,10 +11,9 @@ public class FurryPlayerState : APlayerState
     /// The audio clip that is played when the player changes to this state.
     /// </summary>
     /// <returns></returns>
-    public override AudioClip GetStateAudioClip()
+    public override void PlayStateMusic()
     {
-        AudioClip clip = new AudioClip();
-        return clip;
+        AudioManager.instance.PlayMusicWithIntro("furry_intro", "furry_loop", .3f);
     }
     /// <summary>
     /// The sprite the player takes on when changing to this state.

@@ -11,10 +11,9 @@ public class JockPlayerState : APlayerState {
     /// The audio clip that is played when the player changes to this state.
     /// </summary>
     /// <returns></returns>
-    public override AudioClip GetStateAudioClip()
+    public override void PlayStateMusic()
     {
-        AudioClip clip = new AudioClip();
-        return clip;
+        AudioManager.instance.PlayMusicWithIntro("Jock_intro", "Jock_loop", .3f);
     }
     /// <summary>
     /// The sprite the player takes on when changing to this state.

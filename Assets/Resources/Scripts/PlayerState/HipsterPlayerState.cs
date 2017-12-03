@@ -12,10 +12,9 @@ public class HipsterPlayerState : APlayerState {
     /// The audio clip that is played when the player changes to this state.
     /// </summary>
     /// <returns></returns>
-    public override AudioClip GetStateAudioClip()
+    public override void PlayStateMusic()
     {
-        AudioClip clip = new AudioClip();
-        return clip;
+        AudioManager.instance.PlayMusicWithIntro("hipster_intro", "hipster_loop", .3f);
     }
     /// <summary>
     /// The sprite the player takes on when changing to this state.
