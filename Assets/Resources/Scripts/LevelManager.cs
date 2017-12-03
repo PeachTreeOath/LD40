@@ -11,6 +11,8 @@ public class LevelManager : Singleton<LevelManager> {
     public float defaultAffiliation;
     public float incrementAffiliationAmount;
     public float decrementAffiliationAmount;
+    public float affinityRequiredPerFactionToWin;
+
 
     public bool overrideChangingRoomCheat;
 
