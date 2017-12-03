@@ -21,49 +21,24 @@ public class AggroBehavior : MonoBehaviour {
     //Update is called once per frame
     public void Update()
     {
-        //AggorCollider.offset = transform.position;
-
-        if (AggorCollider.IsTouching(PlayerController.instance.GetComponent<Collider2D>()))
-        {
-            Debug.Log("Were touching");
-        }
-        if (AggorCollider.IsTouching(PlayerController.instance.GetComponent<Collider2D>()))
-        {
-            Debug.Log("Were really touching");
-        }
+        
     }
 
     public void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.tag == ("Player"))
+        if (other.name.Contains("Boy") || other.name.Contains("Player"))
         {
-            Debug.Log("Player trig enter");
+            Debug.Log("Player entered aggro");
         }
-        if (other.name.Contains("Enemy"))
-        {
-            Debug.Log("Enemy trig enter");
-        }
-        else
-            Debug.Log("Something trig enter " + other.ToString());
     }
 
     public void OnTriggerStay2D(Collider2D other)
     {
-        if (other.tag.Contains("Player"))
+        if (other.name.Contains("Boy") || other.name.Contains("Player"))
         {
-            Debug.Log("stay trigger");
+            //Aggro Behavior??
         }
     }
-    
-    //public void OnTriggerEnter2D(Collider2D collision)
-    //{
-    //    Debug.Log("Someone entered");
-    //}
-
-    //public void OnTriggerExit2D(Collider2D collision)
-    //{
-    //    Debug.Log("Someone Left");
-    //}
 
     private void ChasePlayer()
     {
