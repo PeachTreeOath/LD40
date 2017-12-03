@@ -13,7 +13,7 @@ public class JockPlayerState : APlayerState {
     /// <returns></returns>
     public override void PlayStateMusic()
     {
-        AudioManager.instance.PlayMusicWithIntro("Jock_intro", "Jock_loop", .3f);
+        AudioManager.instance.PlayMusicWithIntroResumingTime("Jock_intro", "Jock_loop");
     }
     /// <summary>
     /// The sprite the player takes on when changing to this state.

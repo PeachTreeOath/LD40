@@ -41,6 +41,7 @@ GameObject:
   - component: {fileID: 50603934111320798}
   - component: {fileID: 61114670282934382}
   - component: {fileID: 58100333550043828}
+  - component: {fileID: 114194083219497008}
   m_Layer: 9
   m_Name: SkaterEnemy
   m_TagString: Untagged
@@ -135,6 +136,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.35583234, y: 0.46124154}
   m_EdgeRadius: 0
+--- !u!114 &114194083219497008
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1605447010931366}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff860cb8a4811f344b9d27fc653689dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clique: 2
 --- !u!114 &114249759614925828
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -164,6 +177,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6056ce8411ce59946816c498fb75637b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  waypointReachedthreshold: 0.1
+  targetReachedthreashold: 0.75
 --- !u!212 &212196474335109928
 SpriteRenderer:
   m_ObjectHideFlags: 1

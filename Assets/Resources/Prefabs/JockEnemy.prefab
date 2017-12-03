@@ -42,6 +42,7 @@ GameObject:
   - component: {fileID: 58531308494507264}
   - component: {fileID: 114672718420838398}
   - component: {fileID: 95923829782403798}
+  - component: {fileID: 114407768966909182}
   m_Layer: 9
   m_Name: JockEnemy
   m_TagString: Untagged
@@ -56,7 +57,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1059812254171762}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -16.18451, y: -8.269658, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4581894834999558}
@@ -123,7 +124,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.0113277435, y: 0.052604914}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -134,7 +135,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.30121613, y: 0.7658372}
   m_EdgeRadius: 0
 --- !u!95 &95923829782403798
 Animator:
@@ -153,6 +154,18 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114407768966909182
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1059812254171762}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff860cb8a4811f344b9d27fc653689dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clique: 3
 --- !u!114 &114550997891331232
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -13,7 +13,7 @@ public class SkaterPlayerState : APlayerState {
     /// <returns></returns>
     public override void PlayStateMusic()
     {
-        AudioManager.instance.PlayMusicWithIntro("Skater_intro", "Skater_loop", .3f);
+        AudioManager.instance.PlayMusicWithIntroResumingTime("Skater_intro", "Skater_loop");
     }
     /// <summary>
     /// The sprite the player takes on when changing to this state.

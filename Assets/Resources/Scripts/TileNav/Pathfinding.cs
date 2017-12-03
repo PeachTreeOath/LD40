@@ -4,7 +4,18 @@ using System.Collections.Generic;
 
 public class Pathfinding {
 
-    public static List<GameObject> FindPath(GameObject start, GameObject end) {
+    public static List<Vector3> FindPath(GameObject start, Vector3 end) {
+        var realStart = start.GetComponent<Waypoint>();
+        if (realStart == null) {
+            realStart = Waypoints.FindNearestWaypoint(start);
+        }
+
+        var realEnd = Waypoints.FindNearestWaypoint(end);
+
+        return BreadthFirstSearch(realStart, realEnd);
+    }
+
+    public static List<Vector3> FindPath(GameObject start, GameObject end) {
         var realStart = start.GetComponent<Waypoint>();
         var realEnd = end.GetComponent<Waypoint>();
 
@@ -19,7 +30,7 @@ public class Pathfinding {
         return BreadthFirstSearch(realStart, realEnd);
     }
 
-    public static List<GameObject> BreadthFirstSearch(Waypoint start, Waypoint end) {
+    public static List<Vector3> BreadthFirstSearch(Waypoint start, Waypoint end) {
         Queue<Waypoint> openList = new Queue<Waypoint>();
         HashSet<Waypoint> openSet = new HashSet<Waypoint>();
         HashSet<Waypoint> closedSet = new HashSet<Waypoint>();
@@ -64,18 +75,19 @@ public class Pathfinding {
             }
         }
 
-        return new List<GameObject>();
+        return new List<Vector3>();
     }
 
-    protected static List<GameObject> ReconstructPath(Dictionary<Waypoint, Waypoint> trace, Waypoint goal) {
-        List<GameObject> path = new List<GameObject>();
+    //TODO path current does world position only
+    protected static List<Vector3> ReconstructPath(Dictionary<Waypoint, Waypoint> trace, Waypoint goal) {
+        List<Vector3> path = new List<Vector3>();
 
         var next = goal;
 
-        path.Add(next.gameObject);
+        path.Add(next.gameObject.transform.position);
         while(trace.ContainsKey(next)) {
             next = trace[next];
-            path.Add(next.gameObject);
+            path.Add(next.gameObject.transform.position);
         }
 
         path.Reverse();
