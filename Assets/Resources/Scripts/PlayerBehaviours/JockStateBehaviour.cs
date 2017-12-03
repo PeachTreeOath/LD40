@@ -25,7 +25,7 @@ public class JockStateBehaviour : APlayerBehaviour
             FootballGO = player.FootballGO;
 
             Vector2 direction = player.GetPlayerDirection();
-            if (direction.x == 0)
+            if (direction.x == 0 && direction.y == 0)
             {
                 if (player.goingForward)
                     direction.x = 1;
