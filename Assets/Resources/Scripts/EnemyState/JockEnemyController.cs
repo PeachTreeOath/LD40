@@ -4,7 +4,6 @@ using UnityEngine;
 
 //TODO fetch wait
 //TODO fetch cooldown (fetch time + wait)
-//TODO scatter might never allow fetch
 public class JockEnemyController : WandererEnemyController {
     const string FETCHING_STATE = "fetching";
 

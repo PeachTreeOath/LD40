@@ -23,10 +23,13 @@ public class PlayerController : Singleton<PlayerController>
 
 
     public bool goingForward;
-    public bool canGrabTail = true;
 
     [HideInInspector]
     public bool inChangingRoom { get; set; }
+
+    public bool HasHostage() { //Vishnu Vishnu?
+        return GetComponentInChildren<FurryEnemyController>() != null;
+    }
 
     public bool canChangeFaction
     {
@@ -137,7 +140,7 @@ public class PlayerController : Singleton<PlayerController>
 
         if (PlayerStateController.instance.GetPlayerState().Equals(CliqueEnum.FURBOI))
         {
-            if (!canGrabTail)
+            if (HasHostage())
                 behaviour.ExecuteBehaviourAction();
         }
 

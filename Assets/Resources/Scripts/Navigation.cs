@@ -59,8 +59,8 @@ public class Navigation : MonoBehaviour {
         allowedMovement = true;
         currentMovementSpeed = movementSpeed;
         path = Pathfinding.FindPath(gameObject, target);
-        currentTarget = target.transform.position;
         currentPathIndex = 0;
+        currentTarget = target.transform.position;
     }
 
     public bool HasTarget()

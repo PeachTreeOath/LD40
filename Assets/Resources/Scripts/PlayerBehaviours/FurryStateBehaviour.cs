@@ -4,51 +4,49 @@ using UnityEngine;
 
 public class FurryStateBehaviour : APlayerBehaviour
 {
-    /// <summary>
-    /// Grab the nearest Furry and drag them along with you.
-    /// </summary>
+    private ContactFilter2D filter = new ContactFilter2D();
+
     public override void ExecuteBehaviourAction()
     {
         PlayerController player = PlayerController.instance;
-        GameObject enemyGo = null;
-        Collider2D col = player.GetComponent<Collider2D>();
-        if(col != null)
-        {
-            if (player.canGrabTail)
-            {
-                Collider2D[] colliders = new Collider2D[10];
-                ContactFilter2D filter = new ContactFilter2D();
-                col.OverlapCollider(filter, colliders);
-                foreach (Collider2D collider in colliders)
-                {
-                    if (collider.gameObject.tag.Equals("Furry"))
-                    {
-                        enemyGo = collider.gameObject;
-                        break;
-                    }
-
-                }
-
-                //Parent the furry to the player.
-                if (enemyGo != null)
-                {
-                    enemyGo.transform.SetParent(player.transform);
-                    player.canGrabTail = false;
-                    //Stop the furries movement animation.
-
-                }
-            }
-            else
-            {
-                //Parent the furry back onto the scene.
-               if(enemyGo != null)
-                {
-                    enemyGo.transform.SetParent(player.transform.parent);
-                    player.canGrabTail = true;
-                    //Start the furries movement animation.
-                }
-            }
-
+        if (!player.HasHostage()) {
+            TakeHostage();
         }
+        else {
+            ReleaseHostage();
+        }
+    }
+
+    protected void TakeHostage()
+    {
+        GameObject enemyGo = AttemptToGrabHands();
+        if (enemyGo != null) {
+            var furry = enemyGo.GetComponent<FurryEnemyController>();
+            furry.StartHoldingHands();
+        }
+    }
+
+    protected void ReleaseHostage() {
+        var furry = PlayerController.instance.GetComponentInChildren<FurryEnemyController>();
+        furry.StopHoldingHands();
+    }
+
+    protected GameObject AttemptToGrabHands() {
+        GameObject enemyGo = null;
+
+        PlayerController player = PlayerController.instance;
+        Collider2D col = player.GetComponent<Collider2D>();
+        if (col != null) {
+            Collider2D[] colliders = new Collider2D[10];
+            col.OverlapCollider(filter, colliders);
+            foreach (Collider2D collider in colliders) {
+                if (collider != null && collider.gameObject.tag.Equals("Furry")) {
+                    enemyGo = collider.gameObject;
+                    break;
+                }
+            }
+        }
+
+        return enemyGo;
     }
 }
