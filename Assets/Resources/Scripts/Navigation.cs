@@ -21,7 +21,7 @@ public class Navigation : MonoBehaviour {
 	void Start () {
 
         rBody = GetComponent<Rigidbody2D>();
-        gridWaypoints = GameObject.Find("Waypoints");
+        gridWaypoints = GameObject.Find("Waypoints" + GlobalPersistentStats.instance.level);
 	}
 	
 	// Update is called once per frame
