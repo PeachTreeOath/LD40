@@ -24,7 +24,7 @@ public class EntityOrientation : MonoBehaviour {
         {
             lastUpdateTime = Time.time;
             Vector2 direction = positionLastFrame - (Vector2)transform.position;
-            Debug.Log(direction);
+           
             UpdateDirection(direction);
             positionLastFrame = transform.position;
         }

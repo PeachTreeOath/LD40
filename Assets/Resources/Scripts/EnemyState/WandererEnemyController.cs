@@ -14,6 +14,10 @@ public abstract class WandererEnemyController : MoveToEnemyController {
     protected GameObject wanderTarget;
     protected float waitTimer;
 
+    //Debug code
+    public GameObject tempTarget;
+    //end debug code
+
     public void Update() {
         UpdateStates();
         DoMoveToUpdate();
@@ -26,7 +30,7 @@ public abstract class WandererEnemyController : MoveToEnemyController {
                 break;
 
             case WALKING_STATE:
-                UpdateWalking();
+                DoMoveToUpdate();
                 break;
 
             case WAITING_STATE:
@@ -49,6 +53,13 @@ public abstract class WandererEnemyController : MoveToEnemyController {
 
     protected virtual void StartWander() {
         var waypoint = ChooseNearbyWaypointAtRandom();
+        //Debug code
+        Destroy(tempTarget);
+        GameObject go = Instantiate<GameObject>(waypoint);
+        DrawGizmo gizmo = go.AddComponent<DrawGizmo>();
+        gizmo.entity = gameObject;
+        tempTarget = go;
+        //end debug code
         MoveToTarget(waypoint);
         state = WALKING_STATE;
     }
@@ -64,4 +75,5 @@ public abstract class WandererEnemyController : MoveToEnemyController {
 
         return waypoints[index].gameObject;
     }
+    
 }

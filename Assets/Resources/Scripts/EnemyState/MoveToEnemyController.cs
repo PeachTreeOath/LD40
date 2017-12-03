@@ -6,7 +6,7 @@ public abstract class MoveToEnemyController : EnemyController {
     public const string MOVE_TO_WALKING_STATE = "walking";
     public const string MOVE_TO_NAVIGATING_STATE = "navigating";
 
-    private string moveToState;
+    public string moveToState;
     private Vector3 moveToTarget;
 
     protected void DoMoveToUpdate() {
@@ -87,7 +87,7 @@ public abstract class MoveToEnemyController : EnemyController {
             OnMoveToComplete();
         }
     }
-
+    
     protected virtual void UpdateWalking() {
         float step = GetStateSpeed() * Time.deltaTime;
         rbody.MovePosition(Vector2.MoveTowards(transform.position, moveToTarget, step));
