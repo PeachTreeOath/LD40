@@ -22,6 +22,9 @@ public class ResourceLoader : Singleton<ResourceLoader>
     [HideInInspector]
     public GameObject furryPrefab;
 
+    public RuntimeAnimatorController furAnim;
+    public RuntimeAnimatorController jockAnim;
+
     protected override void Awake() {
         base.Awake();
         LoadResources();
@@ -36,6 +39,10 @@ public class ResourceLoader : Singleton<ResourceLoader>
         skaterPrefab = Resources.Load<GameObject>("Prefabs/SkaterEnemy");
         jockPrefab = Resources.Load<GameObject>("Prefabs/JockEnemy");
         furryPrefab = Resources.Load<GameObject>("Prefabs/FurryEnemy");
+
+        //Skater has no anim
+        jockAnim = Resources.Load<RuntimeAnimatorController>("Textures/mainGuyJock_0 (1)");
+        furAnim = Resources.Load<RuntimeAnimatorController>("Textures/mainGuyJock_0 (1)");
     }
 
 }
