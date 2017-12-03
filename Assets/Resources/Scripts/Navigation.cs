@@ -6,24 +6,19 @@ public class Navigation : MonoBehaviour {
 
     private Rigidbody2D rBody;
 
-    private GameObject currentTarget;
+    private Vector3 currentTarget;
     private int currentPathIndex;
-    private GameObject lastWaypoint;
-    public float waypointReachedthreshold = 0.1f;
-    public float targetReachedthreashold = 0.75f;
-    private bool pathBuilt = false;
     private bool allowedMovement = false;
     private float currentMovementSpeed;
 
-    GameObject gridWaypoints;
+    List<Vector3> path;
 
-    List<GameObject> path;
+    public float waypointReachedthreshold = 0.1f;
+    public float targetReachedthreashold = 0.75f;
 
 	// Use this for initialization
 	void Start () {
-
         rBody = GetComponent<Rigidbody2D>();
-        gridWaypoints = GameObject.Find("Waypoints" + GlobalPersistentStats.instance.level);
 	}
 	
 	// Update is called once per frame
@@ -48,38 +43,45 @@ public class Navigation : MonoBehaviour {
         //Stop all movement by disallowing movment and resetting the current waypoint and target.
         allowedMovement = false;
         currentPathIndex = -1;
-        currentTarget = null;
+    }
+
+    public void MoveTo(Vector3 target, float movementSpeed) {
+        //TODO this copy pasta is bad >_>
+        allowedMovement = true;
+        currentMovementSpeed = movementSpeed;
+        path = Pathfinding.FindPath(gameObject, target);
+        currentPathIndex = 0;
+        currentTarget = target;
     }
 
     public void MoveTo(GameObject target, float movementSpeed)
     {
         allowedMovement = true;
-        currentTarget = target;
         currentMovementSpeed = movementSpeed;
         path = Pathfinding.FindPath(gameObject, target);
+        currentTarget = target.transform.position;
         currentPathIndex = 0;
-        pathBuilt = true;
     }
 
     public bool HasTarget()
     {
-        return currentTarget != null;
+        return allowedMovement;
     }
 
     public bool HasReachedTarget()
     {
-        return Vector2.Distance(transform.position, currentTarget.transform.position) 
+        return Vector2.Distance(transform.position, currentTarget) 
             < targetReachedthreashold;
     }
 
     public float DistanceToTarget()
     {
-        return Vector2.Distance(transform.position, currentTarget.transform.position);
+        return Vector2.Distance(transform.position, currentTarget);
     }
 
     void PerformMovement()
     {
-        Vector2 position = currentPathIndex >= path.Count ? (Vector2)currentTarget.transform.position : (Vector2)path[currentPathIndex].transform.position;
+        Vector2 position = currentPathIndex >= path.Count ? (Vector2)currentTarget : (Vector2)path[currentPathIndex];
         Vector2 direction = position - (Vector2)transform.position;
         
         rBody.MovePosition(rBody.position + (direction.normalized * (currentMovementSpeed * Time.deltaTime)));
@@ -93,7 +95,7 @@ public class Navigation : MonoBehaviour {
 
         //Determine if the distance to the current waypoint is less than the threshold value.
         //If it is then get the next waypoint.
-        if (Vector2.Distance(transform.position, path[currentPathIndex].transform.position)
+        if (Vector2.Distance(transform.position, path[currentPathIndex])
             <= waypointReachedthreshold)
         {
             currentPathIndex++;

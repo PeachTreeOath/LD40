@@ -7,7 +7,7 @@ public abstract class MoveToEnemyController : EnemyController {
     public const string MOVE_TO_NAVIGATING_STATE = "navigating";
 
     protected string moveToState;
-    protected GameObject moveToTarget;
+    protected Vector3 moveToTarget;
 
     protected void DoMoveToUpdate() {
         switch(moveToState) {
@@ -39,7 +39,7 @@ public abstract class MoveToEnemyController : EnemyController {
             Debug.Log(string.Format("{0}: Starting walk straight to {1}", name, target.name));
         }
 
-        moveToTarget = target;
+        moveToTarget = target.transform.position;
         moveToState = MOVE_TO_WALKING_STATE;
     }
 
@@ -48,7 +48,7 @@ public abstract class MoveToEnemyController : EnemyController {
             Debug.Log(string.Format("{0}: Starting navigate to {1}", name, target.name));
         }
 
-        moveToTarget = target;
+        moveToTarget = target.transform.position;
         navigation.MoveTo(target, GetStateSpeed());
         moveToState = MOVE_TO_NAVIGATING_STATE;
     }
@@ -59,10 +59,9 @@ public abstract class MoveToEnemyController : EnemyController {
         if(moveToState == MOVE_TO_NAVIGATING_STATE) {
             navigation.Stop();
             moveToState = NO_TARGET_STATE;
-            moveToTarget = null;
+            moveToTarget = Vector3.zero;
         }
     }
-
 
     protected virtual void UpdateNavigating() {
         if (TestAtTarget()) {
@@ -74,7 +73,7 @@ public abstract class MoveToEnemyController : EnemyController {
 
     protected virtual void UpdateWalking() {
         float step = GetStateSpeed() * Time.deltaTime;
-        rbody.MovePosition(Vector2.MoveTowards(transform.position, moveToTarget.transform.position, step));
+        rbody.MovePosition(Vector2.MoveTowards(transform.position, moveToTarget, step));
 
         if(TestAtTarget()) {
             moveToState = NO_TARGET_STATE;
@@ -83,7 +82,7 @@ public abstract class MoveToEnemyController : EnemyController {
     }
 
     protected bool TestAtTarget() {
-        var dist = Vector2.Distance(transform.position, moveToTarget.transform.position);
+        var dist = Vector2.Distance(transform.position, moveToTarget);
         //Debug.Log(string.Format("{0}: Distance from Target -- {1}", enemy.name, dist));
         return dist < 0.15f; //TODO make this a variable
     }
