@@ -77,6 +77,8 @@ MonoBehaviour:
   jockSprite: {fileID: 0}
   skaterPrefab: {fileID: 0}
   jockPrefab: {fileID: 0}
+  furryPrefab: {fileID: 0}
+  hipsterPrefab: {fileID: 0}
 --- !u!114 &114754517305223078
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -106,3 +108,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mute: 0
+  musicVolume: 0.5

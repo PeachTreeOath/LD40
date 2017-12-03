@@ -11,6 +11,7 @@ public class AudioManager : Singleton<AudioManager>
 
     // Use this to mute game during production
     public bool mute;
+    public float musicVolume;
 
     private AudioSource musicChannel;
     private AudioSource soundChannel;
@@ -41,13 +42,13 @@ public class AudioManager : Singleton<AudioManager>
         }
 
         ToggleMute(mute);
-        musicChannel.volume = .3f;
-        PlayMusicWithIntro("Neutral_intro","Neutral_loop", musicChannel.volume);
+        PlayMusicWithIntro("Neutral_intro","Neutral_loop");
     }
 
 	public void UpdateMusicVolume()
 	{
-		musicChannel.volume = VolumeListener.volumeLevel * .3f;
+        musicVolume = VolumeListener.volumeLevel;
+        musicChannel.volume = VolumeListener.volumeLevel;
         soundChannel.volume = VolumeListener.volumeLevel;
     }
 
@@ -56,23 +57,32 @@ public class AudioManager : Singleton<AudioManager>
         return musicChannel.volume;
     }
 
-    public void PlayMusic(string name, float volume)
+    public void PlayMusic(string name)
     {
         musicChannel.clip = soundMap[name];
-		musicChannel.volume = volume;
+        musicChannel.volume = musicVolume;
         musicChannel.loop = true;
         musicChannel.Play();
     }
 
-    public void PlayMusicOnce(string name, float volume)
+    public void PlayMusicFromTime(string name, float time)
     {
         musicChannel.clip = soundMap[name];
-        musicChannel.volume = volume;
+		musicChannel.volume = musicVolume;
+        musicChannel.loop = true;
+        musicChannel.time = time;
+        musicChannel.Play();
+    }
+
+    public void PlayMusicOnce(string name)
+    {
+        musicChannel.clip = soundMap[name];
+        musicChannel.volume = musicVolume;
         musicChannel.loop = false;
         musicChannel.Play();
     }
 
-    public void PlayMusicWithIntro(string introName, string loopName, float volume)
+    public void PlayMusicWithIntro(string introName, string loopName)
     {
         if (!introCompleted && introCoroutine != null)
         {
@@ -80,28 +90,39 @@ public class AudioManager : Singleton<AudioManager>
             //cancel the existing coroutine before starting another.
             StopCoroutine(introCoroutine);
         }
-		PlayMusic(introName, VolumeListener.volumeLevel);
+		PlayMusic(introName);
         introCompleted = false;
-        introCoroutine = StartCoroutine(PlayMusicDelayed(loopName, volume, musicChannel.clip.length));
+        introCoroutine = StartCoroutine(PlayMusicDelayed(loopName, musicChannel.clip.length));
     }
 
-    private IEnumerator PlayMusicDelayed(string name, float volume, float delayTime)
+    private IEnumerator PlayMusicDelayed(string name, float delayTime)
     {
         yield return new WaitForSeconds(delayTime);
         introCompleted = true;
-		PlayMusic(name, VolumeListener.volumeLevel);
+		PlayMusic(name);
     }
 
-    public void PlayMusicWithIntroFromTime(string introName, string loopName, float volume, float time)
+    //Allows seamless transition of Music that are time and tempo aligned.
+    public void PlayMusicWithIntroResumingTime(string introName, string loopName)
     {
+        float oldMusicTime = musicChannel.time;
+
         if (!introCompleted && introCoroutine != null)
         {
-
             //cancel the existing coroutine before starting another.
             StopCoroutine(introCoroutine);
+
+            //need to start from same place in the new intro if existing song was in its intro
+            PlayMusicFromTime(introName,oldMusicTime);
+            introCoroutine = StartCoroutine(PlayMusicDelayed(loopName, musicChannel.clip.length - oldMusicTime));
         }
-        PlayMusic(introName, VolumeListener.volumeLevel);
-        introCoroutine = StartCoroutine(PlayMusicDelayed(loopName, volume, musicChannel.clip.length));
+        else
+        {
+            //Intro is complete, so just play from the loop.
+            PlayMusicFromTime(loopName, oldMusicTime);
+        }
+
+        
     }
 
     public void PlaySound(string name)

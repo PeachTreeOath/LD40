@@ -20,7 +20,7 @@ public class DefaultPlayerState : APlayerState {
     /// <returns></returns>
     public override void PlayStateMusic()
     {
-        AudioManager.instance.PlayMusicWithIntro("neutral_intro", "neutral_loop", .3f);
+        AudioManager.instance.PlayMusicWithIntroResumingTime("neutral_intro", "neutral_loop");
     }
     /// <summary>
     /// The sprite the player takes on when changing to this state.
