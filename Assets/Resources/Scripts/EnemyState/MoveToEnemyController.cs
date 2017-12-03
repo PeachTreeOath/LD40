@@ -103,4 +103,13 @@ public abstract class MoveToEnemyController : EnemyController {
         //Debug.Log(string.Format("{0}: Distance from Target -- {1}", enemy.name, dist));
         return dist < 0.15f; //TODO make this a variable
     }
+
+    public void OnDrawGizmos() {
+        if(moveToState != NO_TARGET_STATE) {
+            Gizmos.color = Color.green;
+            Gizmos.DrawLine(transform.position, moveToTarget);
+            Gizmos.color = Color.black;
+            Gizmos.DrawCube(moveToTarget, new Vector3(0.25f, 0.25f, 1f));
+        }
+    }
 }

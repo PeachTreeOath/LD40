@@ -96,12 +96,6 @@ public class LevelManager : Singleton<LevelManager> {
             go.GetComponent<EnemyController>().personalAffinityMax = 100.0f / lvl.furryCount;
         }
 
-        for (int i = 0; i < lvl.hipsterCount; i++)
-        {
-            Waypoint wp = wps[UnityEngine.Random.Range(0, wps.Length)];
-            GameObject go = Instantiate(ResourceLoader.instance.skaterPrefab, wp.transform.position, Quaternion.identity);
-            go.GetComponent<EnemyController>().personalAffinityMax = 100.0f / lvl.furryCount;
-        }
     }
 
 }
