@@ -55,7 +55,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1059812254171762}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.01, y: -0.83861893, z: 0}
+  m_LocalPosition: {x: 9.34, y: 3.18, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4581894834999558}
@@ -164,6 +164,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6056ce8411ce59946816c498fb75637b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  waypointReachedthreshold: 0.1
+  targetReachedthreashold: 0.1
 --- !u!212 &212180617463532298
 SpriteRenderer:
   m_ObjectHideFlags: 1
