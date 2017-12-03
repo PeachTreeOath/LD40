@@ -17,6 +17,7 @@ public class Navigation : MonoBehaviour {
     private float recalculatePathDelay = 1.0f;
     private float lastTimePathRecalculated = 0.0f;
     private float currentMovementSpeed;
+    private int pathIndex;
     //private bool hasTargetReached = false;
 
     GameObject gridWaypoints;
@@ -132,24 +133,72 @@ public class Navigation : MonoBehaviour {
 
     void GetNextWaypoint()
     {
+        //if(path.Count > 1)
+        //{
+        //    path.RemoveAt(0);
+        //    GameObject newWaypoint = null;
+        //    foreach (GameObject pathPoint in path)
+        //    {
+        //        if (newWaypoint == null || Vector2.Distance(pathPoint.transform.position, currentTarget.transform.position) <
+        //        Vector2.Distance( newWaypoint.transform.position, currentTarget.transform.position))
+        //        {
+        //            newWaypoint = pathPoint;
+        //        }
+        //    }
+
+        //    currentWaypoint = newWaypoint;
+        //}
+        //else
+        //{
+        //    if(path.Count == 1)
+        //    {
+        //        currentWaypoint = path[0];
+        //        path.RemoveAt(0);
+        //    }
+        //    else
+        //    {
+        //        currentWaypoint = currentTarget;
+        //    }
+
+        //}
+
+
         Waypoint waypoint = currentWaypoint.GetComponent<Waypoint>();
         GameObject newWaypoint = null;
+
+
+        //RaycastHit2D hit = Physics2D.Raycast(currentTarget.transform.position,
+        //            (Vector2)currentTarget.transform.position - (Vector2)currentWaypoint.transform.position,
+        //            Vector2.Distance(currentTarget.transform.position, currentWaypoint.transform.position),
+        //             LayerMask.NameToLayer("Enemy"));
+        //if (hit.collider == null)
+        //{
+        //    currentWaypoint = currentTarget;
+        //}
+        //else
+        //{
+
         foreach (GameObject neighbor in waypoint.neighbors)
         {
             //Determine which neighbor is closest to the target.
-            if(newWaypoint == null || 
-                Vector2.Distance(neighbor.transform.position,currentTarget.transform.position)
-                < Vector2.Distance(newWaypoint.transform.position,currentTarget.transform.position))
+            if (newWaypoint == null ||
+                Vector2.Distance(neighbor.transform.position, currentTarget.transform.position)
+                < Vector2.Distance(newWaypoint.transform.position, currentTarget.transform.position))
             {
-                if(lastWaypoint == null || lastWaypoint.transform.position != neighbor.transform.position)
+
+                if (lastWaypoint == null || lastWaypoint.transform.position != neighbor.transform.position)
                 {
                     newWaypoint = neighbor;
                 }
-                
+
             }
         }
         lastWaypoint = currentWaypoint;
         currentWaypoint = newWaypoint;
+        //}
+
+
+
     }
 
    
