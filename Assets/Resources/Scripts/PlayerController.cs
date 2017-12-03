@@ -64,10 +64,11 @@ public class PlayerController : Singleton<PlayerController>
             float currentSpeed = skateMoveSpeed * Time.deltaTime;
             float z = playerSprite.transform.rotation.z - Input.GetAxisRaw("Horizontal") * skateTurnSpeed * Time.deltaTime;
             playerSprite.transform.Rotate(0, 0, z);
-            Vector2 v = -Vector2FromAngle(playerSprite.transform.rotation.eulerAngles.z) * currentSpeed + rbody.position;
+            Vector2 v = (playerSprite.flipX ? 1 : -1) * Vector2FromAngle(playerSprite.transform.rotation.eulerAngles.z) * currentSpeed + rbody.position;
             rbody.MovePosition(v);
         } else
         {
+            playerSprite.transform.rotation = Quaternion.Euler(0, 0, 0);
             float currentSpeed = moveSpeed * Time.deltaTime;
             if (Input.GetAxisRaw("Horizontal") > 0)
             {
