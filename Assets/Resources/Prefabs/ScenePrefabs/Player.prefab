@@ -260,9 +260,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7e862f79ee2ce845bafe5df4a3fd58c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 0.25
+  moveSpeed: 5
+  skateMoveSpeed: 5
+  skateTurnSpeed: 0
   FootballGO: {fileID: 0}
   hasBall: 1
+  goingForward: 0
   canGrabTail: 1
 --- !u!114 &114399933142706630
 MonoBehaviour:
