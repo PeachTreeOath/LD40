@@ -2,33 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SkaterEnemyState : AEnemyState {
+public class SkaterEnemyController : EnemyController {
 
     private bool playerAggro = false;
     
-    
-    /// <summary>
-    /// The sprite the player takes on when changing to this state.
-    /// </summary>
-    /// <returns></returns>
-    public override Sprite GetStateSprite()
-    {
-        return ResourceLoader.instance.skaterSprite;
-    }
-
     public override float GetStateSpeed()
     {
         return 1.0f;
     }
 
-    /// <summary>
-    /// Updates against the enemy's transform
-    /// </summary>
-    /// <param name="transform"></param>
-    public override void DoUpdate(EnemyController enemy)
+    public void Update()
     {
         
-        if(enemy.navigation.HasTarget())
+        if(navigation.HasTarget())
         {
             
 
@@ -39,18 +25,18 @@ public class SkaterEnemyState : AEnemyState {
             
             int index = Random.Range(0, waypoints.transform.childCount);
             GameObject target = waypoints.transform.GetChild(index).gameObject;
-            enemy.navigation.MoveTo(target, GetStateSpeed());
+            navigation.MoveTo(target, GetStateSpeed());
         }
 
 
         //Interup skater to chase player until out of aggro range.
-        if (Vector2.Distance(enemy.transform.position, PlayerController.instance.transform.position)
+        if (Vector2.Distance(transform.position, PlayerController.instance.transform.position)
             <= 2.0f)
         {
             if (!playerAggro)
             {
                 playerAggro = true;
-                enemy.navigation.MoveTo(PlayerController.instance.gameObject, GetStateSpeed());
+                navigation.MoveTo(PlayerController.instance.gameObject, GetStateSpeed());
             }
         }
         else
@@ -58,7 +44,7 @@ public class SkaterEnemyState : AEnemyState {
             if(playerAggro)
             {
                 playerAggro = false;
-                enemy.navigation.Stop();
+                navigation.Stop();
             }
         }
         

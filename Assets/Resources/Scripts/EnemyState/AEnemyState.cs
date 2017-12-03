@@ -8,7 +8,7 @@ using UnityEngine.UI;
 /// All enemy states extend this class.
 /// Every implementer of this class needs to fill out all fields related to this.
 /// </summary>
-public abstract class AEnemyState {
+public abstract class AEnemyState : EnemyController {
     
     //Stores affinity per enemy so we cannot max affinity on one player.
     public float personalAffinity;
