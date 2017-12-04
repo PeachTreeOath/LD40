@@ -1500,15 +1500,15 @@ Tilemap:
   - m_RefCount: 98
     m_Data: {r: 1, g: 1, b: 1, a: 1}
   - m_RefCount: 1
-    m_Data: {r: 0.74697775, g: 0.40754166, b: 0.4691446, a: 1}
+    m_Data: {r: 0.8344968, g: 0.5294176, b: 0.53102255, a: 1}
   - m_RefCount: 1
-    m_Data: {r: 0.76529574, g: 0.519962, b: 0.57258976, a: 1}
+    m_Data: {r: 0.97127616, g: 0.4135811, b: 0.59655935, a: 1}
   - m_RefCount: 1
-    m_Data: {r: 0.8239893, g: 0.5006639, b: 0.55290407, a: 1}
+    m_Data: {r: 0.9126031, g: 0.41749173, b: 0.5048821, a: 1}
   - m_RefCount: 1
-    m_Data: {r: 0.82361615, g: 0.38872886, b: 0.47008088, a: 1}
+    m_Data: {r: 0.7504001, g: 0.519048, b: 0.584761, a: 1}
   - m_RefCount: 1
-    m_Data: {r: 0.87413365, g: 0.5886497, b: 0.5893012, a: 1}
+    m_Data: {r: 0.86368966, g: 0.41231254, b: 0.47356236, a: 1}
   m_AnimationFrameRate: 1
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Origin: {x: -15, y: -4, z: 0}
@@ -1544,9 +1544,9 @@ Tilemap:
   - serializedVersion: 1
     m_DirtyIndex: 0
   - serializedVersion: 1
-    m_DirtyIndex: 1
+    m_DirtyIndex: 0
   - serializedVersion: 1
-    m_DirtyIndex: 1
+    m_DirtyIndex: 0
   - serializedVersion: 1
     m_DirtyIndex: 0
   - serializedVersion: 1
@@ -1568,7 +1568,7 @@ Tilemap:
   - serializedVersion: 1
     m_DirtyIndex: 0
   - serializedVersion: 1
-    m_DirtyIndex: 1
+    m_DirtyIndex: 0
   - serializedVersion: 1
     m_DirtyIndex: 0
   - serializedVersion: 1
@@ -1662,7 +1662,7 @@ Tilemap:
   - serializedVersion: 1
     m_DirtyIndex: 0
   - serializedVersion: 1
-    m_DirtyIndex: 1
+    m_DirtyIndex: 0
   - serializedVersion: 1
     m_DirtyIndex: 0
   - serializedVersion: 1
@@ -1720,7 +1720,7 @@ Tilemap:
   - serializedVersion: 1
     m_DirtyIndex: 0
   - serializedVersion: 1
-    m_DirtyIndex: 1
+    m_DirtyIndex: 0
   - serializedVersion: 1
     m_DirtyIndex: 0
   - serializedVersion: 1
