@@ -70,6 +70,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4822186801540294}
   - component: {fileID: 212580977232422880}
+  - component: {fileID: 114877534045426736}
   m_Layer: 12
   m_Name: MiniMapIcon
   m_TagString: Untagged
@@ -92,7 +93,6 @@ GameObject:
   - component: {fileID: 58629660885657372}
   - component: {fileID: 114705894767602582}
   - component: {fileID: 95699996561714112}
-  - component: {fileID: 114988241254207264}
   - component: {fileID: 114535739762070496}
   m_Layer: 9
   m_Name: JockEnemy
@@ -267,6 +267,7 @@ MonoBehaviour:
   wanderTargetRadius: 5
   minWanderWait: 0
   maxWanderWait: 3
+  startWaitingPercentage: 0.5
   state: start
   footballChaseRadius: 15
   footballScatterRadius: 1
@@ -294,6 +295,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   waypointReachedthreshold: 0.1
   targetReachedthreashold: 0.1
+--- !u!114 &114877534045426736
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1948782891444656}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff860cb8a4811f344b9d27fc653689dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clique: 3
 --- !u!114 &114888752785450896
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -305,18 +318,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39a71f388f3cc7c4bb5932a4f21a382a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &114988241254207264
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1970662835996004}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ff860cb8a4811f344b9d27fc653689dd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  clique: 3
 --- !u!212 &212127833311517722
 SpriteRenderer:
   m_ObjectHideFlags: 1
