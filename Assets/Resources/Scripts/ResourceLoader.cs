@@ -70,7 +70,27 @@ public class ResourceLoader : Singleton<ResourceLoader>
         level4Prefab = Resources.Load<GameObject>("Prefabs/Levels/Level4");
         level5Prefab = Resources.Load<GameObject>("Prefabs/Levels/Level5");
         level6Prefab = Resources.Load<GameObject>("Prefabs/Levels/Level6");
+        Instantiate(ResourceLoader.instance.level1Prefab);
     }
 
+    public Level GetLevel(int level)
+    {
+        switch(level)
+        {
+            case 1:
+                return Instantiate(ResourceLoader.instance.level1Prefab).GetComponent<Level>();
+            case 2:
+                return Instantiate(ResourceLoader.instance.level2Prefab).GetComponent<Level>();
+            case 3:
+                return Instantiate(ResourceLoader.instance.level3Prefab).GetComponent<Level>();
+            case 4:
+                return Instantiate(ResourceLoader.instance.level4Prefab).GetComponent<Level>();
+            case 5:
+                return Instantiate(ResourceLoader.instance.level5Prefab).GetComponent<Level>();
+            case 6:
+                return Instantiate(ResourceLoader.instance.level6Prefab).GetComponent<Level>();
+        }
+        return null;
+    }
 }
 
