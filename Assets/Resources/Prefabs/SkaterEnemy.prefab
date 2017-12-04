@@ -275,7 +275,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   waypointReachedthreshold: 0.1
-  targetReachedthreashold: 0.75
+  targetReachedthreashold: 0.1
 --- !u!114 &114325708411211504
 MonoBehaviour:
   m_ObjectHideFlags: 1
