@@ -221,7 +221,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 1.5
+  m_Radius: 0.3
 --- !u!95 &95130341130747776
 Animator:
   serializedVersion: 3
@@ -251,8 +251,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 5
-  skateMoveSpeed: 5
-  skateTurnSpeed: 200
+  skateMoveSpeed: 4
+  skateTurnSpeed: 250
   FootballGO: {fileID: 0}
   hasBall: 1
   goingForward: 0
