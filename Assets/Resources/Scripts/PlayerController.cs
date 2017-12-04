@@ -46,6 +46,7 @@ public class PlayerController : Singleton<PlayerController>
         playerSprite = GetComponentInChildren<SpriteRenderer>();
         playerAnimator = GetComponentInChildren<Animator>();
         inChangingRoom = false;
+        ActionBar.instance.Deactivate();
     }
 
     // Update is called once per frame
@@ -178,7 +179,6 @@ public class PlayerController : Singleton<PlayerController>
             ActionBar.instance.Activate();
             ActionBar.instance.ChangeText("[SPACE] THROW BALL");
         }
-
     }
 
     public PlayerStateController GetState()
