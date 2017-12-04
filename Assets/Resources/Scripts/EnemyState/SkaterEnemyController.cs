@@ -2,15 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SkaterEnemyController : EnemyController {
+public class SkaterEnemyController : WandererEnemyController
+{
 
-    private bool playerAggro = false;
+    //private bool playerAggro = false;
     
     public override float GetStateSpeed()
     {
-        return 1.0f;
+        return 2.5f;
     }
-
+/*
     public void Update()
     {
         
@@ -51,5 +52,5 @@ public class SkaterEnemyController : EnemyController {
 
         //float step = GetStateSpeed() * Time.deltaTime;
         //enemy.rbody.MovePosition(Vector2.MoveTowards(enemy.transform.position, PlayerController.instance.transform.position, step));
-    }
+    }*/
 }
