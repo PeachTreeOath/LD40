@@ -14,6 +14,7 @@ public class FurryEnemyController : WandererEnemyController {
     public override void UpdateStates() {
         switch(state) {
             case HOLDING_HANDS_STATE:
+                ChangeFavor();
                 break;
 
             default:
