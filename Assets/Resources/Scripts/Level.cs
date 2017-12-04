@@ -8,6 +8,17 @@ public class Level : MonoBehaviour {
     public int skaterCount;
     public int footballerCount;
     public int nobodyCount;
-   // public int hipsterCount;
 
+    public void Enable()
+    {
+        GetComponentInChildren<Grid>().enabled = true;
+        GetComponentInChildren<WaypointGroup>().enabled = true;
+    }
+
+
+    public void Disable()
+    {
+        GetComponentInChildren<Grid>().enabled = false;
+        GetComponentInChildren<WaypointGroup>().enabled = false;
+    }
 }
