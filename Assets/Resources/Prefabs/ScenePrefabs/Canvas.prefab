@@ -140,8 +140,9 @@ GameObject:
   - component: {fileID: 224796356486958302}
   - component: {fileID: 222010662575023202}
   - component: {fileID: 114326126996922568}
+  - component: {fileID: 114305609591581930}
   m_Layer: 5
-  m_Name: Help4
+  m_Name: OutfitHelp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -159,6 +160,23 @@ GameObject:
   - component: {fileID: 114873734736964194}
   m_Layer: 5
   m_Name: Gradient
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &1262512872798168
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 224716493051255144}
+  - component: {fileID: 222917415293104836}
+  - component: {fileID: 114094810875058494}
+  m_Layer: 5
+  m_Name: Help4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -668,6 +686,40 @@ MonoBehaviour:
     m_LineSpacing: 1
   m_Text: Go to the changing room and switch to your furry costume. Get close to each
     student to raise reputation.
+--- !u!114 &114094810875058494
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1262512872798168}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_FontData:
+    m_Font: {fileID: 12800000, guid: 7eef608397641fd49b0b888375203889, type: 3}
+    m_FontSize: 300
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 2
+    m_MaxSize: 300
+    m_Alignment: 0
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: Do not be seen by people who aren't in your clique or you'll lose reputation.
+    Fill all bars to win!
 --- !u!114 &114193480892235860
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -799,6 +851,18 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114305609591581930
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1217065438541670}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0b4c9ab023b2c945909b5245d0dc0ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  txt: {fileID: 114326126996922568}
 --- !u!114 &114326126996922568
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -812,7 +876,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -831,8 +895,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Do not be seen by people who aren't in your clique or you'll lose reputation.
-    Fill all bars to win!
+  m_Text: Press [1]Furry [2]Skater [3]Jock
 --- !u!114 &114329905752999878
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1813,6 +1876,12 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1376255770696210}
+--- !u!222 &222917415293104836
+CanvasRenderer:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1262512872798168}
 --- !u!223 &223803865508324474
 Canvas:
   m_ObjectHideFlags: 1
@@ -1949,6 +2018,7 @@ RectTransform:
   - {fileID: 224723117804561858}
   - {fileID: 224377849814938970}
   - {fileID: 224161274485209668}
+  - {fileID: 224716493051255144}
   - {fileID: 224796356486958302}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -2238,6 +2308,24 @@ RectTransform:
   m_AnchoredPosition: {x: 14.8, y: 16.4}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!224 &224716493051255144
+RectTransform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1262512872798168}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -255, y: -157, z: 0}
+  m_LocalScale: {x: 0.12, y: 0.12, z: 1}
+  m_Children: []
+  m_Father: {fileID: 224126738622116898}
+  m_RootOrder: 16
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -255, y: -157}
+  m_SizeDelta: {x: 2300, y: 1000}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224723117804561858
 RectTransform:
   m_ObjectHideFlags: 1
@@ -2281,15 +2369,15 @@ RectTransform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1217065438541670}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -255, y: -157, z: 0}
+  m_LocalPosition: {x: 13.099976, y: -95.79999, z: 0}
   m_LocalScale: {x: 0.12, y: 0.12, z: 1}
   m_Children: []
   m_Father: {fileID: 224126738622116898}
-  m_RootOrder: 16
+  m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -255, y: -157}
+  m_AnchoredPosition: {x: 13.1, y: -95.8}
   m_SizeDelta: {x: 2300, y: 1000}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224812476134819456
