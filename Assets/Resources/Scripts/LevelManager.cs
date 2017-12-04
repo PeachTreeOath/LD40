@@ -17,16 +17,11 @@ public class LevelManager : Singleton<LevelManager> {
 
 
     private Dictionary<CliqueEnum, float> cliqueAffiliations = new Dictionary<CliqueEnum, float>();
-    private Dictionary<CliqueEnum, bool> cliquesPresentMap;
-    private Canvas canvas;
-    private Text skaterCanvasValue;
-    private Text furryCanvasValue;
-    private Text jockCanvasValue;
-    
+
 
 	// Use this for initialization
 	void Start () {
-        cliquesPresentMap = GameManager.instance.getCliquesAvailable();
+        
         //Set default affiliation for all affiliations
         foreach (CliqueEnum clickEnum in Enum.GetValues(typeof(CliqueEnum)))
         {
@@ -83,7 +78,8 @@ public class LevelManager : Singleton<LevelManager> {
 
     public bool IsWinConditionSatisfied()
     {
-        Level currentLevel = GameManager.instance.currentLevel;
+        Level currentLevel = GameManager.instance.GetCurrentLevel();
+        Dictionary<CliqueEnum,bool> cliquesPresentMap = GameManager.instance.getCliquesAvailable();
         foreach (KeyValuePair<CliqueEnum,float> cliqueAffinityEntry in cliqueAffiliations)
         {
             if (cliqueAffinityEntry.Key != CliqueEnum.NORMAL &&
@@ -115,7 +111,7 @@ public class LevelManager : Singleton<LevelManager> {
         //GameObject levelObj = GameObject.Find("Level" + level);
         //levelObj.SetActive(true);
         //Level lvl = levelObj.GetComponent<Level>();
-        Level lvl = GameManager.instance.currentLevel;
+        Level lvl = GameManager.instance.GetCurrentLevel();
         Waypoint[] wps = GameObject.Find("Waypoints"+GlobalPersistentStats.instance.level).GetComponentsInChildren<Waypoint>();
         int sortingOrder = 0;
 
