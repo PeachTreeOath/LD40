@@ -9,6 +9,7 @@ public class WandererEnemyController : MoveToEnemyController {
     public float wanderTargetRadius = 5f;
     public float minWanderWait = 0f;
     public float maxWanderWait = 3.0f;
+    public float startWaitingPercentage = 0.5f;
 
     public string state = START_STATE;
     protected float waitTimer;
@@ -21,7 +22,7 @@ public class WandererEnemyController : MoveToEnemyController {
     public virtual void UpdateStates() {
         switch(state) {
             case START_STATE:
-                StartWander();
+                ChooseWanderOrWait();
                 break;
 
             case WALKING_STATE:
@@ -62,5 +63,13 @@ public class WandererEnemyController : MoveToEnemyController {
         var index = Random.Range(0, waypoints.Count);
 
         return waypoints[index].gameObject;
+    }
+
+    protected void ChooseWanderOrWait() {
+        if(Random.Range(0, 1f) <= startWaitingPercentage) {
+            StartWaiting();
+        } else {
+            StartWander();
+        }
     }
 }

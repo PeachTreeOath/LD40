@@ -122,7 +122,6 @@ public class LevelManager : Singleton<LevelManager> {
             go.GetComponent<EnemyController>().personalAffinityMax = 100.0f / lvl.furryCount;
             SetSortingOrder(go, sortingOrder++);
         }
-
         for (int i = 0; i < lvl.nobodyCount; i++)
         {
             Waypoint wp = wps[UnityEngine.Random.Range(0, wps.Length)];
