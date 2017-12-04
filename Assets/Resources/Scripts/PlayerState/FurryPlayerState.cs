@@ -13,7 +13,7 @@ public class FurryPlayerState : APlayerState
     /// <returns></returns>
     public override void PlayStateMusic()
     {
-        //AudioManager.instance.PlayMusicWithIntroResumingTime("furry_intro", "furry_loop");
+        AudioManager.instance.PlayMusicWithIntroResumingTime("Furry_intro", "Furry_loop");
     }
     /// <summary>
     /// The sprite the player takes on when changing to this state.
