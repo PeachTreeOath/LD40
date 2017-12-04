@@ -27044,9 +27044,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4cb84daad987b974da7b753a50bf742e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  furryCount: 3
-  skaterCount: 3
-  footballerCount: 3
+  furryCount: 2
+  skaterCount: 2
+  footballerCount: 2
   nobodyCount: 10
 --- !u!114 &114992799391449986
 MonoBehaviour:
