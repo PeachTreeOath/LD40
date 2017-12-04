@@ -84,6 +84,11 @@ public class GameManager : Singleton<GameManager> {
     public void TransitionToNextLevel()
     {
         GlobalPersistentStats.instance.level++;
+        if(GlobalPersistentStats.instance.level == 7)
+        {
+            SceneManager.LoadScene("Victory");
+        }
+
         LoadLevelNow();
 
         //nextLevel.gameObject.SetActive(true);
