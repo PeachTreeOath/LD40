@@ -33,6 +33,7 @@ public class Football : MonoBehaviour {
                     Debug.Log("attract!");
                     lureEvent.Invoke(LureEvent.ATTRACT);
                     attractPulseTimer = attractInterval;
+                    AudioManager.instance.PlaySound("aggro", 0.2f);
                 }
             } else {
                 attracting = false;
