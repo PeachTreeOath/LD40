@@ -30,9 +30,9 @@ public class LevelManager : Singleton<LevelManager> {
         }
         
         //Get the canvas to use later
-        jockCanvasValue = GameObject.Find("Jocks Affinity Value").GetComponent<Text>();
-        skaterCanvasValue = GameObject.Find("Skaters Affinity Value").GetComponent<Text>();
-        furryCanvasValue = GameObject.Find("Furries Affinity Value").GetComponent<Text>();
+        //jockCanvasValue = GameObject.Find("Jocks Affinity Value").GetComponent<Text>();
+       // skaterCanvasValue = GameObject.Find("Skaters Affinity Value").GetComponent<Text>();
+       // furryCanvasValue = GameObject.Find("Furries Affinity Value").GetComponent<Text>();
 
         SpawnEnemies();
     }
