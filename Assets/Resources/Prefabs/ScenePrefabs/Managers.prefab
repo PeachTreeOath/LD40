@@ -19,7 +19,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4978335283072362}
-  - component: {fileID: 114301704046014720}
   - component: {fileID: 114317809724374344}
   - component: {fileID: 114754517305223078}
   - component: {fileID: 81374459871400702}
@@ -51,17 +50,6 @@ AudioListener:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1612908722314996}
   m_Enabled: 1
---- !u!114 &114301704046014720
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1612908722314996}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 45104f8d568a2d74ea62c8cc2ab86441, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114317809724374344
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -75,10 +63,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skaterSprite: {fileID: 0}
   jockSprite: {fileID: 0}
+  furrySprite: {fileID: 0}
   skaterPrefab: {fileID: 0}
   jockPrefab: {fileID: 0}
   furryPrefab: {fileID: 0}
-  hipsterPrefab: {fileID: 0}
+  furAnim: {fileID: 0}
+  jockAnim: {fileID: 0}
+  darkReputationColor: {r: 0, g: 0, b: 0, a: 0}
+  lightReputationColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!114 &114754517305223078
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -95,6 +87,7 @@ MonoBehaviour:
   defaultAffiliation: 0
   incrementAffiliationAmount: 1
   decrementAffiliationAmount: 2
+  affinityRequiredPerFactionToWin: 10
   overrideChangingRoomCheat: 0
 --- !u!114 &114795510964690292
 MonoBehaviour:
