@@ -5,6 +5,12 @@ using UnityEngine;
 public class ResourceLoader : Singleton<ResourceLoader>
 {
     [HideInInspector]
+    public Sprite muteSprite;
+
+    [HideInInspector]
+    public Sprite unmuteSprite;
+
+    [HideInInspector]
     public Sprite skaterSprite;
 
     [HideInInspector]
@@ -37,6 +43,9 @@ public class ResourceLoader : Singleton<ResourceLoader>
     }
 
     private void LoadResources() {
+
+        muteSprite = Resources.Load<Sprite>("Textures/UI/mute");
+        unmuteSprite = Resources.Load<Sprite>("Textures/UI/unmute");
 
         skaterSprite = Resources.Load<Sprite>("Textures/mainGuySkater");
         jockSprite = Resources.Load<Sprite>("Textures/mainGuyJock");
