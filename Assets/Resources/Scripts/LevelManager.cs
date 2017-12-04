@@ -4,8 +4,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class LevelManager : Singleton<LevelManager> {
-    
+public class LevelManager : Singleton<LevelManager>
+{
+
     public float totalAffiliationPerClique;
     public float defaultAffiliation;
     public float incrementAffiliationAmount;
@@ -17,22 +18,20 @@ public class LevelManager : Singleton<LevelManager> {
 
 
     private Dictionary<CliqueEnum, float> cliqueAffiliations = new Dictionary<CliqueEnum, float>();
-    private Dictionary<CliqueEnum, bool> cliquesPresentMap;
-    private Canvas canvas;
-    private Text skaterCanvasValue;
-    private Text furryCanvasValue;
-    private Text jockCanvasValue;
-    
 
-	// Use this for initialization
-	void Start () {
-        cliquesPresentMap = GameManager.instance.getCliquesAvailable();
+    public Image furryComplete;
+    public Image skaterComplete;
+    public Image jockComplete;
+    // Use this for initialization
+    void Start()
+    {
+
         //Set default affiliation for all affiliations
         foreach (CliqueEnum clickEnum in Enum.GetValues(typeof(CliqueEnum)))
         {
             cliqueAffiliations.Add(clickEnum, defaultAffiliation);
 
-            
+
         }
 
 
@@ -46,9 +45,10 @@ public class LevelManager : Singleton<LevelManager> {
     }
 
     // Update is called once per frame
-    void Update () {
+    void Update()
+    {
         UpdateCanvas();
-	}
+    }
 
     void UpdateCanvas()
     {
@@ -75,7 +75,7 @@ public class LevelManager : Singleton<LevelManager> {
 
     public void incrementCurrentAffinity(CliqueEnum clique, float incrementAmount)
     {
-        if (incrementAmount >= 0 )
+        if (incrementAmount >= 0)
             cliqueAffiliations[clique] = Math.Min(totalAffiliationPerClique, cliqueAffiliations[clique] + incrementAmount);
         else
             cliqueAffiliations[clique] = Math.Max(0, cliqueAffiliations[clique] + incrementAmount);
@@ -83,14 +83,48 @@ public class LevelManager : Singleton<LevelManager> {
 
     public bool IsWinConditionSatisfied()
     {
-        Level currentLevel = GameManager.instance.currentLevel;
-        foreach (KeyValuePair<CliqueEnum,float> cliqueAffinityEntry in cliqueAffiliations)
+        Level currentLevel = GameManager.instance.GetCurrentLevel();
+        Dictionary<CliqueEnum, bool> cliquesPresentMap = GameManager.instance.getCliquesAvailable();
+        foreach (KeyValuePair<CliqueEnum, float> cliqueAffinityEntry in cliqueAffiliations)
+        {
+            if (cliqueAffinityEntry.Value < affinityRequiredPerFactionToWin)
+            {
+                switch (cliqueAffinityEntry.Key)
+                {
+                    case CliqueEnum.FURBOI:
+                        furryComplete.enabled = false;
+                        break;
+                    case CliqueEnum.SK8R:
+                        skaterComplete.enabled = false;
+                        break;
+                    case CliqueEnum.JOCK:
+                        jockComplete.enabled = false;
+                        break;
+
+                }
+            }
+            else
+            {
+                switch (cliqueAffinityEntry.Key)
+                {
+                    case CliqueEnum.FURBOI:
+                        furryComplete.enabled = true;
+                        break;
+                    case CliqueEnum.SK8R:
+                        skaterComplete.enabled = true;
+                        break;
+                    case CliqueEnum.JOCK:
+                        jockComplete.enabled = true;
+                        break;
+                }
+            }
+        }
+        foreach (KeyValuePair<CliqueEnum, float> cliqueAffinityEntry in cliqueAffiliations)
         {
             if (cliqueAffinityEntry.Key != CliqueEnum.NORMAL &&
-                cliquesPresentMap[cliqueAffinityEntry.Key] &&
-                cliqueAffinityEntry.Value < affinityRequiredPerFactionToWin)
+    cliquesPresentMap[cliqueAffinityEntry.Key] &&
+    cliqueAffinityEntry.Value < affinityRequiredPerFactionToWin)
             {
-                
                 return false;
             }
         }
@@ -98,9 +132,11 @@ public class LevelManager : Singleton<LevelManager> {
         return true;
     }
 
-    private void SetSortingOrder(GameObject go, int sortingOrder) {
+    private void SetSortingOrder(GameObject go, int sortingOrder)
+    {
         SpriteRenderer[] sprites = go.GetComponentsInChildren<SpriteRenderer>();
-        foreach (SpriteRenderer sprite in sprites) {
+        foreach (SpriteRenderer sprite in sprites)
+        {
             if (sprite.name.Equals("square"))
                 sprite.sortingOrder = sortingOrder;
         }
@@ -115,8 +151,8 @@ public class LevelManager : Singleton<LevelManager> {
         //GameObject levelObj = GameObject.Find("Level" + level);
         //levelObj.SetActive(true);
         //Level lvl = levelObj.GetComponent<Level>();
-        Level lvl = GameManager.instance.currentLevel;
-        Waypoint[] wps = GameObject.Find("Waypoints"+GlobalPersistentStats.instance.level).GetComponentsInChildren<Waypoint>();
+        Level lvl = GameManager.instance.GetCurrentLevel();
+        Waypoint[] wps = GameObject.Find("Waypoints" + GlobalPersistentStats.instance.level).GetComponentsInChildren<Waypoint>();
         int sortingOrder = 0;
 
         for (int i = 0; i < lvl.furryCount; i++)

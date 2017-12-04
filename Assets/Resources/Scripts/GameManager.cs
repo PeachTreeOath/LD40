@@ -5,25 +5,43 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : Singleton<GameManager> {
 
-    public Level currentLevel;
+    //public Level currentLevel;
     int currentLevelIndex;
     Level[] levels;
+    Dictionary<CliqueEnum, bool> cliquesAvailable = new Dictionary<CliqueEnum, bool>();
+    //Level currentLevel;
 
-	// Use this for initialization
-	void Start () {
-        if(currentLevel == null)
-        {
-            LoadLevelNow();
-        }
+    // Use this for initialization
+    void Start () {
+        LoadLevelNow();
+
     }
 	
     void LoadLevelNow()
     {
-        GlobalPersistentStats.instance.level++;
+       
         currentLevelIndex = GlobalPersistentStats.instance.level - 1;
         GameObject levelObj = GameObject.Find("Levels");
+        Debug.Log("levelObj: " + levelObj);
         levels = levelObj.GetComponentsInChildren<Level>();
-        currentLevel = levels[currentLevelIndex];
+        Debug.Log("levels: " + levels);
+        Level currentLevel = levels[currentLevelIndex];
+        currentLevel.gameObject.SetActive(true);
+        //disable other levels
+        for(int i = 0; i < levels.Length; i++)
+        {
+            if (i != currentLevelIndex)
+            {
+                levels[i].gameObject.SetActive(false);
+            }
+        }
+
+
+        currentLevel = levels[GlobalPersistentStats.instance.level - 1];
+        cliquesAvailable = new Dictionary<CliqueEnum, bool>();
+        cliquesAvailable[CliqueEnum.FURBOI] = currentLevel.furryCount == 0 ? false : true;
+        cliquesAvailable[CliqueEnum.JOCK] = currentLevel.footballerCount == 0 ? false : true;
+        cliquesAvailable[CliqueEnum.SK8R] = currentLevel.skaterCount == 0 ? false : true;
     }
 	// Update is called once per frame
 	void Update () {
@@ -45,10 +63,7 @@ public class GameManager : Singleton<GameManager> {
     public void TransitionToNextLevel()
     {
         GlobalPersistentStats.instance.level++;
-        currentLevelIndex = GlobalPersistentStats.instance.level - 1;
-        GameObject levelObj = GameObject.Find("Levels");
-        levels = levelObj.GetComponentsInChildren<Level>();
-        currentLevel = levels[currentLevelIndex];
+        LoadLevelNow();
 
         //nextLevel.gameObject.SetActive(true);
         //playEndingEffects();
@@ -57,23 +72,20 @@ public class GameManager : Singleton<GameManager> {
 
     public Dictionary<CliqueEnum,bool> getCliquesAvailable()
     {
-        if (currentLevel == null)
-        {
-            LoadLevelNow();
-        }
-        Dictionary<CliqueEnum, bool> cliquesAvailable = new Dictionary<CliqueEnum, bool>();
-        if (currentLevel.furryCount == 0)
-        {
-            cliquesAvailable[CliqueEnum.FURBOI] = false;
-        }
-        if (currentLevel.footballerCount == 0)
-        {
-            cliquesAvailable[CliqueEnum.JOCK] = false;
-        }
-        if (currentLevel.skaterCount == 0)
-        {
-            cliquesAvailable[CliqueEnum.SK8R] = false;
-        }
+        
         return cliquesAvailable;
+    }
+
+    public Level GetCurrentLevel()
+    {
+        currentLevelIndex = GlobalPersistentStats.instance.level - 1;
+       
+        if (levels == null)
+        {
+            GameObject levelObj = GameObject.Find("Levels");
+            levels = levelObj.GetComponentsInChildren<Level>();
+        }
+
+        return levels[GlobalPersistentStats.instance.level - 1];
     }
 }
