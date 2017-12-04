@@ -86,14 +86,6 @@ public class GameManager : Singleton<GameManager> {
 
     public Level GetCurrentLevel()
     {
-        currentLevelIndex = GlobalPersistentStats.instance.level - 1;
-       
-        if (levels == null)
-        {
-            GameObject levelObj = GameObject.Find("Levels");
-            levels = levelObj.GetComponentsInChildren<Level>();
-        }
-
-        return levels[GlobalPersistentStats.instance.level - 1];
+        return currentLevel;
     }
 }
