@@ -87,6 +87,7 @@ public class GameManager : Singleton<GameManager> {
         if(GlobalPersistentStats.instance.level == 7)
         {
             SceneManager.LoadScene("Victory");
+            return;
         }
 
         LoadLevelNow();
