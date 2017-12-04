@@ -26,6 +26,7 @@ public class FurryEnemyController : WandererEnemyController {
     public void StartHoldingHands() {
         StopMoveTo();
         state = HOLDING_HANDS_STATE;
+        AudioManager.instance.PlaySound("hand_holding");
     }
 
     public void StopHoldingHands() {
