@@ -251,8 +251,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 5
-  skateMoveSpeed: 5
-  skateTurnSpeed: 200
+  skateMoveSpeed: 4
+  skateTurnSpeed: 250
   FootballGO: {fileID: 0}
   hasBall: 1
   goingForward: 0
