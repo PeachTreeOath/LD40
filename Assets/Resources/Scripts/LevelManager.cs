@@ -80,18 +80,31 @@ public class LevelManager : Singleton<LevelManager> {
         return true;
     }
 
+    private void SetSortingOrder(GameObject go, int sortingOrder) {
+        SpriteRenderer[] sprites = go.GetComponentsInChildren<SpriteRenderer>();
+        foreach (SpriteRenderer sprite in sprites) {
+            if (sprite.name.Equals("square"))
+                sprite.sortingOrder = sortingOrder;
+        }
+        go.GetComponentInChildren<SpriteMask>().isCustomRangeActive = true;
+        go.GetComponentInChildren<SpriteMask>().frontSortingOrder = sortingOrder + 1;
+        go.GetComponentInChildren<SpriteMask>().backSortingOrder = sortingOrder;
+    }
+
     private void SpawnEnemies()
     {
         int level = GlobalPersistentStats.instance.level;
         GameObject levelObj = GameObject.Find("Level" + level);
         Level lvl = levelObj.GetComponent<Level>();
         Waypoint[] wps = GameObject.Find("Waypoints"+GlobalPersistentStats.instance.level).GetComponentsInChildren<Waypoint>();
+        int sortingOrder = 0;
 
-        for(int i = 0; i < lvl.furryCount; i++)
+        for (int i = 0; i < lvl.furryCount; i++)
         {
             Waypoint wp = wps[UnityEngine.Random.Range(0, wps.Length)];
             GameObject go = Instantiate(ResourceLoader.instance.furryPrefab, wp.transform.position, Quaternion.identity);
             go.GetComponent<EnemyController>().personalAffinityMax = 100.0f / lvl.furryCount;
+            SetSortingOrder(go, sortingOrder++);
         }
 
         for (int i = 0; i < lvl.skaterCount; i++)
@@ -99,6 +112,7 @@ public class LevelManager : Singleton<LevelManager> {
             Waypoint wp = wps[UnityEngine.Random.Range(0, wps.Length)];
             GameObject go = Instantiate(ResourceLoader.instance.skaterPrefab, wp.transform.position, Quaternion.identity);
             go.GetComponent<EnemyController>().personalAffinityMax = 100.0f / lvl.furryCount;
+            SetSortingOrder(go, sortingOrder++);
         }
 
         for (int i = 0; i < lvl.footballerCount; i++)
@@ -106,6 +120,7 @@ public class LevelManager : Singleton<LevelManager> {
             Waypoint wp = wps[UnityEngine.Random.Range(0, wps.Length)];
             GameObject go = Instantiate(ResourceLoader.instance.jockPrefab, wp.transform.position, Quaternion.identity);
             go.GetComponent<EnemyController>().personalAffinityMax = 100.0f / lvl.furryCount;
+            SetSortingOrder(go, sortingOrder++);
         }
 
     }
