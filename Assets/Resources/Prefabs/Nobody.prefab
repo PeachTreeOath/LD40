@@ -65,7 +65,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!61 &61956074319125786
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -130,6 +130,7 @@ MonoBehaviour:
   wanderTargetRadius: 8
   minWanderWait: 0
   maxWanderWait: 5
+  startWaitingPercentage: 0.5
   state: start
 --- !u!114 &114438711581142650
 MonoBehaviour:
@@ -190,7 +191,7 @@ SpriteRenderer:
   m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 031f5126a6e9e2647a82eafabd704368, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.366}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
