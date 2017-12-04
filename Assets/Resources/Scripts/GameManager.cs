@@ -9,7 +9,7 @@ public class GameManager : Singleton<GameManager> {
     int currentLevelIndex;
     Level[] levels;
     Dictionary<CliqueEnum, bool> cliquesAvailable = new Dictionary<CliqueEnum, bool>();
-    //Level currentLevel;
+    Level currentLevel;
 
     // Use this for initialization
     void Start () {
@@ -19,23 +19,33 @@ public class GameManager : Singleton<GameManager> {
 	
     void LoadLevelNow()
     {
-       
-        currentLevelIndex = GlobalPersistentStats.instance.level - 1;
-        GameObject levelObj = GameObject.Find("Levels");
-        levels = levelObj.GetComponentsInChildren<Level>();
-        Level currentLevel = levels[currentLevelIndex];
-        currentLevel.Enable();
+
+        //currentLevelIndex = GlobalPersistentStats.instance.level - 1;
+        //GameObject levelObj = GameObject.Find("Levels");
+        //levels = levelObj.GetComponentsInChildren<Level>();
+        //Level currentLevel = levels[currentLevelIndex];
+        //currentLevel.Enable();
         //disable other levels
-        for(int i = 0; i < levels.Length; i++)
+        //for(int i = 0; i < levels.Length; i++)
+        // {
+        //    if (i != currentLevelIndex)
+        //    {
+        //        levels[i].Disable();
+        //    }
+        //}
+
+
+        //currentLevel = levels[GlobalPersistentStats.instance.level - 1];
+        if (currentLevel == null)
         {
-            if (i != currentLevelIndex)
-            {
-                levels[i].Disable();
-            }
+            currentLevel = ResourceLoader.instance.GetLevel(GlobalPersistentStats.instance.level);
+        }
+        else
+        {
+            Debug.Log("Load level called unnecessarily");
+            Destroy(currentLevel.gameObject);
         }
 
-
-        currentLevel = levels[GlobalPersistentStats.instance.level - 1];
         cliquesAvailable = new Dictionary<CliqueEnum, bool>();
         cliquesAvailable[CliqueEnum.FURBOI] = currentLevel.furryCount == 0 ? false : true;
         cliquesAvailable[CliqueEnum.JOCK] = currentLevel.footballerCount == 0 ? false : true;
