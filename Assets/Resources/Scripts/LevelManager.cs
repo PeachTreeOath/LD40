@@ -101,6 +101,7 @@ public class LevelManager : Singleton<LevelManager> {
     {
         int level = GlobalPersistentStats.instance.level;
         GameObject levelObj = GameObject.Find("Level" + level);
+        levelObj.SetActive(true);
         Level lvl = levelObj.GetComponent<Level>();
         Waypoint[] wps = GameObject.Find("Waypoints"+GlobalPersistentStats.instance.level).GetComponentsInChildren<Waypoint>();
         int sortingOrder = 0;
