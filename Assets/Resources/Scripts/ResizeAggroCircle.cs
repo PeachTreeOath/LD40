@@ -30,6 +30,13 @@ public class ResizeAggroCircle : MonoBehaviour {
                 radius = cMinRadius + affinity * cResizeRate;
                 transform.localScale = new Vector3(radius, radius, 0);
             }
+            if (transform.name.Contains("ThreatIndicator"))
+            {
+
+                affinity = LevelManager.instance.getCurrentAffiliation(clique);
+                radius = cMinRadius + affinity * cResizeRate;
+                transform.localScale = new Vector3(radius, radius, 0);
+            }
         }
     }
 }

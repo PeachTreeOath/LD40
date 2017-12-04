@@ -30,9 +30,9 @@ public class LevelManager : Singleton<LevelManager> {
         }
         
         //Get the canvas to use later
-        jockCanvasValue = GameObject.Find("Jocks Affinity Value").GetComponent<Text>();
-        skaterCanvasValue = GameObject.Find("Skaters Affinity Value").GetComponent<Text>();
-        furryCanvasValue = GameObject.Find("Furries Affinity Value").GetComponent<Text>();
+        //jockCanvasValue = GameObject.Find("Jocks Affinity Value").GetComponent<Text>();
+       // skaterCanvasValue = GameObject.Find("Skaters Affinity Value").GetComponent<Text>();
+       // furryCanvasValue = GameObject.Find("Furries Affinity Value").GetComponent<Text>();
 
         SpawnEnemies();
     }
@@ -44,9 +44,15 @@ public class LevelManager : Singleton<LevelManager> {
 
     void UpdateCanvas()
     {
+        /*
         jockCanvasValue.text = cliqueAffiliations[CliqueEnum.JOCK].ToString();
         skaterCanvasValue.text = cliqueAffiliations[CliqueEnum.SK8R].ToString();
         furryCanvasValue.text = cliqueAffiliations[CliqueEnum.FURBOI].ToString();
+        */
+
+        ReputationUIManager.instance.UpdateFill(0, cliqueAffiliations[CliqueEnum.FURBOI]);
+        ReputationUIManager.instance.UpdateFill(1, cliqueAffiliations[CliqueEnum.SK8R]);
+        ReputationUIManager.instance.UpdateFill(2, cliqueAffiliations[CliqueEnum.JOCK]);
     }
 
     public float getCurrentAffiliation(CliqueEnum clique)
