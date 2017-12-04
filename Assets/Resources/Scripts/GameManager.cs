@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameManager : Singleton<GameManager> {
 
@@ -45,6 +46,15 @@ public class GameManager : Singleton<GameManager> {
             Debug.Log("Load level called unnecessarily");
             Destroy(currentLevel.gameObject);
         }
+
+        if (GlobalPersistentStats.instance.level == 1)
+            GameObject.Find("Help1").GetComponent<Text>().enabled = true;
+        else if (GlobalPersistentStats.instance.level == 2)
+            GameObject.Find("Help2").GetComponent<Text>().enabled = true;
+        else if (GlobalPersistentStats.instance.level == 3)
+            GameObject.Find("Help3").GetComponent<Text>().enabled = true;
+        else if (GlobalPersistentStats.instance.level == 4)
+            GameObject.Find("Help4").GetComponent<Text>().enabled = true;
 
         cliquesAvailable = new Dictionary<CliqueEnum, bool>();
         cliquesAvailable[CliqueEnum.FURBOI] = currentLevel.furryCount == 0 ? false : true;
