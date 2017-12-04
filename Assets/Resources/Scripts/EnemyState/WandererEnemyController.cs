@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public abstract class WandererEnemyController : MoveToEnemyController {
+public class WandererEnemyController : MoveToEnemyController {
     public const string START_STATE = "start";
     public const string WALKING_STATE = "walking";
     public const string WAITING_STATE = "waiting";

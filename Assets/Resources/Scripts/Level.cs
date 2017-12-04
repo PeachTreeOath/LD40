@@ -7,6 +7,7 @@ public class Level : MonoBehaviour {
     public int furryCount;
     public int skaterCount;
     public int footballerCount;
+    public int nobodyCount;
    // public int hipsterCount;
 
 }
