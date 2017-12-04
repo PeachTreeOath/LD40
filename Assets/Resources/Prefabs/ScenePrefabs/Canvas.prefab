@@ -965,7 +965,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Friend-o-meter
+  m_Text: Friend Radar
 --- !u!114 &114727504446979858
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1964,7 +1964,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1402134529130796}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 5, y: 30, z: 0}
+  m_LocalPosition: {x: 8, y: 30, z: 0}
   m_LocalScale: {x: 0.066907205, y: 0.066907205, z: 0.95579445}
   m_Children: []
   m_Father: {fileID: 224970997625085688}
@@ -1972,7 +1972,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 5, y: 30}
+  m_AnchoredPosition: {x: 8, y: 30}
   m_SizeDelta: {x: 800, y: 300}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224970997625085688
