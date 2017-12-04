@@ -22,7 +22,9 @@ public class ResizeAggroCircle : MonoBehaviour {
         float radius = 0;
 
         affinity = gameObject.GetComponentInParent<EnemyController>().GetPersonalAffinity();
+        CircleCollider2D circle = gameObject.GetComponentInParent<CircleCollider2D>();
         radius = cMinRadius + affinity * cResizeRate;
+        circle.radius = radius;
         gameObject.transform.localScale = new Vector3(radius, radius, 0);
 
         if (PlayerStateController.instance.CurrentState == transform.parent.GetComponent<EnemyController>().clique) {
