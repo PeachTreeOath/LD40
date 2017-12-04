@@ -15,20 +15,28 @@ public class LevelManager : Singleton<LevelManager> {
 
     public bool overrideChangingRoomCheat;
 
+
     private Dictionary<CliqueEnum, float> cliqueAffiliations = new Dictionary<CliqueEnum, float>();
+    private Dictionary<CliqueEnum, bool> cliquesPresentMap;
     private Canvas canvas;
     private Text skaterCanvasValue;
     private Text furryCanvasValue;
     private Text jockCanvasValue;
+    
 
 	// Use this for initialization
 	void Start () {
+        cliquesPresentMap = GameManager.instance.getCliquesAvailable();
         //Set default affiliation for all affiliations
         foreach (CliqueEnum clickEnum in Enum.GetValues(typeof(CliqueEnum)))
         {
             cliqueAffiliations.Add(clickEnum, defaultAffiliation);
+
+            
         }
-        
+
+
+
         //Get the canvas to use later
         //jockCanvasValue = GameObject.Find("Jocks Affinity Value").GetComponent<Text>();
         //skaterCanvasValue = GameObject.Find("Skaters Affinity Value").GetComponent<Text>();
@@ -75,10 +83,14 @@ public class LevelManager : Singleton<LevelManager> {
 
     public bool IsWinConditionSatisfied()
     {
-        foreach(KeyValuePair<CliqueEnum,float> cliqueAffinityEntry in cliqueAffiliations)
+        Level currentLevel = GameManager.instance.currentLevel;
+        foreach (KeyValuePair<CliqueEnum,float> cliqueAffinityEntry in cliqueAffiliations)
         {
-            if (cliqueAffinityEntry.Key != CliqueEnum.NORMAL && cliqueAffinityEntry.Value < affinityRequiredPerFactionToWin)
+            if (cliqueAffinityEntry.Key != CliqueEnum.NORMAL &&
+                cliquesPresentMap[cliqueAffinityEntry.Key] &&
+                cliqueAffinityEntry.Value < affinityRequiredPerFactionToWin)
             {
+                
                 return false;
             }
         }
@@ -100,9 +112,10 @@ public class LevelManager : Singleton<LevelManager> {
     private void SpawnEnemies()
     {
         int level = GlobalPersistentStats.instance.level;
-        GameObject levelObj = GameObject.Find("Level" + level);
+        //GameObject levelObj = GameObject.Find("Level" + level);
         //levelObj.SetActive(true);
-        Level lvl = levelObj.GetComponent<Level>();
+        //Level lvl = levelObj.GetComponent<Level>();
+        Level lvl = GameManager.instance.currentLevel;
         Waypoint[] wps = GameObject.Find("Waypoints"+GlobalPersistentStats.instance.level).GetComponentsInChildren<Waypoint>();
         int sortingOrder = 0;
 
