@@ -306,7 +306,7 @@ MonoBehaviour:
   clique: 1
   personalAffinity: 0
   personalAffinityMax: 20
-  incrementAffinitySpeed: 2
+  incrementAffinitySpeed: 3
   decrementAffinitySpeed: -5
   rbody: {fileID: 50965023051784628}
   navigation: {fileID: 114849319472268820}
