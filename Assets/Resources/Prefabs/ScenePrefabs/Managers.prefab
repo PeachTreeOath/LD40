@@ -72,8 +72,12 @@ MonoBehaviour:
   nobodyPrefab: {fileID: 0}
   furAnim: {fileID: 0}
   jockAnim: {fileID: 0}
-  darkReputationColor: {r: 0, g: 0, b: 0, a: 0}
-  lightReputationColor: {r: 0, g: 0, b: 0, a: 0}
+  level1Prefab: {fileID: 0}
+  level2Prefab: {fileID: 0}
+  level3Prefab: {fileID: 0}
+  level4Prefab: {fileID: 0}
+  level5Prefab: {fileID: 0}
+  level6Prefab: {fileID: 0}
 --- !u!114 &114754517305223078
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -89,7 +93,7 @@ MonoBehaviour:
   defaultAffiliation: 0
   incrementAffiliationAmount: 1
   decrementAffiliationAmount: 2
-  affinityRequiredPerFactionToWin: 10
+  affinityRequiredPerFactionToWin: 75
   overrideChangingRoomCheat: 0
   furryComplete: {fileID: 0}
   skaterComplete: {fileID: 0}
