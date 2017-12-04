@@ -148,7 +148,7 @@ public class LevelManager : Singleton<LevelManager>
     private void SpawnEnemies()
     {
         int level = GlobalPersistentStats.instance.level;
-        GameObject levelObj = GameObject.Find("Level" + level);
+        GameObject levelObj = GameObject.Find("Level" + level + "(Clone)");
         //levelObj.SetActive(true);
         Level lvl = levelObj.GetComponent<Level>();
         //Level lvl = GameManager.instance.GetCurrentLevel();
