@@ -29,7 +29,7 @@ public class GameManager : Singleton<GameManager> {
             Destroy(currentLevel.gameObject);
         }
     }
-    void LoadLevelNow()
+    public void LoadLevelNow()
     {
 
         //currentLevelIndex = GlobalPersistentStats.instance.level - 1;
