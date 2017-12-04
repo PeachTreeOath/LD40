@@ -151,6 +151,8 @@ public class PlayerController : Singleton<PlayerController>
         {
             if (HasHostage())
                 behaviour.ExecuteBehaviourAction();
+
+
         }
 
         if (Input.GetKeyDown(KeyCode.Alpha1))
@@ -158,17 +160,23 @@ public class PlayerController : Singleton<PlayerController>
             PlayerStateController.instance.ChangePlayerState(CliqueEnum.FURBOI);
             playerAnimator.enabled = true;
             playerAnimator.runtimeAnimatorController = ResourceLoader.instance.furAnim;
+            ActionBar.instance.Activate();
+            ActionBar.instance.ChangeText("[SPACE] HOLD HANDS");
         }
         else if (Input.GetKeyDown(KeyCode.Alpha2))
         {
             PlayerStateController.instance.ChangePlayerState(CliqueEnum.SK8R);
             playerAnimator.enabled = false;
+            ActionBar.instance.Activate();
+            ActionBar.instance.ChangeText("[LEFT/RIGHT] MOVE");
         }
         else if (Input.GetKeyDown(KeyCode.Alpha3))
         {
             PlayerStateController.instance.ChangePlayerState(CliqueEnum.JOCK);
             playerAnimator.enabled = true;
             playerAnimator.runtimeAnimatorController = ResourceLoader.instance.jockAnim;
+            ActionBar.instance.Activate();
+            ActionBar.instance.ChangeText("[SPACE] THROW BALL");
         }
 
     }
