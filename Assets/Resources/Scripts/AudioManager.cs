@@ -12,8 +12,10 @@ public class AudioManager : Singleton<AudioManager>
     // Use this to mute game during production
     public bool mute;
     public float musicVolume;
+    public float crossfadeDuration = 4;
 
     private AudioSource musicChannel;
+    private AudioSource musicChannel2; //used for crossfades between music
     private AudioSource soundChannel;
     private Dictionary<string, AudioClip> soundMap;
     //Tracks whether intro in coroutine has finished playing or not.
@@ -31,6 +33,12 @@ public class AudioManager : Singleton<AudioManager>
         musicChannel.transform.SetParent(transform);
         musicChannel.name = "MusicChannel";
         musicChannel.loop = true;
+
+        musicChannel2 = new GameObject().AddComponent<AudioSource>();
+        musicChannel2.transform.SetParent(transform);
+        musicChannel2.name = "MusicChannel2";
+        musicChannel2.loop = true;
+
         soundChannel = new GameObject().AddComponent<AudioSource>();
         soundChannel.transform.SetParent(transform);
         soundChannel.name = "SoundChannel";
@@ -74,6 +82,23 @@ public class AudioManager : Singleton<AudioManager>
         musicChannel.Play();
     }
 
+
+    public void PlayMusicFromTimeAndCrossfade(string name, float time)
+    {
+        
+        musicChannel.clip = soundMap[name];
+        musicChannel.volume = musicVolume;
+        musicChannel.loop = true;
+        musicChannel.time = time;
+        musicChannel.Play();
+    }
+    private IEnumerator PlayMusicCrossfading(string name, float delayTime)
+    {
+        yield return new WaitForSeconds(delayTime);
+        introCompleted = true;
+        PlayMusic(name);
+    }
+
     public void PlayMusicOnce(string name)
     {
         musicChannel.clip = soundMap[name];
@@ -90,6 +115,7 @@ public class AudioManager : Singleton<AudioManager>
             //cancel the existing coroutine before starting another.
             StopCoroutine(introCoroutine);
         }
+        Debug.Log("Starting intro.");
 		PlayMusic(introName);
         introCompleted = false;
         introCoroutine = StartCoroutine(PlayMusicDelayed(loopName, musicChannel.clip.length));
@@ -99,8 +125,11 @@ public class AudioManager : Singleton<AudioManager>
     {
         yield return new WaitForSeconds(delayTime);
         introCompleted = true;
+        Debug.Log("starting loop");
 		PlayMusic(name);
     }
+
+
 
     //Allows seamless transition of Music that are time and tempo aligned.
     public void PlayMusicWithIntroResumingTime(string introName, string loopName)
@@ -110,15 +139,21 @@ public class AudioManager : Singleton<AudioManager>
         if (!introCompleted && introCoroutine != null)
         {
             //cancel the existing coroutine before starting another.
+
             StopCoroutine(introCoroutine);
 
             //need to start from same place in the new intro if existing song was in its intro
-            PlayMusicFromTime(introName,oldMusicTime);
-            introCoroutine = StartCoroutine(PlayMusicDelayed(loopName, musicChannel.clip.length - oldMusicTime));
+            //TODO was a little bit off, decided to start new intro from beginning.
+            //PlayMusicFromTime(introName,oldMusicTime);
+            PlayMusic(introName);
+            float newMusicTime = musicChannel.time;
+            //introCoroutine = StartCoroutine(PlayMusicDelayed(loopName,musicChannel.clip.length - newMusicTime));
+            introCoroutine = StartCoroutine(PlayMusicDelayed(loopName, musicChannel.clip.length));
         }
         else
         {
             //Intro is complete, so just play from the loop.
+            Debug.Log("intro already completed, starting from middle");
             PlayMusicFromTime(loopName, oldMusicTime);
         }
 
