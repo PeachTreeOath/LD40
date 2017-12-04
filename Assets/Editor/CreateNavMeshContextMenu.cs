@@ -55,7 +55,7 @@ public class CreateNavMeshContextMenu {
             for(int x = tilemap.cellBounds.xMin; x < tilemap.cellBounds.xMax; x++) {
                 for (int y = tilemap.cellBounds.yMin; y < tilemap.cellBounds.yMax; y++) {
                     var tile = tilemap.GetTile(new Vector3Int(x, y, 0));
-                    if(tile) {
+                    if(tile != null) {
                         var navTile = navMap.GetTile(x, y);
                         
                         navTile.exists = true; 
@@ -69,18 +69,20 @@ public class CreateNavMeshContextMenu {
     }
 
     private static bool HasTileCollision(Component component) {
-        return component.gameObject.GetComponent<TilemapCollider2D>() != null;
+        var collider = component.gameObject.GetComponent<TilemapCollider2D>();
+        return collider != null && !collider.isTrigger;
     }
 
     //TODO move this to NavTilemap?
     private static void BuildWaypoints(Grid grid, NavTilemap navMap) {
         var waypointPrefab = Resources.Load<GameObject>("Prefabs/ScenePrefabs/Waypoint");
         GameObject waypoints = new GameObject("Waypoints");
+        waypoints.AddComponent<WaypointGroup>();
 
         for(int x = navMap.cellBounds.xMin; x < navMap.cellBounds.xMax; x++) {
             for(int y = navMap.cellBounds.yMin; y < navMap.cellBounds.yMax; y++) {
                 var tile = navMap.GetTile(x, y); 
-                if(!tile.solid) {
+                if(!tile.solid && tile.exists) {
                     var waypointGO = GameObject.Instantiate(waypointPrefab);
                     waypointGO.name =  String.Format("({0}, {1})", x, y);
                     waypointGO.transform.position = grid.GetCellCenterWorld(new Vector3Int(x, y, 0));
