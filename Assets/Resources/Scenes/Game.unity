@@ -112,6 +112,12 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!114 &221682603 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114799941989008556, guid: 3daa39499e959934eb1f5666d0e608e6,
+    type: 2}
+  m_PrefabInternal: {fileID: 1864871540}
+  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
 --- !u!1001 &300709133
 Prefab:
   m_ObjectHideFlags: 0
@@ -150,10 +156,6 @@ Prefab:
     - target: {fileID: 4403771258252204, guid: 2ab58734740af4e4b985a1d2dd857534, type: 2}
       propertyPath: m_RootOrder
       value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 1663813574532668, guid: 2ab58734740af4e4b985a1d2dd857534, type: 2}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2ab58734740af4e4b985a1d2dd857534, type: 2}
@@ -244,6 +246,21 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114754517305223078, guid: fd6f2f3ade3556044acb9d50a8ffe2ba,
+        type: 2}
+      propertyPath: furryComplete
+      value: 
+      objectReference: {fileID: 2139149089}
+    - target: {fileID: 114754517305223078, guid: fd6f2f3ade3556044acb9d50a8ffe2ba,
+        type: 2}
+      propertyPath: skaterComplete
+      value: 
+      objectReference: {fileID: 221682603}
+    - target: {fileID: 114754517305223078, guid: fd6f2f3ade3556044acb9d50a8ffe2ba,
+        type: 2}
+      propertyPath: jockComplete
+      value: 
+      objectReference: {fileID: 1680064521}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: fd6f2f3ade3556044acb9d50a8ffe2ba, type: 2}
   m_IsPrefabParent: 0
@@ -314,6 +331,12 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1680064521 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114107380480837830, guid: 3daa39499e959934eb1f5666d0e608e6,
+    type: 2}
+  m_PrefabInternal: {fileID: 1864871540}
+  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
 --- !u!1001 &1714331149
 Prefab:
   m_ObjectHideFlags: 0
@@ -691,3 +714,9 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c5fe64b4fc881e046ac377a97bdef68b, type: 2}
   m_IsPrefabParent: 0
+--- !u!114 &2139149089 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114699207996035400, guid: 3daa39499e959934eb1f5666d0e608e6,
+    type: 2}
+  m_PrefabInternal: {fileID: 1864871540}
+  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
