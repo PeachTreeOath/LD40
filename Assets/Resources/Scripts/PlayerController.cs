@@ -65,6 +65,10 @@ public class PlayerController : Singleton<PlayerController>
                 playerSprite.flipY = false;
         } else
         {
+            // Fix direction when changing from sk8r to other
+            if (playerSprite.flipY)
+                playerSprite.flipX = !playerSprite.flipX;
+
             playerSprite.flipY = false;
             rbody.MoveRotation(0);
             float currentSpeed = moveSpeed * Time.deltaTime;
