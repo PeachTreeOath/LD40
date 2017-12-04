@@ -148,11 +148,13 @@ public class LevelManager : Singleton<LevelManager>
     private void SpawnEnemies()
     {
         int level = GlobalPersistentStats.instance.level;
-        //GameObject levelObj = GameObject.Find("Level" + level);
+        GameObject levelObj = GameObject.Find("Level" + level);
         //levelObj.SetActive(true);
-        //Level lvl = levelObj.GetComponent<Level>();
-        Level lvl = GameManager.instance.GetCurrentLevel();
-        Waypoint[] wps = GameObject.Find("Waypoints" + GlobalPersistentStats.instance.level).GetComponentsInChildren<Waypoint>();
+        Level lvl = levelObj.GetComponent<Level>();
+        //Level lvl = GameManager.instance.GetCurrentLevel();
+        WaypointGroup wg = lvl.GetComponentInChildren<WaypointGroup>();
+        Waypoint[] wps = wg.GetComponentsInChildren<Waypoint>();
+        //Waypoint[] wps = GameObject.Find("Waypoints" + GlobalPersistentStats.instance.level).GetComponentsInChildren<Waypoint>();
         int sortingOrder = 0;
 
         for (int i = 0; i < lvl.furryCount; i++)
