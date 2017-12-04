@@ -22,17 +22,15 @@ public class GameManager : Singleton<GameManager> {
        
         currentLevelIndex = GlobalPersistentStats.instance.level - 1;
         GameObject levelObj = GameObject.Find("Levels");
-        Debug.Log("levelObj: " + levelObj);
         levels = levelObj.GetComponentsInChildren<Level>();
-        Debug.Log("levels: " + levels);
         Level currentLevel = levels[currentLevelIndex];
-        currentLevel.gameObject.SetActive(true);
+        currentLevel.Enable();
         //disable other levels
         for(int i = 0; i < levels.Length; i++)
         {
             if (i != currentLevelIndex)
             {
-                levels[i].gameObject.SetActive(false);
+                levels[i].Disable();
             }
         }
 
