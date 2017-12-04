@@ -70,7 +70,6 @@ public class ResourceLoader : Singleton<ResourceLoader>
         level4Prefab = Resources.Load<GameObject>("Prefabs/Levels/Level4");
         level5Prefab = Resources.Load<GameObject>("Prefabs/Levels/Level5");
         level6Prefab = Resources.Load<GameObject>("Prefabs/Levels/Level6");
-        Instantiate(ResourceLoader.instance.level1Prefab);
     }
 
     public Level GetLevel(int level)
