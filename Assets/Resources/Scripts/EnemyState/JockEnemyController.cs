@@ -57,7 +57,7 @@ public class JockEnemyController : WandererEnemyController {
             case LureEvent.ATTRACT:
                 if (CanSeeFootball()) {
                     StartFetching();
-                    AudioManager.instance.PlaySound("aggro", 0.3f);
+                    AudioManager.instance.PlaySound("aggro", 0.2f);
                 }
                 break;
 
