@@ -34,8 +34,12 @@ public class ResourceLoader : Singleton<ResourceLoader>
     public RuntimeAnimatorController furAnim;
     public RuntimeAnimatorController jockAnim;
 
-    public Color darkReputationColor;
-    public Color lightReputationColor;
+    public GameObject level1Prefab;
+    public GameObject level2Prefab;
+    public GameObject level3Prefab;
+    public GameObject level4Prefab;
+    public GameObject level5Prefab;
+    public GameObject level6Prefab;
 
     protected override void Awake() {
         base.Awake();
@@ -60,8 +64,12 @@ public class ResourceLoader : Singleton<ResourceLoader>
         jockAnim = Resources.Load<RuntimeAnimatorController>("Textures/mainGuyJock_0 (1)");
         furAnim = Resources.Load<RuntimeAnimatorController>("Textures/mainGuyFurry_0");
 
-        ColorUtility.TryParseHtmlString("25255CFF", out darkReputationColor);
-        ColorUtility.TryParseHtmlString("A73A96FF", out lightReputationColor);
+        level1Prefab = Resources.Load<GameObject>("Prefabs/Levels/Level1");
+        level2Prefab = Resources.Load<GameObject>("Prefabs/Levels/Level2");
+        level3Prefab = Resources.Load<GameObject>("Prefabs/Levels/Level3");
+        level4Prefab = Resources.Load<GameObject>("Prefabs/Levels/Level4");
+        level5Prefab = Resources.Load<GameObject>("Prefabs/Levels/Level5");
+        level6Prefab = Resources.Load<GameObject>("Prefabs/Levels/Level6");
     }
 
 }
