@@ -10,6 +10,7 @@ public class ChangingRoom : MonoBehaviour
         if (collision.tag.Equals("Player"))
         {
             PlayerController.instance.inChangingRoom = true;
+            OutfitManager.instance.Enable();
             if (Debug.isDebugBuild)
             {
                 Debug.Log("Entering the changing room");
@@ -22,6 +23,7 @@ public class ChangingRoom : MonoBehaviour
         if (collision.tag.Equals("Player"))
         {
             PlayerController.instance.inChangingRoom = false;
+            OutfitManager.instance.Disable();
             if (Debug.isDebugBuild)
             {
                 Debug.Log("Exiting the changing room");
