@@ -147,10 +147,14 @@ public class LevelManager : Singleton<LevelManager>
 
     private void SpawnEnemies()
     {
-        int level = GlobalPersistentStats.instance.level;
-        GameObject levelObj = GameObject.Find("Level" + level + "(Clone)");
-        //levelObj.SetActive(true);
-        Level lvl = levelObj.GetComponent<Level>();
+        Level lvl = GameManager.instance.GetCurrentLevel();
+        if (lvl == null)
+        {
+            int level = GlobalPersistentStats.instance.level;
+            GameObject levelObj = GameObject.Find("Level" + level + "(Clone)");
+            //levelObj.SetActive(true);
+            lvl = levelObj.GetComponent<Level>();
+        }
         //Level lvl = GameManager.instance.GetCurrentLevel();
         WaypointGroup wg = lvl.GetComponentInChildren<WaypointGroup>();
         Waypoint[] wps = wg.GetComponentsInChildren<Waypoint>();
