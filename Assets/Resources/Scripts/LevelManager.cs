@@ -123,6 +123,11 @@ public class LevelManager : Singleton<LevelManager> {
             SetSortingOrder(go, sortingOrder++);
         }
 
+        for (int i = 0; i < lvl.nobodyCount; i++)
+        {
+            Waypoint wp = wps[UnityEngine.Random.Range(0, wps.Length)];
+            GameObject go = Instantiate(ResourceLoader.instance.nobodyPrefab, wp.transform.position, Quaternion.identity);
+        }
     }
 
 }
