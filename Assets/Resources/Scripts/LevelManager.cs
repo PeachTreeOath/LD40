@@ -68,6 +68,19 @@ public class LevelManager : Singleton<LevelManager> {
             cliqueAffiliations[clique] = Math.Max(0, cliqueAffiliations[clique] + incrementAmount);
     }
 
+    public bool IsWinConditionSatisfied()
+    {
+        foreach(float cliqueAffinityEntry in cliqueAffiliations.Values)
+        {
+            if (cliqueAffinityEntry < affinityRequiredPerFactionToWin)
+            {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
     private void SpawnEnemies()
     {
         int level = GlobalPersistentStats.instance.level;
