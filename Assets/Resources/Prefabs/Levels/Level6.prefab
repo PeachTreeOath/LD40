@@ -49544,7 +49544,7 @@ MonoBehaviour:
   furryCount: 10
   skaterCount: 10
   footballerCount: 10
-  nobodyCount: 20
+  nobodyCount: 25
 --- !u!114 &114149550075388632
 MonoBehaviour:
   m_ObjectHideFlags: 1
