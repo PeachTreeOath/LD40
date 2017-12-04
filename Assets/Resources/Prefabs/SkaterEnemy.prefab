@@ -70,6 +70,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4648804909899318}
   - component: {fileID: 212196474335109928}
+  - component: {fileID: 114195297117490900}
   m_Layer: 12
   m_Name: MiniMapIcon
   m_TagString: Untagged
@@ -92,7 +93,6 @@ GameObject:
   - component: {fileID: 50603934111320798}
   - component: {fileID: 61114670282934382}
   - component: {fileID: 58100333550043828}
-  - component: {fileID: 114194083219497008}
   m_Layer: 9
   m_Name: SkaterEnemy
   m_TagString: Untagged
@@ -234,12 +234,12 @@ MonoBehaviour:
   decrementAffinitySpeed: -5
   rbody: {fileID: 0}
   navigation: {fileID: 0}
---- !u!114 &114194083219497008
+--- !u!114 &114195297117490900
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1605447010931366}
+  m_GameObject: {fileID: 1498245012574438}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ff860cb8a4811f344b9d27fc653689dd, type: 3}

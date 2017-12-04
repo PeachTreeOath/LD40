@@ -43,7 +43,6 @@ GameObject:
   - component: {fileID: 58506910444747942}
   - component: {fileID: 114849319472268820}
   - component: {fileID: 95582193563687604}
-  - component: {fileID: 114984163188300066}
   - component: {fileID: 114936115930540062}
   m_Layer: 9
   m_Name: FurryEnemy
@@ -61,6 +60,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4805445611189622}
   - component: {fileID: 212431530571126220}
+  - component: {fileID: 114628227154280476}
   m_Layer: 12
   m_Name: MiniMapIcon
   m_TagString: Untagged
@@ -256,6 +256,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4e041a7c3c1a00448bf89a678c474cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114628227154280476
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1509268471539302}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff860cb8a4811f344b9d27fc653689dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clique: 1
 --- !u!114 &114841173430154460
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -304,18 +316,6 @@ MonoBehaviour:
   maxWanderWait: 3
   startWaitingPercentage: 0.5
   state: start
---- !u!114 &114984163188300066
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1426858875210358}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ff860cb8a4811f344b9d27fc653689dd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  clique: 1
 --- !u!212 &212336913691605558
 SpriteRenderer:
   m_ObjectHideFlags: 1

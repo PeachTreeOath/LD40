@@ -6,9 +6,9 @@ public class ResizeAggroCircle : MonoBehaviour {
 
     public CliqueEnum clique;
 
-    public const float cResizeRate = 0.05f;
+    public const float cResizeRate = 0.1f;
 
-    private const float cMinRadius = 0.25f;
+    private const float cMinRadius = 0.5f;
 
     // Use this for initialization
     void Start () {
@@ -20,23 +20,18 @@ public class ResizeAggroCircle : MonoBehaviour {
 
         float affinity = 0;
         float radius = 0;
-        Transform[] transforms = gameObject.GetComponentsInChildren<Transform>();
 
-        foreach (Transform transform in transforms) {
+        affinity = gameObject.GetComponentInParent<EnemyController>().GetPersonalAffinity();
+        radius = cMinRadius + affinity * cResizeRate;
+        gameObject.transform.localScale = new Vector3(radius, radius, 0);
 
-            if (transform.name.Contains("MiniMapIcon")) {
+        if (PlayerStateController.instance.CurrentState == transform.parent.GetComponent<EnemyController>().clique) {
+            //Green
+            gameObject.GetComponent<SpriteRenderer>().color = new Color(0.0f, 1.0f, 0.0f, 0.6f);
 
-                affinity = gameObject.GetComponentInParent<EnemyController>().GetPersonalAffinity();
-                radius = cMinRadius + affinity * cResizeRate;
-                transform.localScale = new Vector3(radius, radius, 0);
-            }
-            //if (transform.name.Contains("ThreatIndicator"))
-            //{
-
-            //    affinity = LevelManager.instance.getCurrentAffiliation(clique);
-            //    radius = cMinRadius + affinity * cResizeRate;
-            //    transform.localScale = new Vector3(radius, radius, 0);
-            //}
+        } else {
+            //Red
+            gameObject.GetComponent<SpriteRenderer>().color = new Color(1.0f, 0.0f, 0.0f, 0.6f);
         }
     }
 }

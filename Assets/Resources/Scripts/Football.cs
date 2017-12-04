@@ -33,6 +33,7 @@ public class Football : MonoBehaviour {
                     Debug.Log("attract!");
                     lureEvent.Invoke(LureEvent.ATTRACT);
                     attractPulseTimer = attractInterval;
+                    AudioManager.instance.PlaySound("aggro", 0.2f);
                 }
             } else {
                 attracting = false;
@@ -46,10 +47,12 @@ public class Football : MonoBehaviour {
     {
         pickup.throwTime = Time.time;
         rbody.AddForce(force, ForceMode2D.Impulse);
+        AudioManager.instance.PlaySound("ball_throw");
         StartAttract();
     }
 
     public void OnPickUp() {
+        AudioManager.instance.PlaySound("ball_pick_up");
         gameObject.SetActive(false);
         if(attracting) {
             Debug.Log("attract cancel");
