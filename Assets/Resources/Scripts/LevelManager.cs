@@ -30,9 +30,9 @@ public class LevelManager : Singleton<LevelManager> {
         }
         
         //Get the canvas to use later
-        jockCanvasValue = GameObject.Find("Jocks Affinity Value").GetComponent<Text>();
-        skaterCanvasValue = GameObject.Find("Skaters Affinity Value").GetComponent<Text>();
-        furryCanvasValue = GameObject.Find("Furries Affinity Value").GetComponent<Text>();
+        //jockCanvasValue = GameObject.Find("Jocks Affinity Value").GetComponent<Text>();
+        //skaterCanvasValue = GameObject.Find("Skaters Affinity Value").GetComponent<Text>();
+        //furryCanvasValue = GameObject.Find("Furries Affinity Value").GetComponent<Text>();
 
         SpawnEnemies();
     }
@@ -101,7 +101,7 @@ public class LevelManager : Singleton<LevelManager> {
     {
         int level = GlobalPersistentStats.instance.level;
         GameObject levelObj = GameObject.Find("Level" + level);
-        levelObj.SetActive(true);
+        //levelObj.SetActive(true);
         Level lvl = levelObj.GetComponent<Level>();
         Waypoint[] wps = GameObject.Find("Waypoints"+GlobalPersistentStats.instance.level).GetComponentsInChildren<Waypoint>();
         int sortingOrder = 0;
