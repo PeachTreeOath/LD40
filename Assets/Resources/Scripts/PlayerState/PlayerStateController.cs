@@ -20,7 +20,7 @@ public class PlayerStateController : Singleton<PlayerStateController>
     {
         player = GetComponent<PlayerController>();
 
-        stateMap.Add(CliqueEnum.BEARDSTER, new HipsterPlayerState());
+        //stateMap.Add(CliqueEnum.BEARDSTER, new HipsterPlayerState());
         stateMap.Add(CliqueEnum.FURBOI, new FurryPlayerState());
         stateMap.Add(CliqueEnum.JOCK, new JockPlayerState());
         stateMap.Add(CliqueEnum.SK8R, new SkaterPlayerState());
@@ -41,9 +41,9 @@ public class PlayerStateController : Singleton<PlayerStateController>
 
         switch (state)
         {
-            case CliqueEnum.BEARDSTER:
+            //case CliqueEnum.BEARDSTER:
                 //Call the singleton for the Player controller here and then go
-                break;
+            //    break;
             case CliqueEnum.FURBOI:
                 break;
             case CliqueEnum.JOCK:

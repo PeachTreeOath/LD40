@@ -5,8 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class LevelManager : Singleton<LevelManager> {
-
-    public float requiredAffiliationPerClique;
+    
     public float totalAffiliationPerClique;
     public float defaultAffiliation;
     public float incrementAffiliationAmount;
@@ -70,9 +69,9 @@ public class LevelManager : Singleton<LevelManager> {
 
     public bool IsWinConditionSatisfied()
     {
-        foreach(float cliqueAffinityEntry in cliqueAffiliations.Values)
+        foreach(KeyValuePair<CliqueEnum,float> cliqueAffinityEntry in cliqueAffiliations)
         {
-            if (cliqueAffinityEntry < affinityRequiredPerFactionToWin)
+            if (cliqueAffinityEntry.Key != CliqueEnum.NORMAL && cliqueAffinityEntry.Value < affinityRequiredPerFactionToWin)
             {
                 return false;
             }
