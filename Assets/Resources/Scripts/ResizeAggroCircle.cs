@@ -26,6 +26,13 @@ public class ResizeAggroCircle : MonoBehaviour {
 
             if (transform.name.Contains("MiniMapIcon")) {
 
+                affinity = gameObject.GetComponentInParent<EnemyController>().GetPersonalAffinity();
+                radius = cMinRadius + affinity * cResizeRate;
+                transform.localScale = new Vector3(radius, radius, 0);
+            }
+            if (transform.name.Contains("ThreatIndicator"))
+            {
+
                 affinity = LevelManager.instance.getCurrentAffiliation(clique);
                 radius = cMinRadius + affinity * cResizeRate;
                 transform.localScale = new Vector3(radius, radius, 0);
