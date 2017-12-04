@@ -61,12 +61,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72fc8a0ab8419114d85f117678c481be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  muteSprite: {fileID: 0}
+  unmuteSprite: {fileID: 0}
   skaterSprite: {fileID: 0}
   jockSprite: {fileID: 0}
   furrySprite: {fileID: 0}
   skaterPrefab: {fileID: 0}
   jockPrefab: {fileID: 0}
   furryPrefab: {fileID: 0}
+  nobodyPrefab: {fileID: 0}
   furAnim: {fileID: 0}
   jockAnim: {fileID: 0}
   darkReputationColor: {r: 0, g: 0, b: 0, a: 0}
@@ -82,13 +85,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70607f251881bae4cb16d8667be32f2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  requiredAffiliationPerClique: 80
   totalAffiliationPerClique: 100
   defaultAffiliation: 0
   incrementAffiliationAmount: 1
   decrementAffiliationAmount: 2
   affinityRequiredPerFactionToWin: 10
   overrideChangingRoomCheat: 0
+  furryComplete: {fileID: 0}
+  skaterComplete: {fileID: 0}
+  jockComplete: {fileID: 0}
 --- !u!114 &114795510964690292
 MonoBehaviour:
   m_ObjectHideFlags: 1
