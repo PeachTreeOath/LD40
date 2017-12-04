@@ -11,13 +11,20 @@ public class GameManager : Singleton<GameManager> {
 
 	// Use this for initialization
 	void Start () {
+        if(currentLevel == null)
+        {
+            LoadLevelNow();
+        }
+    }
+	
+    void LoadLevelNow()
+    {
         GlobalPersistentStats.instance.level++;
         currentLevelIndex = GlobalPersistentStats.instance.level - 1;
         GameObject levelObj = GameObject.Find("Levels");
         levels = levelObj.GetComponentsInChildren<Level>();
         currentLevel = levels[currentLevelIndex];
     }
-	
 	// Update is called once per frame
 	void Update () {
 
@@ -50,6 +57,10 @@ public class GameManager : Singleton<GameManager> {
 
     public Dictionary<CliqueEnum,bool> getCliquesAvailable()
     {
+        if (currentLevel == null)
+        {
+            LoadLevelNow();
+        }
         Dictionary<CliqueEnum, bool> cliquesAvailable = new Dictionary<CliqueEnum, bool>();
         if (currentLevel.furryCount == 0)
         {
