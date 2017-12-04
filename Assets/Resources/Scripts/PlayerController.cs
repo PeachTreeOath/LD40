@@ -57,8 +57,19 @@ public class PlayerController : Singleton<PlayerController>
             float currentSpeed = skateMoveSpeed * Time.deltaTime;
             rbody.MovePosition(transform.position + transform.right * currentSpeed * (playerSprite.flipX ? 1 : -1));
             rbody.MoveRotation(rbody.rotation - Input.GetAxisRaw("Horizontal") * skateTurnSpeed * Time.deltaTime);
+
+            // Maintain upright sprite
+            if (rbody.transform.eulerAngles.z > 90 && rbody.transform.eulerAngles.z < 270)
+                playerSprite.flipY = true;
+            else
+                playerSprite.flipY = false;
         } else
         {
+            // Fix direction when changing from sk8r to other
+            if (playerSprite.flipY)
+                playerSprite.flipX = !playerSprite.flipX;
+
+            playerSprite.flipY = false;
             rbody.MoveRotation(0);
             float currentSpeed = moveSpeed * Time.deltaTime;
             if (Input.GetAxisRaw("Horizontal") > 0)
