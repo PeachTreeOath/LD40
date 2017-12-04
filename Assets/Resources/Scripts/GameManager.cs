@@ -17,7 +17,18 @@ public class GameManager : Singleton<GameManager> {
         LoadLevelNow();
 
     }
-	
+    public void GenLevel()
+    {
+        if (currentLevel == null)
+        {
+            currentLevel = ResourceLoader.instance.GetLevel(GlobalPersistentStats.instance.level);
+        }
+        else
+        {
+            Debug.Log("Load level called unnecessarily");
+            Destroy(currentLevel.gameObject);
+        }
+    }
     void LoadLevelNow()
     {
 
@@ -37,15 +48,7 @@ public class GameManager : Singleton<GameManager> {
 
 
         //currentLevel = levels[GlobalPersistentStats.instance.level - 1];
-        if (currentLevel == null)
-        {
-            currentLevel = ResourceLoader.instance.GetLevel(GlobalPersistentStats.instance.level);
-        }
-        else
-        {
-            Debug.Log("Load level called unnecessarily");
-            Destroy(currentLevel.gameObject);
-        }
+
 
         if (GlobalPersistentStats.instance.level == 1)
             GameObject.Find("Help1").GetComponent<Text>().enabled = true;

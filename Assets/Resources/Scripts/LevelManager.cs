@@ -151,6 +151,7 @@ public class LevelManager : Singleton<LevelManager>
         if (lvl == null)
         {
             int level = GlobalPersistentStats.instance.level;
+            GameManager.instance.GenLevel();
             GameObject levelObj = GameObject.Find("Level" + level + "(Clone)");
             //levelObj.SetActive(true);
             lvl = levelObj.GetComponent<Level>();
