@@ -12,7 +12,6 @@ public class AudioManager : Singleton<AudioManager>
     // Use this to mute game during production
     public bool mute;
     public float musicVolume;
-    public float crossfadeDuration = 4;
 
     private AudioSource musicChannel;
     private AudioSource musicChannel2; //used for crossfades between music
@@ -75,28 +74,50 @@ public class AudioManager : Singleton<AudioManager>
 
     public void PlayMusicFromTime(string name, float time)
     {
-        musicChannel.clip = soundMap[name];
-		musicChannel.volume = musicVolume;
-        musicChannel.loop = true;
         musicChannel.time = time;
-        musicChannel.Play();
+        PlayMusicAndCrossfade(name, 2);
     }
 
 
-    public void PlayMusicFromTimeAndCrossfade(string name, float time)
+    public void PlayMusicAndCrossfade(string name, float crossfadeDuration)
     {
-        
+        float oldMusicTime = musicChannel.time;
+
+        //load music channel1 into channel2
+        musicChannel2.clip = musicChannel.clip;
+        musicChannel2.volume = musicChannel.volume;
+        musicChannel2.loop = true;
+        musicChannel2.time = oldMusicTime;
+        musicChannel.Stop();
+        musicChannel2.Play();
+
         musicChannel.clip = soundMap[name];
-        musicChannel.volume = musicVolume;
+        musicChannel.volume = 0f;
         musicChannel.loop = true;
-        musicChannel.time = time;
+        musicChannel.time = oldMusicTime;
+
         musicChannel.Play();
+
+        Debug.Log("Starting crossfade.");
+        introCoroutine = StartCoroutine(CrossfadeFromChannel2To1(crossfadeDuration));
     }
-    private IEnumerator PlayMusicCrossfading(string name, float delayTime)
+    private IEnumerator CrossfadeFromChannel2To1(float crossfadeDuration)
     {
-        yield return new WaitForSeconds(delayTime);
-        introCompleted = true;
-        PlayMusic(name);
+        float timer = 0;
+
+        float volumeMax = musicChannel2.volume;
+
+        while (timer <= crossfadeDuration)
+        {
+            timer += Time.deltaTime;
+
+            musicChannel2.volume = volumeMax - volumeMax * (timer / crossfadeDuration);
+            musicChannel.volume = volumeMax * (timer / crossfadeDuration);
+            yield return null;
+        }
+
+        musicChannel2.Stop();
+
     }
 
     public void PlayMusicOnce(string name)
